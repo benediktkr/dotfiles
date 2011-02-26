@@ -1,0 +1,10 @@
+## .screenrc Benedikt 
+## Last edit: 26.02.2011
+
+startup_message off
+vbell off
+bell_msg ""
+defscrollback 1024
+autodetach on        # default
+
+escape ^Mm
