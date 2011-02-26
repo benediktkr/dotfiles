@@ -5,6 +5,5 @@ startup_message off
 vbell off
 bell_msg ""
 defscrollback 1024
-autodetach on        # default
 
-escape ^Mm
+escape ^Xx
