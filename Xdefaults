@@ -1,0 +1,7 @@
+!! Emacs
+Emacs.menuBar: off
+Emacs.verticalScrollBars: off
+Emacs.toolBar: off
+Emacs*font: -*-terminus-*-*-*-*-10-*-*-*-*-*-iso8859-*
+Emacs.toolBar: off
+
