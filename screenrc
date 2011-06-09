@@ -6,4 +6,4 @@ vbell off
 bell_msg ""
 defscrollback 1024
 
-escape ^Xx
+escape ^Ww
