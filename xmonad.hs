@@ -33,6 +33,7 @@ main = do
       }
     } `additionalKeys`
     [ ((0, xK_Print), spawn "scrot ~/scrot.png"),
-      ((mod4Mask, xK_z), spawn "xscreensaver-command -lock")
+      ((mod4Mask, xK_z), spawn "xscreensaver-command -lock"),
+      ((mod4Mask .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\"")
     ]
 
