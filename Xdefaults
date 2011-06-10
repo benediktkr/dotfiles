@@ -4,3 +4,19 @@ Emacs.verticalScrollBars: off
 Emacs.toolBar: off
 Emacs.font: -*-DejaVu Sans Mono-*-*-*-*-12-*-*-*-*-*-iso8859-*
 XEmacs.geometry: 87x40
+
+!! xterm
+! Quick and dirty way
+!XTerm*altSendsEscape: true
+
+! Better fix for the Alt/Meta problem
+! See http://www.leonerd.org.uk/hacks/hints/xterm-8bit.html
+! Tell xterm not to use the 8-bit scheme for control keys and istead use the
+! 7-bit scheme. The problem is that utf-8 encoded unicode characters are
+! encoded using high-bit escape codes (leftmost bit set) but xterm (vt100) uses
+! this to indicate ALT. See .inputrc. 
+XTerm*utf8: 1
+XTerm*eightBitInput: false
+XTerm*eightBitControl: false
+XTerm*eightBitOutput: true
+
