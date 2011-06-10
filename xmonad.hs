@@ -8,6 +8,10 @@
 --   libghc6-xmonad-contrib-dev
 --   libghc6-xmonad-dev
 --   xmobar
+--
+-- TODO:
+--   xterm colors like emacs theme
+--   add network statistics on xmobar
 
 import XMonad
 import XMonad.Hooks.DynamicLog
@@ -22,7 +26,7 @@ main = do
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig {
     modMask = mod4Mask,
-    terminal = "xterm",
+    terminal = "xterm  -bg '#000000' -fg '#8bb381'",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook = avoidStruts  $  layoutHook defaultConfig,
