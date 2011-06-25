@@ -10,11 +10,10 @@
 --   xmobar
 --
 -- TODO:
---   xterm colors like emacs theme
---   Add network statistics on xmobar
---   Why isn't ~/.Xdefaults loaded? (xrdb -merge)
+--   Add network load on xmobar
+--   Is ~/.Xdefaults loaded? (xrdb -merge)
 --   Touchpad tapping, see #xmonad log
---   Fullscreen Totem
+--   Fullscreen Totem (hide xmobar, set layout=full, remove border)
 
 import XMonad
 import XMonad.Hooks.DynamicLog
