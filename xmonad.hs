@@ -10,8 +10,6 @@
 --   xmobar
 --
 -- TODO:
---   Add network load on xmobar
---   Is ~/.Xdefaults loaded? (xrdb -merge)
 --   Touchpad tapping, see #xmonad log
 --   Fullscreen Totem (hide xmobar, set layout=full, remove border)
 
