@@ -10,7 +10,7 @@ escape ^Ww
 
 # UTF-8 support (start screen with -U)
 defutf8 on
-utf8 on
+utf8 on on
 
 # Hardstatus
 hardstatus alwayslastline
