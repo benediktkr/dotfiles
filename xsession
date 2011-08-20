@@ -9,13 +9,8 @@ xrdb -merge .Xresources
 
 # Set the background. In ubuntu `xpmroot` is provided by 'fvwm'.
 xpmroot ~/bg.jpg &
-
  
 xscreensaver -no-splash &
 nm-applet &
-
-if [ -x /usr/bin/nm-applet] ; then
-    nm-applet &  # --sm-disable
-fi
 
 exec xmonad
