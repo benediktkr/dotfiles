@@ -8,6 +8,8 @@
 --   libghc6-xmonad-contrib-dev
 --   libghc6-xmonad-dev
 --   xmobar
+--   
+-- xmonad(additionalKeys(defaultConfig, {my keys}))
 --
 -- TODO:
 --   Touchpad tapping, see #xmonad log
@@ -26,6 +28,7 @@ main = do
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig {
     modMask = mod4Mask,
+    workspaces = "term" : "web" : "music" : "ent" : map show[5..9],
     terminal = "xterm  -bg '#000000' -fg '#8bb381'",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
@@ -40,4 +43,5 @@ main = do
       ((mod4Mask, xK_z), spawn "xscreensaver-command -lock"),
       ((mod4Mask .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\"")
     ]
+
 
