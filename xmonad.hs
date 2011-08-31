@@ -20,19 +20,27 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Actions.NoBorders
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Accordion
+import XMonad.Layout.Named
+import qualified Data.Map as M
 import System.IO
+
+modm = mod4Mask
 
 main = do
   -- xmobar accepts input on its stdin. Rarther then
   --   running `monad | xmobar`, we do this.
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig {
-    modMask = mod4Mask,
+    modMask = modm,
     workspaces = "term" : "web" : "music" : "ent" : map show[5..9],
     terminal = "xterm  -bg '#000000' -fg '#8bb381'",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
-    layoutHook = avoidStruts  $  layoutHook defaultConfig,
+    --layoutHook = avoidStruts  $  layoutHook defaultConfig,
+    layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full),
     logHook = dynamicLogWithPP xmobarPP {
       -- We get output to xmobar with hPutStrLn xmproc (a pipe to xmobar)
       ppOutput = hPutStrLn xmproc,
@@ -40,8 +48,12 @@ main = do
       }
     } `additionalKeys`
     [ ((0, xK_Print), spawn "scrot ~/scrot.png"),
-      ((mod4Mask, xK_z), spawn "xscreensaver-command -lock"),
-      ((mod4Mask .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\"")
+      ((modm, xK_z), spawn "xscreensaver-command -lock"),
+      ((modm, xK_c), kill),
+      ((modm .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\""),
+      ((modm, xK_g), withFocused toggleBorder)
+      
     ]
+
 
 
