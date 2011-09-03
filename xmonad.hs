@@ -35,7 +35,7 @@ main = do
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig {
     modMask = modm,
-    workspaces = "term" : "web" : "ent" : "school" : map show[5..9],
+    workspaces = "term" : "editor" : "web" : "ent" : "school" : map show[6..9],
     terminal = "xterm  -bg '#000000' -fg '#8bb381'",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
