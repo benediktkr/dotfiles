@@ -14,8 +14,10 @@ fi
 
 xscreensaver -no-splash &
 
-if [ -x "/usr/bin/nm-applet" ]; then
-	nm-applet &
+if [ `hostname` = 'turing' ]; then
+    xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
+elif [ `hostname` = 'benedikt-laptop' ]; then
+    nm-applet &
 fi
 
 eval `ssh-agent -s`
