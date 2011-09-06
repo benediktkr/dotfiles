@@ -11,9 +11,16 @@
 --   
 -- xmonad(additionalKeys(defaultConfig, {my keys}))
 --
+-- Key codes:
+--   XF86AudioLowerVolume  0x1008ff11
+--   XF86AudioMute         0x1008ff12
+--   XF86AudioRaiseVolume  0x1008ff13
+--
+-- Volume controls can also be implemented by spawning `amixer -q set Master 2%+`.
+--
 -- TODO:
 --   Touchpad tapping, see #xmonad log
---   Fullscreen Totem (hide xmobar, set layout=full, remove border)
+
 
 import XMonad
 import XMonad.Hooks.DynamicLog
@@ -21,10 +28,10 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.NoBorders
+import XMonad.Actions.Volume
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Accordion
 import XMonad.Layout.Named
-import qualified Data.Map as M
 import System.IO
 
 modm = mod4Mask
@@ -51,8 +58,12 @@ main = do
       ((modm, xK_z), spawn "xscreensaver-command -lock"),
       ((modm, xK_c), kill),
       ((modm .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\""),
-      ((modm, xK_g), withFocused toggleBorder)
-      
+      ((modm, xK_g), withFocused toggleBorder),
+      -- ((0, 0x1008ff11), lowerVolume 4 >> return ()),
+      -- ((0, 0x1008ff13), raiseVolume 4 >> return ()),
+      -- ((0, 0x1008ff12), toggleMute    >> return ())
+      ((0, 0x1008ff11), spawn $ amixer -q set Master 2%-),
+      ((0, 0x1008ff13), spawn $ amixer -q set Master 2%+),
     ]
 
 
