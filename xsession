@@ -16,9 +16,14 @@ xscreensaver -no-splash &
 
 if [ `hostname` = 'turing' ]; then
     xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
+    blank_time = 30
 elif [ `hostname` = 'benedikt-laptop' ]; then
     nm-applet &
+    blank_time = 10
 fi
+
+xset b off
+xset s $[$blank_time*60]
 
 eval `ssh-agent -s`
 
