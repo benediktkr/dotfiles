@@ -7,7 +7,8 @@ if [ `hostname` = 'benedikt-laptop' ]; then
 fi
 
 # Computers with X (assume XMonad)
-if [`hostname` = 'benedikt-laptop' || `hostname` = 'turing']; then 
+if [ `hostname` = 'benedikt-laptop' ] || [ `hostname` = 'turing' ]; then
+    echo "X and XMonad assumed"
     ln -s $PWD/xmonad.hs ~/.xmonad/xmonad.hs
     ln -s $PWD/xmobarrc-`hostname` ~/.xmobarrc
 
