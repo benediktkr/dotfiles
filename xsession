@@ -15,7 +15,10 @@ fi
 xscreensaver -no-splash &
 
 if [ `hostname` = 'turing' ]; then
-    xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
+    # ATI 5750
+    #xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
+    # Onboard
+    xrandr --output VGA-0 --right-of HDMI-0 --auto
     blank_time = 10
 elif [ `hostname` = 'benedikt-laptop' ]; then
     nm-applet &
