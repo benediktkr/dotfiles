@@ -18,7 +18,9 @@ if [ `hostname` = 'turing' ]; then
     # ATI 5750
     #xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
     # Onboard
-    xrandr --output VGA-0 --right-of HDMI-0 --auto
+    #xrandr --output VGA-0 --right-of HDMI-0 --auto
+    # GeForece 8800 GTX with `nvidia` driver is done in xorg.conf which has been
+    # given permissino to live in this repo, so no xrandr currently. 
     blank_time = 10
 elif [ `hostname` = 'benedikt-laptop' ]; then
     nm-applet &
