@@ -11,11 +11,17 @@ HITHER=repos/dotfiles
 
 # Set the background. 
 WALLPAPER=chell.jpg
-if [ -x $(which feh) ] && [ -f "$HITHER/$WALLPAPER" ]; then
+if hash feh 2>&- && [ -f "$HITHER/$WALLPAPER" ]; then
     feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
 fi
 
-xscreensaver -no-splash &
+if hash xscreensaver 2>&-; then 
+    xscreensaver -no-splash &
+fi
+
+if hash nm-applet 2>&-; then
+    nm-applet &
+fi
 
 # Host-dependent settings
 if [ `hostname` = 'turing' ]; then
@@ -24,12 +30,11 @@ if [ `hostname` = 'turing' ]; then
     # Onboard
     #xrandr --output VGA-0 --right-of HDMI-0 --auto
     # GeForece 8800 GTX with `nvidia` driver is done in xorg.conf which has been
-    # given permissino to live in this repo, so no xrandr currently. 
-    blank_time = 10
+    # given permission to live in this repo, so no xrandr currently. 
+    blank_time=10
 
 elif [ `hostname` = 'benedikt-laptop' ]; then
-    nm-applet &
-    blank_time = 5
+      blank_time=5
 fi
 
 xset b off
