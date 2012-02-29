@@ -17,7 +17,8 @@
 --   XF86AudioRaiseVolume  0x1008ff13
 --
 -- Volume controls are also implemented in XMonad.Actions.Volume, found in the cabal package xmonad-extras
--- but it conflicts with depencies in Debian. 
+-- but it conflicts with depencies in Debian so it is not used here.
+-- Alternative terminal: "xterm  -bg '#000000' -fg '#8bb381'"
 --
 -- TODO:
 --   Touchpad tapping, see #xmonad log
@@ -38,12 +39,12 @@ modm = mod4Mask
 
 main = do
   -- xmobar accepts input on its stdin. Rarther then
-  --   running `monad | xmobar`, we do this.
+  --   running `xmonad | xmobar`, we do this.
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig {
     modMask = modm,
     workspaces = "term" : "editor" : "web" : "ent" : "work" : map show [6..9],
-    terminal = "xterm  -bg '#000000' -fg '#8bb381'",
+    terminal = "gnome-terminal",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full),

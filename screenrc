@@ -8,6 +8,7 @@ defscrollback 1024
 
 escape ^Ww
 
+# Uncomment to start at screen 1 instead of 0
 bind c screen 1
 screen 1
 
