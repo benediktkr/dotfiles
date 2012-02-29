@@ -3,17 +3,21 @@
 # Load resources
 xrdb -merge .Xresources
 
+HITHER=repos/dotfiles
+
 # Put trayer in the left corner
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true  \
 #  --expand true --width 2 --transparent true --tint 0x191970 --height
 
-# Set the background. In ubuntu `xpmroot` is provided by 'fvwm'. Seemingly does not work
-if [ -x "/usr/bin/xpmroot" ]; then
-    xpmroot ~/repos/dotfiles/bg.jpg &
+# Set the background. 
+WALLPAPER=chell.jpg
+if [ -x $(which feh) ] && [ -f "$HITHER/$WALLPAPER" ]; then
+    feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
 fi
 
 xscreensaver -no-splash &
 
+# Host-dependent settings
 if [ `hostname` = 'turing' ]; then
     # ATI 5750
     #xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
@@ -22,6 +26,7 @@ if [ `hostname` = 'turing' ]; then
     # GeForece 8800 GTX with `nvidia` driver is done in xorg.conf which has been
     # given permissino to live in this repo, so no xrandr currently. 
     blank_time = 10
+
 elif [ `hostname` = 'benedikt-laptop' ]; then
     nm-applet &
     blank_time = 5
