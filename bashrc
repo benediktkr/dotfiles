@@ -15,6 +15,7 @@
 # Different settings per host
 if [ `hostname` = 'turing' ]; then
     COL='01;34'             # light-blue
+    alias isnets='python ~/repos/misc/isnets.py'
 elif [ `hostname` = 'bkserv.sudo.is' ]; then
     COL='00;32'               # green
     alias s='screen -x'
