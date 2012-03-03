@@ -2,7 +2,7 @@
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
-Emacs.font: -*-DejaVu Sans Mono-*-*-*-*-12-*-*-*-*-*-iso8859-*
+!!Emacs.font: -*-DejaVu Sans Mono-*-*-*-*-12-*-*-*-*-*-iso-8859-*
 XEmacs.geometry: 87x40
 
 !! xterm
@@ -19,4 +19,5 @@ XTerm*utf8: 1
 XTerm*eightBitInput: false
 XTerm*eightBitControl: false
 XTerm*eightBitOutput: true
+
 
