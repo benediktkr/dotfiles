@@ -1,7 +1,7 @@
 #!/bin/sh
 
-read -p 'Will overwrite existing config files. Continue? (y/n)'
-[ $REPLY != [yY] ] && exit 1
+read -p 'Will overwrite existing config files. Continue? (y/n) '
+[ $REPLY != "y" ] && exit 1
 
 # Linker for my dotfiles
 ln -s $PWD/bashrc ~/.bashrc
