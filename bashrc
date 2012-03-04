@@ -19,6 +19,8 @@ if [ `hostname` = 'turing' ]; then
 elif [ `hostname` = 'bkserv.sudo.is' ]; then
     COL='00;32'               # green
     alias s='screen -x'
+elif [ `hostname` = 'media' ]; then
+    COL='0;31'
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
