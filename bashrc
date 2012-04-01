@@ -102,4 +102,4 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #stty -echo
-alias bjkdesktop='rdesktop -u benedikt -k is -g 1024x768  -m -z 192.168.0.17'
+alias win='rdesktop -u benedikt -k is -g 1280x1024 -m -z 192.168.0.21'
