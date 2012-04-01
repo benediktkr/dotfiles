@@ -10,7 +10,7 @@ HITHER=repos/dotfiles
 #  --expand true --width 2 --transparent true --tint 0x191970 --height
 
 # Set the background. 
-WALLPAPER=chell.jpg
+WALLPAPER=milkyway.jpg
 if hash feh 2>&- && [ -f "$HITHER/$WALLPAPER" ]; then
     feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
 fi
