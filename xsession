@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Load resources
-xrdb -merge .Xresources
+# Load resources and Xmodmap (assumes that files have been linked)
+xrdb -merge ~/.Xresources
+xmodmap ~/.Xmodmap
+
 
 HITHER=repos/dotfiles
 
