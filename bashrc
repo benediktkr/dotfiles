@@ -103,3 +103,6 @@ fi
 
 #stty -echo
 alias win='rdesktop -u benedikt -k is -g 1280x1024 -m -z 192.168.0.21'
+alias cable='sudo ip route change default via 192.168.0.1'
+alias adsl='sudo ip route change default via 192.168.0.2'
+alias dg='ip route | grep default'
