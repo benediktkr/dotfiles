@@ -5,6 +5,8 @@
 # the script will still try to link, but failes because the file
 # already exists. 
 
+####### DO NOT USE. NEEDS COMPLETE REWRITE
+
 #read -p 'Will overwrite existing config files. Continue? (y/n) '
 #[ $REPLY != "y" ] && exit 1
 
