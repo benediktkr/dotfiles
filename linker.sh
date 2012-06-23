@@ -11,8 +11,8 @@
 
 rm -i ~/.bashrc && ln -s $PWD/bashrc ~/.bashrc
 
-# Only desktop
-if  [ `hostname` = 'turding' ]; then 
+# Only desktop (turing, but mathom may be different)
+if  [ `hostname` = 'turing' ]; then 
     echo "turing: xorg.conf.."
     if [ -f "/etc/X11/xorg.conf" ]; then
         echo "   Note: Moving old /etc/X11/xorg.conf to ~/xorg.conf-$(date +"%d%m%y")"
@@ -43,8 +43,8 @@ if hash xmonad 2>&-; then
     if [ -f $PWD/xmobarrc-`hostname` ]; then
         ln -s $PWD/xmobarrc-`hostname` ~/.xmobarrc
     else
-        # Assume the turing config as the default
-        ln -s $PWD/xmonarrc-turing ~/.xmobarrc
+        # Assume the mathom config as the default
+        ln -s $PWD/mathom-turing ~/.xmobarrc
     fi
 fi
 

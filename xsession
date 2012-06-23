@@ -26,7 +26,7 @@ if hash nm-applet 2>&-; then
 fi
 
 # Host-dependent settings
-if [ `hostname` = 'turing' ]; then
+if [ `hostname` = 'mathom' ]; then
     # ATI 5750
     #xrandr --output DVI-0 --left-of DVI-1 --output DVI-1 --auto
     # Onboard
