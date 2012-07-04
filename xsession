@@ -32,7 +32,9 @@ if [ `hostname` = 'mathom' ]; then
     # Onboard
     #xrandr --output VGA-0 --right-of HDMI-0 --auto
     # GeForece 8800 GTX with `nvidia` driver is done in xorg.conf which has been
-    # given permission to live in this repo, so no xrandr currently. 
+    # given permission to live in this repo, so no xrandr currently.
+    # GeForce 260GTX
+    xrandr --output DVI-I-1 --left-of DVI-I-2 --auto
     blank_time=10
 
 elif [ `hostname` = 'benedikt-laptop' ]; then
