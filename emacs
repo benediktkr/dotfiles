@@ -5,6 +5,8 @@
 ;; where many features are compiled out
 (defvar emacs-has-x (fboundp 'tool-bar-mode))
 
+(load-theme 'wombat t)
+
 ;; The path to our dotemacs directory
 (defvar my-dotemacs "~/repos/dotfiles") 
 
@@ -182,7 +184,7 @@
 ;;; Modules
 
 ;; emacs-lisp-mode
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode t)
+;(add-hook 'emacs-lisp-mode-hook 'eldoc-mode t)
 
 ;; org-mode
 (when (require 'org-install)
@@ -208,10 +210,10 @@
 (setq tramp-default-method "ssh")
 
 ;; python-mode
-(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist (cons '("python" . python-mode)
-                                       interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
+;(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+;(setq interpreter-mode-alist (cons '("python" . python-mode)
+;                                       interpreter-mode-alist))
+;(autoload 'python-mode "python-mode" "Python editing mode." t)
 
 ;;; Keybindings
 ;; GIT
@@ -234,6 +236,7 @@
 (global-set-key (kbd "C-c C-i") 'indent-region)
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/bash")))
@@ -244,5 +247,18 @@
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
 
+;; Add better repo 
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
+(when (not (package-installed-p 'nrepl))
+  (package-install 'nrepl))
 
+(when (not (package-installed-p 'clojure-mode))
+  (package-install 'clojure-mode))
+
+(when (not (package-installed-p 'magit))
+  (package-install 'magit))
