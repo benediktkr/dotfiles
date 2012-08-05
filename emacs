@@ -254,8 +254,7 @@
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-(when (not (package-installed-p 'nrepl))
-  (package-install 'nrepl))
+; May not work as intended. 
 
 (when (not (package-installed-p 'clojure-mode))
   (package-install 'clojure-mode))
