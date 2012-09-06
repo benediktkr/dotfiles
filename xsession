@@ -21,7 +21,7 @@ if hash xscreensaver 2>&-; then
     xscreensaver -no-splash &
 fi
 
-if hash nm-applet 2>&-; then
+if hash nm-applet 2>&- && [ ! `hostname` = "mathom" ]; then
     nm-applet &
 fi
 
@@ -36,6 +36,8 @@ if [ `hostname` = 'mathom' ]; then
     # GeForce 260GTX
     xrandr --output DVI-I-1 --left-of DVI-I-2 --auto
     blank_time=10
+    xset s off
+    xset -dpms
 
 elif [ `hostname` = 'benedikt-laptop' ]; then
       blank_time=5
