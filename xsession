@@ -12,7 +12,7 @@ HITHER=repos/dotfiles
 #  --expand true --width 2 --transparent true --tint 0x191970 --height
 
 # Set the background. 
-WALLPAPER=milkyway.jpg
+WALLPAPER=aurora.jpg
 if hash feh 2>&- && [ -f "$HITHER/$WALLPAPER" ]; then
     feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
 fi
@@ -21,9 +21,14 @@ if hash xscreensaver 2>&-; then
     xscreensaver -no-splash &
 fi
 
-if hash nm-applet 2>&- && [ ! `hostname` = "mathom" ]; then
+if hash nm-applet 2>&-; then
     nm-applet &
 fi
+
+if hash dropbox 2>&-; then
+    dropbox start &
+fi
+    
 
 # Host-dependent settings
 if [ `hostname` = 'mathom' ]; then
