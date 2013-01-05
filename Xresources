@@ -20,4 +20,9 @@ XTerm*eightBitInput: false
 XTerm*eightBitControl: false
 XTerm*eightBitOutput: true
 
-
+! Style of XTerm
+xterm.*background: #000000
+xterm.*foreground: #ffffff
+xterm.*faceName: DejaVu Sans Mono
+xterm.*faceSize: 10
+xterm.*geometry: 119x50
