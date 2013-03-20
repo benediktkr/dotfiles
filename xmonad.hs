@@ -44,7 +44,7 @@ main = do
   xmonad $ defaultConfig {
     modMask = modm,
     workspaces = "term" : "editor" : "web" : "ent" : "work" : map show [6..9],
-    terminal = "gnome-terminal",
+    terminal = "xterm",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full),
