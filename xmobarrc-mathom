@@ -6,12 +6,11 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*",
                       Run Weather "BIRK" ["-t", " <tempC>C"] 36000,
                       Run Cpu ["-L", "3", "-H", "70", "--high", "red"] 10,
                       Run Memory ["-t", "Mem: <usedratio>%"] 10,
-                      Run Swap [] 10,
                       Run Date "%a %b %_d %H:%M" "date" 10,
-                      Run Network "eth1" ["-t", "<rx>/<tx>"] 5,
+                      Run Network "eth3" ["-t", "<rx>/<tx>"] 5,
                       Run StdinReader
                       ],
          sepChar = "%",
          alignSep = "}{",
-         template = "%StdinReader% }{ %eth1% | %cpu% | %memory% * %swap% | <fc=#ee9a00>%date%</fc> | %BIRK%"
+         template = "%StdinReader% }{ %eth3% | %cpu% | %memory% | <fc=#ee9a00>%date%</fc> | %BIRK%"
          }        
