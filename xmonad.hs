@@ -51,7 +51,7 @@ main = do
     terminal = "xterm",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
-    layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full) ||| withIM (1%7) (ClassName "Tkabber") Grid,
+    layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion ||| withIM (1%7) (ClassName "Tkabber") Grid) ||| named "Fullscreen" (noBorders  Full),
     logHook = dynamicLogWithPP xmobarPP {
       -- We get output to xmobar with hPutStrLn xmproc (a pipe to xmobar)
       ppOutput = hPutStrLn xmproc,
