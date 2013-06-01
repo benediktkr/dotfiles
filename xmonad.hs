@@ -33,7 +33,11 @@ import XMonad.Actions.NoBorders
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Accordion
 import XMonad.Layout.Named
+import XMonad.Layout.IM
+import XMonad.Layout.Grid
+import XMonad.Layout.Tabbed
 import System.IO
+import Data.Ratio ((%))
 
 modm = mod4Mask
 
@@ -47,7 +51,7 @@ main = do
     terminal = "xterm",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
-    layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full),
+    layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion) ||| named "Fullscreen" (noBorders  Full) ||| withIM (1%7) (ClassName "Tkabber") Grid,
     logHook = dynamicLogWithPP xmobarPP {
       -- We get output to xmobar with hPutStrLn xmproc (a pipe to xmobar)
       ppOutput = hPutStrLn xmproc,
