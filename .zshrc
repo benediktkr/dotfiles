@@ -16,6 +16,15 @@ case $HOST in
         ZSH_THEME="jreese"
 esac
 
+hs () {
+    pygmentize -l haskell $1 | less -R
+}
+
+
+py () {
+    pygmentize -l python $1 | less -R
+}
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
