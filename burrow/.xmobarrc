@@ -8,11 +8,12 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*",
                       Run Memory ["-t", "Mem: <usedratio>%"] 10,
                       Run Swap [] 10,
                       Run Date "%a %b %_d %H:%M" "date" 10,
+                      Run Network "eth0" ["-t", "<rx>/<tx>"] 5,
+                      Run Network "wlan0" ["-t", "<rx>/<tx>"] 5,
                       Run BatteryP ["BAT0", "BAT1"] ["-L", "10"] 10,
-                      Run Network "wlan2" ["-t", "<rx>/<tx>"] 5,
                       Run StdinReader
                       ],
          sepChar = "%",
          alignSep = "}{",
-         template = "%StdinReader% }{ %wlan2% | %cpu% | %memory% * %swap% | %battery% | <fc=#ee9a00>%date%</fc> | %BIKF%"
+         template = "%StdinReader% }{ %eth0% / %wlan0% | %cpu% | %memory% * %swap% | %battery% | <fc=#ee9a00>%date%</fc> | %BIRK%"
          }        
