@@ -25,10 +25,9 @@ py () {
     pygmentize -l python $1 | less -R
 }
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# |--  aliases
+alias emacs="emacs -nw"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
