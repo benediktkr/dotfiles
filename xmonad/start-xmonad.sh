@@ -13,7 +13,7 @@ BASE_DIR=/home/benedikt/projects/dotfiles
 # Set the background. 
 WALLPAPER=chamberofunderstanding.jpg
 if hash feh 2>&- && [ -f "$BASE_DIR/bgpics/$WALLPAPER" ]; then
-    feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
+    feh --bg-fill $BASE_DIR/bgpics/$WALLPAPER --no-fehbg
 fi
 
 if hash light-locker 2>&-; then 
