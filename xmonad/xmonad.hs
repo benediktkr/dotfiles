@@ -48,7 +48,8 @@ main = do
   xmonad $ defaultConfig {
     modMask = modm,
     workspaces = "term" : "editor" : "web" : "ent" : "work" : map show [6..9],
-    terminal = "xterm",
+    --terminal = "xterm",
+    terminal = "xfce4-terminal",
     focusFollowsMouse = False,
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook =  avoidStruts (layoutHook defaultConfig ||| Accordion ||| withIM (1%7) (ClassName "Tkabber") Grid) ||| named "Fullscreen" (noBorders  Full),

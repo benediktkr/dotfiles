@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load resources and Xmodmap (assumes that files have been linked)
-#xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources
 #xmodmap ~/.Xmodmap
 
 BASE_DIR=/home/benedikt/projects/dotfiles
@@ -16,8 +16,8 @@ if hash feh 2>&- && [ -f "$BASE_DIR/bgpics/$WALLPAPER" ]; then
     feh --bg-fill $HITHER/$WALLPAPER --no-fehbg
 fi
 
-if hash xscreensaver 2>&-; then 
-    xscreensaver -no-splash &
+if hash light-locker 2>&-; then 
+    light-locker --lock-on-suspend &
 fi
 
 if hash nm-applet 2>&-; then
