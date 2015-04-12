@@ -263,13 +263,6 @@
 (when (not (package-installed-p 'magit))
   (package-install 'magit))
 
-; Clojure auto-complete
- (require 'ac-nrepl)
- (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
- (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
- (eval-after-load "auto-complete"
-   '(add-to-list 'ac-modes 'nrepl-mode))
-
 ; python auto-complete
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
