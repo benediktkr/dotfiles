@@ -29,12 +29,12 @@ Config { font = "xft:DejaVu Sans Mono:size=8"
                                              "-m", "3",
                                              "-c", " ",
                                              "--",
-                                             "-O", "AC",
-                                             "-i", "Idle",
+                                             "-O", "Charging",
+                                             "-i", "AC",
                                              "-o", "Battery"] 10,
                       Run StdinReader
                       ],
          sepChar = "%",
          alignSep = "}{",
-         template = "%StdinReader% }{ %wlan0wi% | %eth0% %wlan0% | %multicpu% | %memory% | %battery% | <fc=#ee9a00>%date%</fc> | %BIRK%"
+         template = "%StdinReader% }{ %wlan0wi% | %eth0% %wlan0% | %multicpu% | %battery% | <fc=#ee9a00>%date%</fc> | %BIRK%"
          }        
