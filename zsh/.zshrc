@@ -25,6 +25,9 @@ py () {
     pygmentize -l python $1 | less -R
 }
 
+sh () {
+    pygmentize -l bash $1 | less -R
+}
 
 # |--  aliases
 alias emacs="emacs -nw"
