@@ -8,31 +8,17 @@
 (load-theme 'wombat t)
 
 ;; The path to our dotemacs directory
-(defvar my-dotemacs "~/repos/dotfiles") 
+(defvar my-dotemacs "/home/benedikt/projects/dotfiles/emacs") 
 
-; Should not be needed!
-;; (setq load-path
-;;       (append
-;;        (mapcar (lambda (x) (concat my-dotemacs x))
-;;                     (list "/magit"
-;;                           "/org-mode/lisp"
-;;                           "/git-commit-mode"
-;;                           "/pymacs"
-;;                           "/python-mode"
-;;                           "/color-theme-tangotango"
-;;                           "/rudel"))
-;;                     load-path))
-
-	
 ;; Always follow e.g. ~/.emacs to ~/repos/dotemacs/.emacs
 (setq vc-follow-symlinks t)
 
 ;; User info
 (setq user-full-name "Benedikt Kristinsson")
-(setq user-mail-address "benedikt.k@gmail.com")
+(setq user-mail-address "benedikt@inventati.org")
 
 ;; Used in ChangeLog entries
-(setq add-log-mailing-address "benedikt.k@gmail.com")
+(setq add-log-mailing-address "benedikt@inventati.org")
 
 ;;; Emacs' interface
 
@@ -45,14 +31,6 @@
    '(show-paren-mode t))
   
   
-  ;; Tango oblivion (Disabled for the time being, I want white now)
-  ;(setq color-theme-load-all-themes nil)
-  ;(require 'color-theme-tangotango)
-  ;(add-to-list 'load-path "color-theme-tangotango.el")
-  ;(color-theme-tangotango)
-  ;; (custom-set-faces
-  ;; '(default ((t (:weight normal :height 90 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
-
   ;; Kill tool, scrollbars and menubar
   (tool-bar-mode 0)
   (menu-bar-mode 0)
@@ -60,13 +38,10 @@
 
 )
 
-;;; Emacs
-
 ;; Match regardless of capitalization
 (setq read-buffer-completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
 (setq completion-ignore-case t)
-
 
 ;; Don't display the 'Welcome to GNU Emacs' buffer on startup
 (setq inhibit-startup-message t)
@@ -82,8 +57,6 @@
 
 ;; Don't use the GNU indent, use K&R
 (setq c-default-style "k&r" c-basic-offset 4)
-;; Enable this for automatic indentaion ("normal") instead of K&R style
-;; (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
 ;; Multiline commenting in C/C++
 (setq comment-style 'multi-line)
@@ -117,7 +90,6 @@
 
 ;; Don't use graphic dialog boxes
 (setq use-dialog-box nil)
-
 
 ;; Display the line and column number in the modeline
 (setq line-number-mode t)
@@ -163,11 +135,6 @@
 
 ;; I don't want stuff like git to start a pager in shell-mode
 (setenv "PAGER" "/bin/cat")
-
-;; Use the system default monospaced font in Gnome - Emacs 23.2
-;; (Uncommented, seemed to cause emacs to sometimes open a larger window)
-;(setq font-use-system-font t)
-
 
 ;; Electric minibuffer!
 ;; When selecting a file to visit, // will mean / and
@@ -240,7 +207,7 @@
 (global-set-key (kbd "M-o") 'other-window)
 
 ;; Terminal
-(global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/bash")))
+(global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
 
 ;; Home and End keys
 (global-set-key [home] 'beginning-of-buffer)
