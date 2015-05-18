@@ -3,6 +3,13 @@ Config { font = "xft:DejaVu Sans Mono:size=8"
          fgColor = "grey",
          position = TopW L 100,
          commands = [
+                      Run CpuFreq ["-t", "Freq:<cpu0>|<cpu1>",
+                                   "-L", "0",
+                                   "-d", "2",
+                                   "-H", "2",
+                                   "-l", "lightblue",
+                                   "-n", "white",
+                                   "-h", "red"] 50,
                       Run Weather "BIRK" ["-t", " <tempC>C"] 36000,
                       Run MultiCpu ["-L", "3",
                                     "-H", "70",
@@ -12,7 +19,7 @@ Config { font = "xft:DejaVu Sans Mono:size=8"
                       Run Memory ["-t", "Free Mem: <freeratio>%",
                                   "-m", "3",
                                   "-c", " "] 10,
-                      Run Date "%a %b %_d %H:%M" "date" 10,
+                      Run Date "%a %b %_d - %H:%M" "date" 10,
                       Run Network "eth0" ["-t", "<dev> <rx> <tx>",
                                           "-S", "True",
                                           "-m", "5",
@@ -36,5 +43,5 @@ Config { font = "xft:DejaVu Sans Mono:size=8"
                       ],
          sepChar = "%",
          alignSep = "}{",
-         template = "%StdinReader% }{ %wlan0wi% | %eth0% %wlan0% | %multicpu% | %battery% | <fc=#ee9a00>%date%</fc> | %BIRK%"
+         template = "%StdinReader% }{  %wlan0wi% | %multicpu% |  %battery% | <fc=#ee9a00>%date%</fc> | %BIRK%" 
          }        
