@@ -5,8 +5,8 @@
 --
 -- Requires (ubuntu packages):
 --   dmenu
---   libghc6-xmonad-contrib-dev
---   libghc6-xmonad-dev
+--   libghc-xmonad-contrib-dev
+--   libghc-xmonad-dev
 --   xmobar
 --   
 -- xmonad(additionalKeys(defaultConfig, {my keys}))
@@ -39,7 +39,7 @@ import XMonad.Layout.Tabbed
 import System.IO
 import Data.Ratio ((%))
 
-modm = mod4Mask
+modm = mod4Mask     -- winkey: mod4Mask, alt: mod1Mask
 
 main = do
   -- xmobar accepts input on its stdin. Rarther then
@@ -62,6 +62,8 @@ main = do
     [ ((0, xK_Print), spawn "scrot ~/scrot.png"),
       ((modm, xK_z), spawn "xscreensaver-command -lock"),
       ((modm, xK_c), kill),
+      ((modm, xK_v), spawn "xrandr --output VGA2 --auto --output LVDS2 --off"),
+      ((modm .|. shiftMask, xK_v), spawn "xrandr --output VGA2 --off --output LVDS2 --auto"),
       ((modm .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\""),
       ((modm, xK_g), withFocused toggleBorder),
       ((0, 0x1008ff11), spawn "amixer -q set Master 2%-"),
