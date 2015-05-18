@@ -35,5 +35,6 @@ xset +dpms
 xset s $[$blank_time*60]
 
 eval `ssh-agent -s`
+eval `gpg-agent -s`
 
 exec xmonad
