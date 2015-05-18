@@ -115,7 +115,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Switching
-(iswitchb-mode 1)
+;; (iswitchb-mode -1)
 (icomplete-mode 1)
 
 ;; Smash the training wheels
@@ -182,7 +182,6 @@
 ;                                       interpreter-mode-alist))
 ;(autoload 'python-mode "python-mode" "Python editing mode." t)
 
-
 ;;; Keybindings
 ;; GIT
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -205,6 +204,7 @@
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-j") 'newline-and-indent)
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
@@ -224,13 +224,18 @@
 
 ; May not work as intended. 
 
+(when (not (package-installed-p 'dash))
+  (package-install 'dash))
+
+(when (not (package-installed-p 'epl))
+  (package-install 'epl))
+
 (when (not (package-installed-p 'clojure-mode))
   (package-install 'clojure-mode))
 
 (when (not (package-installed-p 'magit))
   (package-install 'magit))
 
-; python auto-complete
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
@@ -252,3 +257,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(ido-mode -1)
+
