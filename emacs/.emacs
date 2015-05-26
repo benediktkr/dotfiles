@@ -1,10 +1,10 @@
 ;; Benedikt Kristinsson
 ;; Emacs configuration
 
-;; Do we have X? This is false under Debian's emacs-nox package
-;; where many features are compiled out
+;; Do we have X?
 (defvar emacs-has-x (fboundp 'tool-bar-mode))
 
+(setq emacs-dir "~/.emacs.d/")
 (load-theme 'wombat t)
 
 ;; The path to our dotemacs directory
@@ -55,16 +55,16 @@
 (setq indent-tabs-mode nil)
 (setq-default indent-tabs-mode nil)
 
-;; Don't use the GNU indent, use K&R
+;; Settings for C and C++
 (setq c-default-style "k&r" c-basic-offset 4)
-
-;; Multiline commenting in C/C++
 (setq comment-style 'multi-line)
 
-;; Use c-mode for .cpp files 
+;; Load modes based on file extensions
 (add-to-list 'auto-mode-alist '("\\.cpp$" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.vcl$" . vcl-mode))
 
-;; Use 4 spaces
+;; Use 4 spaces by default for tabbing
 (setq default-tab-width 4)
 (setq tab-width 4)
 
@@ -91,11 +91,14 @@
 ;; Don't use graphic dialog boxes
 (setq use-dialog-box nil)
 
-;; Display the line and column number in the modeline
+;; Display the line and column number in the modeline and add colors
 (setq line-number-mode t)
 (setq column-number-mode t)
 (line-number-mode t)
 (column-number-mode t)
+;(set-face-foreground 'mode-line "white")  ;; remove before commit
+(set-face-background 'mode-line "dark green")
+(set-face-background 'mode-line-inactive "light green")
 
 ;; syntax highlight everywhere
 (global-font-lock-mode t)
@@ -138,9 +141,13 @@
 
 ;; Electric minibuffer!
 ;; When selecting a file to visit, // will mean / and
-;; ~ will mean $HOME regardless of preceding text.
+;; ~ will mean $HOME regppppppardless of preceding text.
 (setq file-name-shadow-tty-properties '(invisible t))
 (file-name-shadow-mode 1)
+
+;; Colors to improve readability in my dark terminals
+(set-face-foreground 'minibuffer-prompt "white")
+(set-face-attribute 'link nil :foreground "light blue" :underline t)
 
 (setq backward-delete-char-untabify nil)
 
@@ -205,6 +212,9 @@
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-j") 'newline-and-indent)
+(global-set-key (kbd "C-x n") 'next-multiframe-window)
+(global-set-key (kbd "C-x p") 'previous-multiframe-window)
+(global-set-key (kbd "C-x m") 'manual-entry)
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
@@ -217,9 +227,9 @@
 
 ;; Add better repo 
 (require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 ; May not work as intended. 
@@ -236,9 +246,26 @@
 (when (not (package-installed-p 'magit))
   (package-install 'magit))
 
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
+;; Useful things for python
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:setup-keys t)                      ; optional
+;; (setq jedi:complete-on-dot t)                 ; optional
+
+; On-the-fly pyflakes checking
+; shows errors in the minibuffer when highlighted (http://bitbucket.org/brodie/dotfiles/src/tip/.emacs.d/plugins/flymake-point.el)
+(require 'flymake-point "~/.emacs.d/flymake-point.el")  
+(setq python-check-command "pyflakes")
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "pyflakes" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
+(add-hook 'python-mode-hook '(lambda () (flymake-mode 1)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (custom-set-variables
@@ -260,3 +287,5 @@
 
 (ido-mode -1)
 
+;; vcl-mode things
+(setq vcl-indent-level 4)
