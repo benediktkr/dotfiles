@@ -34,6 +34,7 @@ sh () {
 
 # |--  aliases
 alias emacs="emacs -nw"
+alias ipython="ipython --nosep --no-confirm-exit"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
