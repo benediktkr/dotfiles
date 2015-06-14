@@ -232,19 +232,11 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-; May not work as intended. 
+(defun have-installed (package-names)
+  (when (not (package-installed-p package-names))
+    (package-install package-names)))
 
-(when (not (package-installed-p 'dash))
-  (package-install 'dash))
-
-(when (not (package-installed-p 'epl))
-  (package-install 'epl))
-
-(when (not (package-installed-p 'clojure-mode))
-  (package-install 'clojure-mode))
-
-(when (not (package-installed-p 'magit))
-  (package-install 'magit))
+(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash))
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
