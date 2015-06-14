@@ -9,3 +9,8 @@ host freespace
      LocalForward 4025 localhost:25
      IdentityFile ~/.ssh/id_rsa
 
+#Host bkdh.dohop.com
+#     ProxyCommand ssh rvk.dohop.com -p 2020 -W :%p
+#
+Host *.dohop.com
+     ProxyCommand ssh 178.19.58.65 -p 2020 -W %h:%p
