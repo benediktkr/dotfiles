@@ -15,8 +15,11 @@ case $HOST in
     burrow)
         ZSH_THEME="alanpeabody"
         ;;
-    *)
+    mathom)
         ZSH_THEME="jreese"
+        ;;
+    *)
+        ZSH_THEME="robbyrussell"
 esac
 
 hs () {
