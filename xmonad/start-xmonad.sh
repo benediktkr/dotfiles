@@ -35,6 +35,6 @@ xset +dpms
 xset s $[$blank_time*60]
 
 eval `ssh-agent -s`
-eval `gpg-agent -s`
+eval `gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"`
 
 exec xmonad
