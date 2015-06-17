@@ -67,7 +67,7 @@ alias ipython="ipython --nosep --no-confirm-exit"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git screen debian lein pip python)
+plugins=(git screen debian lein pip python gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
