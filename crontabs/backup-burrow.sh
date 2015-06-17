@@ -19,6 +19,12 @@ KEYID="0x61FD1056812214D6"
     --encrypt-key $KEYID \
     --sign-key $KEYID
 
+/usr/bin/duplicity verify \
+    sftp://duplicity@freespace.sudo.is/burrow/ \
+    /home/benedikt/ \
+    --ssh-options="-oIdentityFile=/home/benedikt/.ssh/backupkey" \
+    --encrypt-key $KEYID 
+
 /usr/bin/duplicity collection-status sftp://duplicity@freespace.sudo.is/burrow/ \
     --ssh-options="-oIdentityFile=/home/benedikt/.ssh/backupkey"
 
