@@ -257,7 +257,14 @@
       (list "pyflakes" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pyflakes-init)))
-(add-hook 'python-mode-hook '(lambda () (flymake-mode 1)))
+(add-hook 'python-mode-hook
+          (lambda ()
+            (when (string-match "dohop" (buffer-file-name))
+              (when (not (string-match "varnish" (buffer-file-name)))
+                (setq indent-tabs-mode t)
+                (setq tab-width 4)
+                (setq python-indent 4)))
+            (flymake-mode 1)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (custom-set-variables
