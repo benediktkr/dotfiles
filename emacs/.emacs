@@ -236,7 +236,7 @@
   (when (not (package-installed-p package-names))
     (package-install package-names)))
 
-(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash))
+(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company))
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
