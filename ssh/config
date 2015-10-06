@@ -7,10 +7,20 @@ host freespace
      DynamicForward 4000
      LocalForward 5002 localhost:5002
      LocalForward 4025 localhost:25
+     #RemoteForward *:8088 localhost:8088
      IdentityFile ~/.ssh/id_rsa
+
+host LGW
+     HostName 54.154.73.34
+     IdentityFile ~/.ssh/bkdh
+     Port 2020
+
+host *.LGW
+     ProxyCommand ssh 54.154.73.34 -i ~/.ssh/bkdh -p 2020 -W %h:%p
 
 #Host bkdh.dohop.com
 #     ProxyCommand ssh rvk.dohop.com -p 2020 -W :%p
 #
-Host *.dohop.com
-     ProxyCommand ssh 178.19.58.65 -p 2020 -W %h:%p
+#Host *.dohop.com
+#     ProxyCommand ssh 178.19.58.65 -p 2020 -W %h:%p
+     #ProxyCommand ssh rvk.dohop.com -p 2020 -W %h:%p
