@@ -35,6 +35,9 @@ xset +dpms
 xset s $[$blank_time*60]
 
 eval `ssh-agent -s`
-eval `gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"`
+#eval `gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"`
+
+# Disable touchpad tapping on T450s
+synclient MaxTapTime=0
 
 exec xmonad
