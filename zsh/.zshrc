@@ -77,4 +77,4 @@ export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/s
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export WORKON_HOME=~/.virtualenvs/
-source /usr/local/bin/virtualenvwrapper.sh
+source /home/benedikt/.local/bin/virtualenvwrapper.sh
