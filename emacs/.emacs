@@ -172,6 +172,10 @@
 (when (require 'rudel-loaddefs nil t)
   (global-rudel-minor-mode 1))
 
+;; neotree
+(require 'neotree)
+(global-set-key (kbd "C-c n") 'neotree-toggle)
+
 ;(require 'rudel-loaddefs)
 
 ;(load-file "rudel/rudel-loaddefs.el")
@@ -288,3 +292,4 @@
 
 ;; vcl-mode things
 (setq vcl-indent-level 4)
+
