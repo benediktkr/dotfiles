@@ -59,11 +59,11 @@ main = do
       ppTitle = xmobarColor "green" "" . shorten 50
       }
     } `additionalKeys`
-    [ ((0, xK_Print), spawn "scrot ~/scrot.png"),
+    [ ((0, xK_Print), spawn "scrot /tmp/scrot.png"),
       ((modm, xK_z), spawn "xscreensaver-command -lock"),
       ((modm, xK_c), kill),
-      ((modm, xK_v), spawn "xrandr --output VGA2 --auto --output LVDS2 --off"),
-      ((modm .|. shiftMask, xK_v), spawn "xrandr --output VGA2 --off --output LVDS2 --auto"),
+      ((modm, xK_v), spawn "xrandr --output VIRTUAL1 --off --output eDP1 --off --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP2 --mode 1920x1080 --pos 1920x0 --rotate normal"),
+      ((modm .|. shiftMask, xK_v), spawn "xrandr --output VIRTUAL1 --off --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off"),
       ((modm .|. shiftMask, xK_BackSpace), spawn "emacsclient -n -c -a \"\""),
       ((modm, xK_g), withFocused toggleBorder),
       ((0, 0x1008ff11), spawn "amixer -q set Master 2%-"),

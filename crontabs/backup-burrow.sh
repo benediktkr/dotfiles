@@ -9,6 +9,8 @@ KEYID="0x61FD1056812214D6"
     --include /home/benedikt/projects \
     --include /home/benedikt/.ssh \
     --include /home/benedikt/scrots \
+    --include /home/benedikt/benedikt.kbd \
+    --include /home/benedikt/benedikt.kbdx \
     --include /home/benedikt/.gnupg \
     --exclude '**' \
     --volsize 1000 \

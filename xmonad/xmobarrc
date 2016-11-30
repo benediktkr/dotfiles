@@ -10,7 +10,7 @@ Config { font = "xft:DejaVu Sans Mono:size=8"
                                    "-l", "lightblue",
                                    "-n", "white",
                                    "-h", "red"] 50,
-                      Run Weather "BIRK" ["-t", " <tempC>C"] 36000,
+                      Run Weather "EDDT" ["-t", " <tempC>C"] 36000,
                       Run MultiCpu ["-L", "3",
                                     "-H", "70",
                                     "--high", "red",
