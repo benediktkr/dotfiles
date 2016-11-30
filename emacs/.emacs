@@ -8,7 +8,7 @@
 (load-theme 'wombat t)
 
 ;; The path to our dotemacs directory
-(defvar my-dotemacs "/home/benedikt/projects/dotfiles/emacs") 
+(defvar my-dotemacs "/home/benedikt/projects/dotfiles/emacs")
 
 ;; Always follow e.g. ~/.emacs to ~/repos/dotemacs/.emacs
 (setq vc-follow-symlinks t)
@@ -22,15 +22,15 @@
 
 ;;; Emacs' interface
 
-(when emacs-has-x 
+(when emacs-has-x
   ;; GTK stuff
   (custom-set-variables
    '(TeX-PDF-mode t)
    '(column-number-mode t)
    '(doc-view-continuous t)
    '(show-paren-mode t))
-  
-  
+
+
   ;; Kill tool, scrollbars and menubar
   (tool-bar-mode 0)
   (menu-bar-mode 0)
@@ -45,7 +45,7 @@
 
 ;; Don't display the 'Welcome to GNU Emacs' buffer on startup
 (setq inhibit-startup-message t)
-(setq inhibit-splash-screen t) 
+(setq inhibit-splash-screen t)
 
 ;; Remove scratch message
 (setq initial-scratch-message nil)
@@ -173,7 +173,7 @@
   (global-rudel-minor-mode 1))
 
 ;; neotree
-(require 'neotree)
+;(require 'neotree)
 (global-set-key (kbd "C-c n") 'neotree-toggle)
 
 ;(require 'rudel-loaddefs)
@@ -208,10 +208,9 @@
 ;(global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "C-x k") 'kill-buffer)
 (global-set-key (kbd "C-c C-r") 'revert-buffer)
-(global-set-key (kbd "C-c k") 'browse-kill-ring) 
+(global-set-key (kbd "C-c k") 'browse-kill-ring)
 (global-set-key (kbd "C-c C-s") 'replace-string)
 (global-set-key (kbd "M-i") 'indent-region)
-(global-set-key (kbd "C-c C-i") 'indent-region)
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
@@ -219,6 +218,9 @@
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)
+(global-set-key (kbd "M-c") 'comment-region)
+(global-set-key (kbd "M-C") 'uncomment-region)
+
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
@@ -229,18 +231,18 @@
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
 
-;; Add better repo 
+;; Add better repo
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 (defun have-installed (package-names)
   (when (not (package-installed-p package-names))
     (package-install package-names)))
 
-(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company))
+(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree))
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
@@ -249,7 +251,7 @@
 
 ; On-the-fly pyflakes checking
 ; shows errors in the minibuffer when highlighted (http://bitbucket.org/brodie/dotfiles/src/tip/.emacs.d/plugins/flymake-point.el)
-(require 'flymake-point "~/.emacs.d/flymake-point.el")  
+(require 'flymake-point "~/.emacs.d/flymake-point.el")
 (setq python-check-command "pyflakes")
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
@@ -261,6 +263,7 @@
       (list "pyflakes" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pyflakes-init)))
+
 (add-hook 'python-mode-hook
           (lambda ()
             (when (string-match "dohop" (buffer-file-name))
@@ -269,6 +272,10 @@
                 (setq tab-width 4)
                 (setq python-indent 4)))
             (flymake-mode 1)))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (custom-set-variables
@@ -293,3 +300,5 @@
 ;; vcl-mode things
 (setq vcl-indent-level 4)
 
+;; Groovy-mode bug, won't load unless this is required first.
+(require 'cl)
