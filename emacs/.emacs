@@ -5,10 +5,24 @@
 (defvar emacs-has-x (fboundp 'tool-bar-mode))
 
 (setq emacs-dir "~/.emacs.d/")
+
+;; Set theme
 (load-theme 'wombat t)
 
-;; The path to our dotemacs directory
-(defvar my-dotemacs "/home/benedikt/projects/dotfiles/emacs")
+(set-face-foreground 'mode-line "white")  
+(set-face-background 'mode-line "dark green")
+;;(set-face-background 'mode-line-inactive "black")
+
+;; Modeline
+(setq line-number-mode t)
+(setq column-number-mode t)
+(line-number-mode t)
+(column-number-mode t)
+
+
+;; Distance between linum and code
+(setq linum-format "%4d \u2502")
+
 
 ;; Always follow e.g. ~/.emacs to ~/repos/dotemacs/.emacs
 (setq vc-follow-symlinks t)
@@ -91,14 +105,6 @@
 ;; Don't use graphic dialog boxes
 (setq use-dialog-box nil)
 
-;; Display the line and column number in the modeline and add colors
-(setq line-number-mode t)
-(setq column-number-mode t)
-(line-number-mode t)
-(column-number-mode t)
-;(set-face-foreground 'mode-line "white")  ;; remove before commit
-(set-face-background 'mode-line "dark green")
-(set-face-background 'mode-line-inactive "light green")
 
 ;; syntax highlight everywhere
 (global-font-lock-mode t)
@@ -153,6 +159,8 @@
 
 
                    ;;;; Forked end ;;;;
+
+
 
 
 ;;; Modules
@@ -218,8 +226,8 @@
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)
-(global-set-key (kbd "M-c") 'comment-region)
-(global-set-key (kbd "M-C") 'uncomment-region)
+(global-set-key (kbd "M-c") 'comment-line)
+(global-set-key (kbd "M-C") 'uncomment-line)
 
 
 ;; Terminal
@@ -242,7 +250,7 @@
   (when (not (package-installed-p package-names))
     (package-install package-names)))
 
-(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree))
+(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree  cargo terraform-mode))
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
@@ -285,8 +293,13 @@
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-mode t)
  '(column-number-mode t)
- '(custom-safe-themes (quote ("b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default)))
+ '(custom-safe-themes
+   (quote
+    ("b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default)))
  '(doc-view-continuous t)
+ '(package-selected-packages
+   (quote
+    (terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -302,3 +315,14 @@
 
 ;; Groovy-mode bug, won't load unless this is required first.
 (require 'cl)
+
+;; Rust stuff goes here I guess
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook 'linum-mode)
+(add-hook 'cargo-minor-mode 'visual-line-mode)
+
+;; ansi color in read-only buffers
+(defun display-ansi-colors ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
