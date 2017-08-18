@@ -2,18 +2,19 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+
+# Nice ones that I like
+#  * jreese
+#  * gentoo
+#  * alanpeabody (doesnt show full path and color blends with background)
+
 case $HOST in
     freespace)
         ZSH_THEME="gianu"
         ;;
-    bkdh)
-        ZSH_THEME="gentoo"
-        ;;
     burrow)
-        ZSH_THEME="alanpeabody"
+	    #ZSH_THEME="gentoo"
+	    ZSH_THEME="jreese"
         ;;
     mathom)
         ZSH_THEME="jreese"
@@ -77,4 +78,4 @@ export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/s
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export WORKON_HOME=~/.virtualenvs/
-source /home/benedikt/.local/bin/virtualenvwrapper.sh
+#source /home/benedikt/.local/bin/virtualenvwrapper.sh
