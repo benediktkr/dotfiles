@@ -12,7 +12,7 @@ case $HOST in
     freespace)
         ZSH_THEME="gianu"
         ;;
-    nightswatch)
+    castleblack)
         ZSH_THEME="gentoo"
 	;;
     burrow)
