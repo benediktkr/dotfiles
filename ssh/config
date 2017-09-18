@@ -17,3 +17,6 @@ Host *.inventorum.berlin
 Host *.inventorum.net
  ProxyCommand ssh -A 144.76.119.239 nc -q0 %h %p
  User root
+
+Host *.office.cubits.com
+ User benedikt
