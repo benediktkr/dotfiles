@@ -12,9 +12,6 @@ case $HOST in
     freespace)
         ZSH_THEME="gianu"
         ;;
-    castleblack)
-        ZSH_THEME="gentoo"
-	;;
     burrow)
 	ZSH_THEME="jreese"
         ;;

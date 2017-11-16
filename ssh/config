@@ -10,13 +10,8 @@ host freespace
      #RemoteForward *:8088 localhost:8088
      IdentityFile ~/.ssh/id_rsa
 
-Host *.inventorum.berlin
- ProxyCommand ssh -A freespace nc -q0 %h %p
- User ubuntu
 
-Host *.inventorum.net
- ProxyCommand ssh -A 144.76.119.239 nc -q0 %h %p
- User root
+#Host *.inventorum.berlin
+# ProxyCommand ssh -A freespace nc -q0 %h %p
+# User ubuntu
 
-Host *.office.cubits.com
- User benedikt
