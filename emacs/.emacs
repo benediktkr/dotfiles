@@ -226,8 +226,8 @@
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)
-(global-set-key (kbd "M-c") 'comment-line)
-(global-set-key (kbd "M-C") 'uncomment-line)
+(global-set-key (kbd "M-c") 'comment-region)
+(global-set-key (kbd "M-C") 'uncomment-region)
 
 
 ;; Terminal
@@ -299,7 +299,7 @@
  '(doc-view-continuous t)
  '(package-selected-packages
    (quote
-    (terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode)))
+    (yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
