@@ -1,0 +1,23 @@
+Host *.carezen.net
+	User bkristinsson
+
+Host intl-euw
+	User bkristinsson
+	HostName euwprd-util-1-a.euw.carezen.net
+
+Host intl-use
+	User bkristinsson
+	HostName useprd-util-1-a.use.carezen.net
+
+Host dom-use
+	User bkristinsson
+	HostName dom-use-util-01.use.dom.carezen.net
+
+Host bolprodops1
+     HostName bolprodops1.carezen.local
+     User benedikt.kristinsson
+
+Host control.mgmt.omni
+     HostName control.mgmt.omni.carezen.net
+     ProxyCommand ssh -A bolprodops1 nc %h %p
+     User bkristinsson

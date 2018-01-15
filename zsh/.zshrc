@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+# |--  aliases
+alias emacs="emacs -nw"
+alias ipython="ipython --nosep --no-confirm-exit"
+
 # Set name of the theme to load.
 
 # Nice ones that I like
@@ -9,11 +13,19 @@ ZSH=$HOME/.oh-my-zsh
 #  * alanpeabody (doesnt show full path and color blends with background)
 
 case $HOST in
+    BER-Bkristinsson)
+        ## My MacBook from Care.com
+        ZSH_THEME="robbyrussell"
+        alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
+        ;;
+    omni-mgmt-control-0)
+        ZSH_THEME="afowler"
+        ;;
     freespace)
         ZSH_THEME="gianu"
         ;;
     burrow)
-	ZSH_THEME="jreese"
+	    ZSH_THEME="jreese"
         ;;
     mathom)
         ZSH_THEME="jreese"
@@ -35,9 +47,6 @@ sh () {
     pygmentize -l bash $1 | less -R
 }
 
-# |--  aliases
-alias emacs="emacs -nw"
-alias ipython="ipython --nosep --no-confirm-exit"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
