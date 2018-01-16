@@ -9,7 +9,7 @@
 ;; Set theme
 (load-theme 'wombat t)
 
-(set-face-foreground 'mode-line "white")  
+(set-face-foreground 'mode-line "white")
 (set-face-background 'mode-line "dark green")
 ;;(set-face-background 'mode-line-inactive "black")
 
@@ -81,6 +81,9 @@
 ;; Use 4 spaces by default for tabbing
 (setq default-tab-width 4)
 (setq tab-width 4)
+
+;; Force 4 space tabs in text-mode (seems to be ineffective)
+(setq tab-stop-list (number-sequence 4 200 4))
 
                    ;;;; Forked begin ;;;;
 
