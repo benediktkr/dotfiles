@@ -1,23 +1,36 @@
+Host *
+    TCPKeepAlive=yes
+    ServerAliveInterval=300
+    ServerAliveCountMax=1
+
 Host *.carezen.net
-	User bkristinsson
-
-Host intl-euw
-	User bkristinsson
-	HostName euwprd-util-1-a.euw.carezen.net
-
-Host intl-use
-	User bkristinsson
-	HostName useprd-util-1-a.use.carezen.net
-
-Host dom-use
-	User bkristinsson
-	HostName dom-use-util-01.use.dom.carezen.net
+    User bkristinsson
 
 Host bolprodops1
-     HostName bolprodops1.carezen.local
-     User benedikt.kristinsson
+    HostName bolprodops1.carezen.local
+    User benedikt.kristinsson
+    ForwardAgent yes
+
+Host intl-euw
+    User bkristinsson
+    HostName euwprd-util-1-a.euw.carezen.net
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
+
+Host intl-use
+    User bkristinsson
+    HostName useprd-util-1-a.use.carezen.net
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
+
+Host dom-use
+    User bkristinsson
+    HostName dom-use-util-01.use.dom.carezen.net
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
 
 Host control.mgmt.omni
-     HostName control.mgmt.omni.carezen.net
-     ProxyCommand ssh -A bolprodops1 nc %h %p
-     User bkristinsson
+    HostName control.mgmt.omni.carezen.net
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
+    User bkristinsson
