@@ -185,7 +185,6 @@
 
 ;; neotree
 ;(require 'neotree)
-(global-set-key (kbd "C-c n") 'neotree-toggle)
 
 ;(require 'rudel-loaddefs)
 
@@ -231,7 +230,8 @@
 (global-set-key (kbd "C-x m") 'manual-entry)
 (global-set-key (kbd "M-c") 'comment-region)
 (global-set-key (kbd "M-C") 'uncomment-region)
-
+(global-set-key (kbd "C-c n") 'neotree-toggle)
+(global-set-key (kbd "C-c l") 'linum-mode)
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
