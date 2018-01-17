@@ -18,8 +18,9 @@ case $HOST in
         ZSH_THEME="robbyrussell"
         alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
         ;;
-    omni-mgmt-control-0)
+    omni-mgmt-control-0.mgmt.omni.carezen.net)
         ZSH_THEME="afowler"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         ;;
     freespace)
         ZSH_THEME="gianu"
