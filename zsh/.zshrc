@@ -19,8 +19,11 @@ case $HOST in
         alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
         ;;
     omni-mgmt-control-0.mgmt.omni.carezen.net)
+        # Try to match *.carezen.net and see what happens
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        source /etc/profile.d/vault-env.sh
+        powerup () { eval $(/usr/local/bin/powerup $*) ; }
         ;;
     freespace)
         ZSH_THEME="gianu"
