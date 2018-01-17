@@ -253,7 +253,7 @@
   (when (not (package-installed-p package-names))
     (package-install package-names)))
 
-(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree  cargo terraform-mode))
+(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree  cargo terraform-mode yaml-mode))
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
