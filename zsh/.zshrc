@@ -91,3 +91,16 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export WORKON_HOME=~/.virtualenvs/
 #source /home/benedikt/.local/bin/virtualenvwrapper.sh
+
+# For Tramp in Emacs
+if [[ $TERM == "dumb" ]]; then  
+    # Set a dumber PS1 that tramp will understand
+    PS1='> '
+    # for tramp to not hang, need the following. cf:
+    # http://www.emacswiki.org/emacs/TrampMode
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+fi
