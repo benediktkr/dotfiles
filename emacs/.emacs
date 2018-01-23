@@ -302,7 +302,7 @@
  '(doc-view-continuous t)
  '(package-selected-packages
    (quote
-    (yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode)))
+    (dockerfile-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
