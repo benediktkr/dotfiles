@@ -34,6 +34,9 @@ case $HOST in
     mathom)
         ZSH_THEME="jreese"
         ;;
+    dontpanic)
+        ZSH_THEME="evan"
+        ;;
     *)
         ZSH_THEME="robbyrussell"
 esac
