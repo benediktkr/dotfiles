@@ -14,11 +14,30 @@
 ;;(set-face-background 'mode-line-inactive "black")
 
 ;; Modeline
-(setq line-number-mode t)
-(setq column-number-mode t)
-(line-number-mode t)
-(column-number-mode t)
-
+(setq-default mode-line-format
+  (list " "
+        ; */% indicators if the file has been modified
+        'mode-line-modified
+        ; the name of the buffer (i.e. filename)
+        ; note this gets automatically highlighted
+        'mode-line-buffer-identification
+        ; major and minor modes in effect
+        'mode-line-modes
+        ; if which-func-mode is in effect, display which
+        ; function we are currently in.
+        '(which-func-mode ("" which-func-format "--"))
+        ; line, column, file %
+        'mode-line-position
+        ; if vc-mode is in effect, display version control
+        ; info here
+        `(vc-mode vc-mode)
+        "@"
+        ; hostname
+        'system-name
+        ;; dashes sufficient to fill rest of modeline.
+        ;"-%-"
+        )
+)
 
 ;; Distance between linum and code
 (setq linum-format "%4d \u2502")
