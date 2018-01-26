@@ -31,7 +31,7 @@
         ; if vc-mode is in effect, display version control
         ; info here
         `(vc-mode vc-mode)
-        "@"
+        " @"
         ; hostname
         'system-name
         ;; dashes sufficient to fill rest of modeline.
@@ -321,7 +321,7 @@
  '(doc-view-continuous t)
  '(package-selected-packages
    (quote
-    (dockerfile-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode)))
+    (groovy-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode pyflakes)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
