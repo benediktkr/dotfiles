@@ -18,12 +18,19 @@ case $HOST in
         ZSH_THEME="robbyrussell"
         alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
         ;;
-    omni-mgmt-control-0.mgmt.omni.carezen.net)
-        # Try to match *.carezen.net and see what happens
+    *.omni.carezen.net)
+        # I need a better grouping for the care.com servers to avoid this duplication
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         source /etc/profile.d/vault-env.sh
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
+        ;;
+    *.euw.carezen.net)
+        ZSH_THEME="afowler"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
+        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
+        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
         ;;
     freespace)
         ZSH_THEME="gianu"
@@ -44,7 +51,6 @@ esac
 hs () {
     pygmentize -l haskell $1 | less -R
 }
-
 
 py () {
     pygmentize -l python $1 | less -R
