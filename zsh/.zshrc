@@ -1,6 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+if [ ! -d $ZSH ]; then
+    OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
+    sh -c "$(curl -fsSL $OMZSH)"
+fi
+
 # |--  aliases
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
@@ -25,12 +30,13 @@ case $HOST in
         source /etc/profile.d/vault-env.sh
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
         ;;
-    *.euw.carezen.net)
+    euwprd-util-1-a.euw.carezen.net)
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
         alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
+        export PATH=$PATH:/ansible/shared/bin
         ;;
     freespace)
         ZSH_THEME="gianu"
@@ -46,6 +52,16 @@ case $HOST in
         ;;
     *)
         ZSH_THEME="robbyrussell"
+esac
+
+case $ROLE in
+    care-intl)
+        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
+        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
+        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
+        export PATH=$PATH:/ansible/shared/bin
+
+        ;;
 esac
 
 hs () {
