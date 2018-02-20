@@ -5,6 +5,7 @@ Host *
 
 Host *.carezen.net
     User bkristinsson
+    ForwardAgent yes
 
 Host bolprodops1
     HostName bolprodops1.carezen.local
