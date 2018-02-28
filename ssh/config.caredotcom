@@ -7,6 +7,11 @@ Host *.carezen.net
     User bkristinsson
     ForwardAgent yes
 
+Host prod-gw
+     HostName bolprodgw1.carezen.local
+     User benedikt.kristinsson
+     ForwardAgent yes
+
 Host bolprodops1
     HostName bolprodops1.carezen.local
     User benedikt.kristinsson
