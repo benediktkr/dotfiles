@@ -7,7 +7,7 @@
 #    ProxyJump bolprodops1
 #
 # I think they are the same but I'm leaving both here for
-# rerence.
+# rerence. ProxyJump seems to be not as reliable as ProxyCommand
 
 Host *
     TCPKeepAlive=yes
@@ -34,23 +34,23 @@ Host bolprodops1
 Host intl-euw
     User bkristinsson
     HostName euwprd-util-1-a.euw.carezen.net
-    ProxyJump bolprodops1
+    ProxyCommand ssh -A bolprodgw1 nc %h %p
     ForwardAgent yes
 
 Host intl-use
     User bkristinsson
     HostName useprd-util-1-a.use.carezen.net
-    ProxyJump bolprodops1
+    ProxyCommand ssh -A bolprodgw1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
     User bkristinsson
     HostName dom-use-util-01.use.dom.carezen.net
-    ProxyJump bolprodops1
+    ProxyCommand ssh -A bolprodgw1 nc %h %p
     ForwardAgent yes
 
-Host control.mgmt.omni
+Host omni-control
     HostName control.mgmt.omni.carezen.net
-    ProxyJump bolprodops1
+    ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
     User bkristinsson
