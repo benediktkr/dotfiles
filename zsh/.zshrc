@@ -11,7 +11,8 @@ alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 
 # Set name of the theme to load.
-
+CA_FLAG="🇨🇦 "
+EU_FLAG="🇪🇺 "
 # Nice ones that I like
 #  * jreese
 #  * gentoo
@@ -31,14 +32,16 @@ case $HOST in
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
         ;;
     euwprd-util-1-a.euw.carezen.net)
+        FLAG=$EU_FLAG
         ZSH_THEME="afowler"
-        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+          alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
         alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
         export PATH=$PATH:/ansible/shared/bin
         ;;
     useprd-util-1-a.use.carezen.net)
+        FLAG=$CA_FLAG
         ## SAME AS FOR euw util
         ## Refactor this to be better
         ZSH_THEME="afowler"
@@ -143,4 +146,9 @@ if [[ $TERM == "dumb" ]]; then
     unsetopt prompt_subst
     unfunction precmd
     unfunction preexec
+fi
+
+if [ -n $FLAG ]; then
+    # If a $FLAG is set, add it to the PROMPT
+    PROMPT="$FLAG $PROMPT"
 fi
