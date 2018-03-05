@@ -64,6 +64,10 @@ case $ROLE in
         ;;
 esac
 
+fixssh() {
+    eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+}
+
 hs () {
     pygmentize -l haskell $1 | less -R
 }
@@ -118,7 +122,7 @@ export WORKON_HOME=~/.virtualenvs/
 #source /home/benedikt/.local/bin/virtualenvwrapper.sh
 
 # For Tramp in Emacs
-if [[ $TERM == "dumb" ]]; then  
+if [[ $TERM == "dumb" ]]; then
     # Set a dumber PS1 that tramp will understand
     PS1='> '
     # for tramp to not hang, need the following. cf:
