@@ -38,6 +38,17 @@ case $HOST in
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
         export PATH=$PATH:/ansible/shared/bin
         ;;
+    useprd-util-1-a.use.carezen.net)
+        ## SAME AS FOR euw util
+        ## Refactor this to be better
+        ZSH_THEME="afowler"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
+        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
+        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
+        export PATH=$PATH:/ansible/shared/bin
+        ;;
+
     freespace)
         ZSH_THEME="gianu"
         ;;

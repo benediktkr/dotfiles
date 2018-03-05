@@ -40,7 +40,7 @@ Host intl-euw
 Host intl-use
     User bkristinsson
     HostName useprd-util-1-a.use.carezen.net
-    ProxyCommand ssh -A bolprodgw1 nc %h %p
+    ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
