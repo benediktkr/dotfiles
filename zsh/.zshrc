@@ -9,6 +9,9 @@ fi
 # |--  aliases
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
+alias less="less -R"
+alias dmesg="dmesg --human --color=always"
+
 
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
