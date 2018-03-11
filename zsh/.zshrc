@@ -151,7 +151,7 @@ if [[ $TERM == "dumb" ]]; then
     unfunction preexec
 fi
 
-if [ -n $FLAG ]; then
+if [[ -n $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
     PROMPT="$FLAG $PROMPT"
 fi
