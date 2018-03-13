@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+\# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
 if [ ! -d $ZSH ]; then
@@ -34,7 +34,7 @@ case $HOST in
     euwprd-util-1-a.euw.carezen.net)
         FLAG=$EU_FLAG
         ZSH_THEME="afowler"
-          alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
         alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
@@ -51,7 +51,16 @@ case $HOST in
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
         export PATH=$PATH:/ansible/shared/bin
         ;;
-
+    dom-use-util-01.use.dom.carezen.net)
+        ## SAME AS FOR euw util
+        ## Refactor this to be better
+        ZSH_THEME="afowler"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
+        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
+        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
+        export PATH=$PATH:/ansible/shared/bin
+        ;;
     freespace)
         ZSH_THEME="gianu"
         ;;
