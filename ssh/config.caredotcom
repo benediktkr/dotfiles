@@ -34,7 +34,7 @@ Host bolprodops1
 Host intl-euw
     User bkristinsson
     HostName euwprd-util-1-a.euw.carezen.net
-    ProxyCommand ssh -A bolprodgw1 nc %h %p
+    ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host intl-use
