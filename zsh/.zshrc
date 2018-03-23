@@ -27,6 +27,7 @@ case $HOST in
     *.omni.carezen.net)
         # I need a better grouping for the care.com servers to avoid this duplication
         ZSH_THEME="afowler"
+        export PATH=$PATH:/ansible/shared/bin
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         source /etc/profile.d/vault-env.sh
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
@@ -78,7 +79,19 @@ case $HOST in
 esac
 
 case $ROLE in
-    care-intl)
+    care)
+        ZSH_THEME="afowler"
+        case $SUBROLE in
+            intl)
+                echo "intl"
+                ;;
+            dom)
+                echo "dom"
+                ;;
+            omni)
+                echo "omni"
+                ;;
+        esac
         alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
         alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
