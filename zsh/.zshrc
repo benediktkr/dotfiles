@@ -9,6 +9,9 @@ fi
 # |--  aliases
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
+alias less="less -R"
+alias dmesg="dmesg --human --color=always"
+
 
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
@@ -170,7 +173,7 @@ if [[ $TERM == "dumb" ]]; then
     unfunction preexec
 fi
 
-if [ -n $FLAG ]; then
+if [[ -n $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
     PROMPT="$FLAG $PROMPT"
 fi
