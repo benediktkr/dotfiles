@@ -1,4 +1,4 @@
-\# Path to your oh-my-zsh configuration.
+# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
 if [ ! -d $ZSH ]; then
