@@ -238,7 +238,7 @@
 (global-set-key (kbd "C-x k") 'kill-buffer)
 (global-set-key (kbd "C-c C-r") 'revert-buffer)
 (global-set-key (kbd "C-c k") 'browse-kill-ring)
-(global-set-key (kbd "C-c C-s") 'replace-string)
+(global-set-key (kbd "C-c s") 'replace-string)
 (global-set-key (kbd "M-i") 'indent-region)
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
