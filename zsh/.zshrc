@@ -11,6 +11,7 @@ alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
 alias dmesg="dmesg --human --color=always"
+alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
 
 
 # Set name of the theme to load.
