@@ -45,7 +45,7 @@ case $HOST in
         alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
         export PATH=$PATH:/ansible/shared/bin
         ;;
-    useprd-util-1-a.use.carezen.net)
+    intl-use-util-01.use.intl.carezen.net)
         FLAG=$CA_FLAG
         ## SAME AS FOR euw util
         ## Refactor this to be better

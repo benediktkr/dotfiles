@@ -39,7 +39,7 @@ Host intl-euw
 
 Host intl-use
     User bkristinsson
-    HostName useprd-util-1-a.use.carezen.net
+    HostName intl-use-util-01.use.intl.carezen.net
     ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
