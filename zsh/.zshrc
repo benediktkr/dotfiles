@@ -70,6 +70,7 @@ case $ROLE in
         export PATH=$PATH:/ansible/shared/bin
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
 
+        # Set things that are specific to each environment. 
         case $SUBROLE in
             intl-euw|intl-use)
                 if [[ $SUBROLE == "intl-euw" ]]; then
