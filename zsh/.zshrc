@@ -77,6 +77,8 @@ case $ROLE in
                 elif [[ $SUBROLE == "intl-use" ]]; then
                     FLAG=$CA_FLAG
                 fi
+                alias prod-mysql='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd.czen'
+                alias prod-mysql-rrdb='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd-rrdb.czen'
                 alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
                 alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
                 alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
