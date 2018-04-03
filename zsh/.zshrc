@@ -17,6 +17,7 @@ alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
 EU_FLAG="🇪🇺 "
+US_FLAG="🇺🇸"
 # Nice ones that I like
 #  * jreese
 #  * gentoo
@@ -29,42 +30,20 @@ case $HOST in
         alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
         ;;
     *.omni.carezen.net)
-        # I need a better grouping for the care.com servers to avoid this duplication
-        ZSH_THEME="afowler"
-        export PATH=$PATH:/ansible/shared/bin
-        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
-        source /etc/profile.d/vault-env.sh
-        powerup () { eval $(/usr/local/bin/powerup $*) ; }
+        ROLE="care"
+        SUBROLE="omni"
         ;;
-    euwprd-util-1-a.euw.carezen.net)
-        FLAG=$EU_FLAG
-        ZSH_THEME="afowler"
-        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
-        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
-        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
-        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
-        export PATH=$PATH:/ansible/shared/bin
+    *.euw.carezen.net)
+        ROLE="care"
+        SUBROLE="intl-euw"
         ;;
-    intl-use-util-01.use.intl.carezen.net)
-        FLAG=$CA_FLAG
-        ## SAME AS FOR euw util
-        ## Refactor this to be better
-        ZSH_THEME="afowler"
-        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
-        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
-        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
-        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
-        export PATH=$PATH:/ansible/shared/bin
+    *.use.intl.carezen.net)
+        ROLE="care"
+        SUBROLE="intl-use"
         ;;
-    dom-use-util-01.use.dom.carezen.net)
-        ## SAME AS FOR euw util
-        ## Refactor this to be better
-        ZSH_THEME="afowler"
-        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
-        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
-        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
-        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
-        export PATH=$PATH:/ansible/shared/bin
+    *.use.dom.carezen.net)
+        ROLE="care"
+        SUBROLE="dom"
         ;;
     freespace)
         ZSH_THEME="gianu"
@@ -84,23 +63,31 @@ esac
 
 case $ROLE in
     care)
+        # Refers to the various util servers I use at Care. Eventiually my zsh shell
+        # will find itself on other care servers as well. 
         ZSH_THEME="afowler"
+        alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        export PATH=$PATH:/ansible/shared/bin
+        powerup () { eval $(/usr/local/bin/powerup $*) ; }
+
         case $SUBROLE in
-            intl)
-                echo "intl"
+            intl-euw|intl-use)
+                if [[ $SUBROLE == "intl-euw" ]]; then
+                    FLAG=$EU_FLAG
+                elif [[ $SUBROLE == "intl-use" ]]; then
+                    FLAG=$CA_FLAG
+                fi
+                alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
+                alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
+                alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
                 ;;
             dom)
-                echo "dom"
+                FLAG=$US_FLAG
                 ;;
             omni)
-                echo "omni"
+                source /etc/profile.d/vault-env.sh
                 ;;
         esac
-        alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
-        alias stg-elb='watch -n 5 elb-check $(elb-check -l | grep stg | grep web)'
-        alias verify='/usr/local/bin/validate-builds ${DEPLOY} ${BACK} ${WEBAPP} ${SOLR}'
-        export PATH=$PATH:/ansible/shared/bin
-
         ;;
 esac
 
