@@ -251,6 +251,10 @@
 (global-set-key (kbd "M-C") 'uncomment-region)
 (global-set-key (kbd "C-c n") 'neotree-toggle)
 (global-set-key (kbd "C-c l") 'linum-mode)
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
