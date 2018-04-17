@@ -13,6 +13,10 @@ Host *
     TCPKeepAlive=yes
     ServerAliveInterval=300
     ServerAliveCountMax=1
+    # https://unix.stackexchange.com/a/406598
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%h
+    ControlPersist 30
 
 Host *.carezen.net
     User bkristinsson
