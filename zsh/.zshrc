@@ -3,7 +3,11 @@ ZSH=$HOME/.oh-my-zsh
 
 if [ ! -d $ZSH ]; then
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-    sh -c "$(curl -fsSL $OMZSH)"
+    mv ~/.zshrc ~/.zshrc.tmp
+    sh -c "$(curl -fsSL $OMZH)"
+    rm ~/.zshrc
+    mv ~/.zshrc.tmp ~/.zshrc
+    
 fi
 
 # |--  aliases
