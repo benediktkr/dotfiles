@@ -2,8 +2,20 @@
 ZSH=$HOME/.oh-my-zsh
 
 if [ ! -d $ZSH ]; then
+    read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+        # handle exits from shell or function but don't exit interactive shell
+        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 
+    fi
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
+    echo
+    echo "moving myself!"
+    mv ~/.zshrc ~/.zshrc.tmp 
     sh -c "$(curl -fsSL $OMZSH)"
+    rm ~/.zshrc
+    mv ~/.zshrc.tmp ~/.zshrc 
+    
 fi
 
 # |--  aliases
