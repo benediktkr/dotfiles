@@ -355,3 +355,4 @@
 
 ;; Remove trailing whitespaces 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
