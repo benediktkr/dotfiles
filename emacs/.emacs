@@ -325,7 +325,7 @@
  '(doc-view-continuous t)
  '(package-selected-packages
    (quote
-    (groovy-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode pyflakes)))
+    (jinja2-mode groovy-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode pyflakes)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -352,3 +352,6 @@
   (interactive)
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
+
+;; Remove trailing whitespaces 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
