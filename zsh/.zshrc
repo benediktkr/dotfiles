@@ -6,16 +6,16 @@ if [ ! -d $ZSH ]; then
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
         # handle exits from shell or function but don't exit interactive shell
-        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 
+        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
     fi
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
     echo
     echo "moving myself!"
-    mv ~/.zshrc ~/.zshrc.tmp 
+    mv ~/.zshrc ~/.zshrc.tmp
     sh -c "$(curl -fsSL $OMZSH)"
     rm ~/.zshrc
-    mv ~/.zshrc.tmp ~/.zshrc 
-    
+    mv ~/.zshrc.tmp ~/.zshrc
+
 fi
 
 # |--  aliases
@@ -24,7 +24,9 @@ alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
 alias dmesg="dmesg --human --color=always"
 alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
-
+# from jbs
+alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
+alias j2y="json2yaml"
 
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
@@ -76,13 +78,13 @@ esac
 case $ROLE in
     care)
         # Refers to the various util servers I use at Care. Eventiually my zsh shell
-        # will find itself on other care servers as well. 
+        # will find itself on other care servers as well.
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         export PATH=$PATH:/ansible/shared/bin
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
 
-        # Set things that are specific to each environment. 
+        # Set things that are specific to each environment.
         case $SUBROLE in
             intl-euw|intl-use)
                 if [[ $SUBROLE == "intl-euw" ]]; then
@@ -178,5 +180,6 @@ fi
 
 if [[ -n $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
-    PROMPT="$FLAG $PROMPT"
+    #PROMPT="$FLAG $PROMPT"
+    RPROMPT=$FLAG
 fi
