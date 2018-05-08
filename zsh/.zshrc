@@ -47,7 +47,7 @@ case $HOST in
         ROLE="care"
         SUBROLE="omni"
         ;;
-    *.euw.carezen.net)
+    *.euw.intl.carezen.net)
         ROLE="care"
         SUBROLE="intl-euw"
         ;;
