@@ -61,7 +61,7 @@ case $HOST in
         ZSH_THEME="gianu"
         ;;
     burrow)
-        alias al="ansible-playbook -K -i hosts --diff burrow.yml"
+        alias al="(cd ~/projects/infra/ansible && ansible-playbook -K -i hosts --diff burrow.yml)"
 	    ZSH_THEME="jreese"
         ;;
     mathom)
