@@ -12,7 +12,9 @@ if [ ! -d $ZSH ]; then
     echo
     echo "moving myself!"
     mv ~/.zshrc ~/.zshrc.tmp
+    echo "this will spawn a new shell. pleaes exit this one so i can finish"
     sh -c "$(curl -fsSL $OMZSH)"
+    echo "thanks, i'm finishing up now" 
     rm ~/.zshrc
     mv ~/.zshrc.tmp ~/.zshrc
 
@@ -59,6 +61,9 @@ case $HOST in
     *.use.dom.carezen.net)
         ROLE="care"
         SUBROLE="dom"
+        ;;
+    hh19.sudo.is)
+        ZSH_THEME="gianu"
         ;;
     freespace)
         ZSH_THEME="gianu"
