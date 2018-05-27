@@ -13,6 +13,10 @@ Host *
     TCPKeepAlive=yes
     ServerAliveInterval=300
     ServerAliveCountMax=1
+    # https://unix.stackexchange.com/a/406598
+    # ControlMaster auto
+    # ControlPath ~/.ssh/sockets/%h
+    # ControlPersist 30
 
 Host *.carezen.net
     User bkristinsson
@@ -31,7 +35,7 @@ Host bolprodops1
     User benedikt.kristinsson
     ForwardAgent yes
 
-Host intl-euw
+Host intl-euw-legacy
     User bkristinsson
     HostName euwprd-util-1-a.euw.carezen.net
     ProxyCommand ssh -A bolprodops1 nc %h %p
@@ -40,6 +44,12 @@ Host intl-euw
 Host intl-use
     User bkristinsson
     HostName intl-use-util-01.use.intl.carezen.net
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
+
+Host intl-euw
+    User bkristinsson
+    HostName intl-euw-util-01.euw.intl.carezen.net
     ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
