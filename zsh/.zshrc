@@ -22,9 +22,9 @@ fi
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
-alias dmesg="dmesg --human --color=always"
+alias dmesg="dmesg --human --color=always -T"
 alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
-
+alias prettyjson='python -m json.tool'
 
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
@@ -61,6 +61,7 @@ case $HOST in
         ZSH_THEME="gianu"
         ;;
     burrow)
+        alias al="ansible-playbook -K -i hosts --diff burrow.yml"
 	    ZSH_THEME="jreese"
         ;;
     mathom)
