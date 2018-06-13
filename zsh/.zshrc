@@ -12,7 +12,9 @@ if [ ! -d $ZSH ]; then
     echo
     echo "moving myself!"
     mv ~/.zshrc ~/.zshrc.tmp
+    echo "this will spawn a new shell. pleaes exit this one so i can finish"
     sh -c "$(curl -fsSL $OMZSH)"
+    echo "thanks, i'm finishing up now" 
     rm ~/.zshrc
     mv ~/.zshrc.tmp ~/.zshrc
 
@@ -22,8 +24,9 @@ fi
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
-alias dmesg="dmesg --human --color=always"
+alias dmesg="dmesg --human --color=always -T"
 alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
+alias prettyjson='python -m json.tool'
 # from jbs
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
@@ -59,10 +62,14 @@ case $HOST in
         ROLE="care"
         SUBROLE="dom"
         ;;
+    hh19.sudo.is)
+        ZSH_THEME="gianu"
+        ;;
     freespace)
         ZSH_THEME="gianu"
         ;;
     burrow)
+        alias al="(cd ~/projects/infra/ansible && ansible-playbook -K -i hosts --diff burrow.yml)"
 	    ZSH_THEME="jreese"
         ;;
     mathom)

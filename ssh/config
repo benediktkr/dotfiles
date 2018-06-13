@@ -10,8 +10,8 @@ host freespace
      #RemoteForward *:8088 localhost:8088
      IdentityFile ~/.ssh/id_rsa
 
-
-#Host *.inventorum.berlin
-# ProxyCommand ssh -A freespace nc -q0 %h %p
-# User ubuntu
+Host hh19.sudo.local
+     HostName 192.168.0.3
+     User bk
+     ForwardAgent yes
 
