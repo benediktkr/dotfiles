@@ -18,6 +18,11 @@ Host *
     # ControlPath ~/.ssh/sockets/%h
     # ControlPersist 30
 
+Host freespace
+    HostName freespace.sudo.is
+    User benedikt
+    ForwardAgent yes
+
 Host *.carezen.net
     User bkristinsson
     ForwardAgent yes
@@ -56,7 +61,7 @@ Host intl-euw
 Host dom-use
     User bkristinsson
     HostName dom-use-util-01.use.dom.carezen.net
-    #ProxyCommand ssh -A bolprodgw1 nc %h %p
+    ProxyCommand ssh -A bolprodgw1 nc %h %p
     ForwardAgent yes
 
 Host omni-control
