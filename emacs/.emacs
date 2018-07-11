@@ -6,6 +6,39 @@
 
 (setq emacs-dir "~/.emacs.d/")
 
+;; Add better repo
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ;("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install packages
+(let ((packages '( ;magit
+                  markdown-mode
+                  haskell-mode
+                  clojure-mode
+                  dash
+                  rust-mode
+                  neotree
+                  terraform-mode
+                  yaml-mode
+                  ansible
+                  dockerfile-mode
+                  jinja2-mode
+                  groovy-mode
+                  color-theme
+                  python-mode)))
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (package-install package))))
+;      (add-to-list 'package-selected-packages package)))
+;(package-install-selected-packages)
+
+
 ;; Set theme
 (load-theme 'wombat t)
 
@@ -54,22 +87,6 @@
 (setq add-log-mailing-address "benedikt@inventati.org")
 
 ;;; Emacs' interface
-
-(when emacs-has-x
-  ;; GTK stuff
-  (custom-set-variables
-   '(TeX-PDF-mode t)
-   '(column-number-mode t)
-   '(doc-view-continuous t)
-   '(show-paren-mode t))
-
-
-  ;; Kill tool, scrollbars and menubar
-  (tool-bar-mode 0)
-  (menu-bar-mode 0)
-  (scroll-bar-mode 0)
-
-)
 
 ;; Match regardless of capitalization
 (setq read-buffer-completion-ignore-case t)
@@ -261,36 +278,6 @@
 (global-set-key [end] 'end-of-buffer)
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
-
-;; Add better repo
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-(package-initialize)
-; fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(let ((packages '(magit
-                 markdown-mode
-                 haskell-mode
-                 clojure-mode
-                 dash
-                 rust-mode
-                 neotree
-                 terraform-mode
-                 yaml-mode
-                 ansible
-                 dockerfile-mode
-                 jinja2-mode
-                 groovy-mode
-                 color-theme
-                 python-mode)))
-  (dolist (package packages)
-    (package-install package)))
-;      (add-to-list 'package-selected-packages package)))
-;(package-install-selected-packages)
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
