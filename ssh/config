@@ -11,7 +11,9 @@ host freespace
      IdentityFile ~/.ssh/id_rsa
 
 Host hh19.sudo.local
-     HostName 192.168.0.3
+     HostName 192.168.79.3
      User bk
      ForwardAgent yes
 
+Host lon-vpn.sudo.is
+     User bk
