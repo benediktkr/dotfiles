@@ -268,12 +268,29 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
 
-(defun have-installed (package-names)
-  (when (not (package-installed-p package-names))
-    (package-install package-names)))
-
-(mapcar 'have-installed '(haskell-mode markdown-mode epl clojure-mode magit dash rust-mode company neotree  cargo terraform-mode yaml-mode))
+(let ((packages '(magit
+                 markdown-mode
+                 haskell-mode
+                 clojure-mode
+                 dash
+                 rust-mode
+                 neotree
+                 terraform-mode
+                 yaml-mode
+                 ansible
+                 dockerfile-mode
+                 jinja2-mode
+                 groovy-mode
+                 color-theme
+                 python-mode)))
+  (dolist (package packages)
+    (package-install package)))
+;      (add-to-list 'package-selected-packages package)))
+;(package-install-selected-packages)
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
@@ -282,27 +299,28 @@
 
 ; On-the-fly pyflakes checking
 ; shows errors in the minibuffer when highlighted (http://bitbucket.org/brodie/dotfiles/src/tip/.emacs.d/plugins/flymake-point.el)
-(require 'flymake-point "~/.emacs.d/flymake-point.el")
-(setq python-check-command "pyflakes")
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
+;; (require 'flymake-point "~/.emacs.d/flymake-point.el")
+;; (setq python-check-command "pyflakes")
+;; (when (load "flymake" t)
+;;   (defun flymake-pyflakes-init ()
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;;            (local-file (file-relative-name
+;;                         temp-file
+;;                         (file-name-directory buffer-file-name))))
+;;       (list "pyflakes" (list local-file))))
+;;   (add-to-list 'flymake-allowed-file-name-masks
+;;                '("\\.py\\'" flymake-pyflakes-init)))
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (when (string-match "dohop" (buffer-file-name))
-              (when (not (string-match "varnish" (buffer-file-name)))
-                (setq indent-tabs-mode t)
-                (setq tab-width 4)
-                (setq python-indent 4)))
-            (flymake-mode 1)))
+;; For when i need to work with peculiar people :)
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (when (string-match "dohop" (buffer-file-name))
+;;               (when (not (string-match "varnish" (buffer-file-name)))
+;;                 (setq indent-tabs-mode t)
+;;                 (setq tab-width 4)
+;;                 (setq python-indent 4)))
+;;             (flymake-mode 1)))
 
 (add-hook 'python-mode-hook
           (lambda ()
@@ -320,9 +338,7 @@
    (quote
     ("b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default)))
  '(doc-view-continuous t)
- '(package-selected-packages
-   (quote
-    (ansible jinja2-mode groovy-mode yaml-mode terraform-mode color-theme cargo neotree company rust-mode magit clojure-mode epl markdown-mode haskell-mode dockerfile-mode pyflakes)))
+ ;'(package-selected-packages '(package1 package2)) (also needs package-install-selected-pacakges)
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
