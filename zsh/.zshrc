@@ -14,7 +14,7 @@ if [ ! -d $ZSH ]; then
     mv ~/.zshrc ~/.zshrc.tmp
     echo "this will spawn a new shell. pleaes exit this one so i can finish"
     sh -c "$(curl -fsSL $OMZSH)"
-    echo "thanks, i'm finishing up now" 
+    echo "thanks, i'm finishing up now"
     rm ~/.zshrc
     mv ~/.zshrc.tmp ~/.zshrc
 
@@ -89,8 +89,13 @@ case $ROLE in
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias changed="less -R -j -1 -p 'changed:' $(ls -1 /var/log/ansible/$USER/ansible-* | tail -1)"
-        export PATH=$PATH:/ansible/shared/bin
+        export PATH=/absible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
+
+        # Automatically attach to the tmux session on SSH
+        if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+            tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+        fi
 
         # Set things that are specific to each environment.
         case $SUBROLE in
