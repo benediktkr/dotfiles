@@ -88,6 +88,7 @@ case $ROLE in
         # will find itself on other care servers as well.
         ZSH_THEME="afowler"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
+        alias changed="less -R -j -1 -p 'changed:' $(ls -1 /var/log/ansible/$USER/ansible-* | tail -1)"
         export PATH=$PATH:/ansible/shared/bin
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
 
