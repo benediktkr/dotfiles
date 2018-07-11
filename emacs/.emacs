@@ -202,9 +202,6 @@
 (when (require 'rudel-loaddefs nil t)
   (global-rudel-minor-mode 1))
 
-;; neotree
-;(require 'neotree)
-
 ;(require 'rudel-loaddefs)
 
 ;(load-file "rudel/rudel-loaddefs.el")
@@ -353,6 +350,11 @@
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
-;; Remove trailing whitespaces 
+;; Remove trailing whitespaces
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+
+;; neotree
+(require 'neotree)
+(setq-default neo-show-hidden-files t)
+(setq neo-smart-open t)
