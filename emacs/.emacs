@@ -4,20 +4,23 @@
 ;; Do we have X?
 (defvar emacs-has-x (fboundp 'tool-bar-mode))
 
+;; Do we care?
+(menu-bar-mode -1)
+
 (setq emacs-dir "~/.emacs.d/")
 
 ;; Add better repo
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 ; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
 ; install packages
-(let ((packages '( ;magit
+(let ((packages '(magit
                   markdown-mode
                   haskell-mode
                   clojure-mode
@@ -29,9 +32,7 @@
                   ansible
                   dockerfile-mode
                   jinja2-mode
-                  groovy-mode
-                  color-theme
-                  python-mode)))
+                  groovy-mode)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
