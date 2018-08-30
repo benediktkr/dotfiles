@@ -14,9 +14,9 @@ Host *
     ServerAliveInterval=300
     ServerAliveCountMax=1
     # https://unix.stackexchange.com/a/406598
-    # ControlMaster auto
-    # ControlPath ~/.ssh/sockets/%h
-    # ControlPersist 30
+    #ControlMaster auto
+    #ControlPath ~/.ssh/sockets/%h
+    #ControlPersist 30
 
 Host freespace
     HostName freespace.sudo.is
@@ -55,13 +55,14 @@ Host intl-use
 Host intl-euw
     User bkristinsson
     HostName intl-euw-util-01.euw.intl.carezen.net
+    RemoteForward 127.0.0.1:4022 localhost:22
     #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
     User bkristinsson
     HostName dom-use-util-01.use.dom.carezen.net
-    ProxyCommand ssh -A bolprodgw1 nc %h %p
+    #ProxyCommand ssh -A bolprodgw1 nc %h %p
     ForwardAgent yes
 
 Host omni-control

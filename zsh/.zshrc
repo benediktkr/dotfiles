@@ -27,6 +27,7 @@ alias less="less -R"
 alias dmesg="dmesg --human --color=always -T"
 alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
 alias prettyjson='python -m json.tool'
+alias cleangit='git branch | grep -v "master" | xargs git branch -D'
 # from jbs
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
@@ -44,7 +45,7 @@ case $HOST in
     BER-Bkristinsson)
         ## My MacBook from Care.com
         ZSH_THEME="robbyrussell"
-        alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs-25.3 -nw"
+        alias emacs="/usr/local/bin/emacs -nw"
         ;;
     *.omni.carezen.net)
         ROLE="care"
