@@ -95,7 +95,7 @@ case $ROLE in
 
         # Automatically attach to the tmux session on SSH
         if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-            tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+            tmux attach-session -t ssh || tmux new-session -s ssh
         fi
 
         # Set things that are specific to each environment.
