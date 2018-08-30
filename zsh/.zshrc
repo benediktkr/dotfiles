@@ -93,11 +93,6 @@ case $ROLE in
         export PATH=/absible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
 
-        # Automatically attach to the tmux session on SSH
-        if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-            tmux attach-session -t ssh || tmux new-session -s ssh
-        fi
-
         # Set things that are specific to each environment.
         case $SUBROLE in
             intl-euw|intl-use)
@@ -119,6 +114,13 @@ case $ROLE in
                 source /etc/profile.d/vault-env.sh
                 ;;
         esac
+
+        # Automatically attach to the tmux session on SSH
+        if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+            tmux attach-session -t ssh || tmux new-session -s ssh
+        fi
+        echo "I should only see this if tmux isn't auto attached"
+
         ;;
 esac
 
