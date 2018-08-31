@@ -32,6 +32,9 @@ alias cleangit='git branch | grep -v "master" | xargs git branch -D'
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
 
+# !-- python2: enable history
+export PYTHONSTARTUP=~/.pystartup
+
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
 EU_FLAG="🇪🇺 "
