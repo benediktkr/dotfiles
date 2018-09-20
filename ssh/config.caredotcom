@@ -40,6 +40,12 @@ Host bolprodops1
     User benedikt.kristinsson
     ForwardAgent yes
 
+Host boltools1
+    HostName boltools1.carezen.local
+    User benedikt.kristinsson
+    ForwardAgent yes
+    ProxyCommand ssh -A bolprodops1 nc %h %p
+
 Host intl-euw-legacy
     User bkristinsson
     HostName euwprd-util-1-a.euw.carezen.net
