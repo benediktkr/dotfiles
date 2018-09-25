@@ -34,6 +34,9 @@ alias j2y="json2yaml"
 
 # !-- python2: enable history
 export PYTHONSTARTUP=~/.pystartup
+# pipenv wants this
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Set name of the theme to load.
 CA_FLAG="🇨🇦 "
