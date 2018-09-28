@@ -12,9 +12,13 @@ if [ ! -d $ZSH ]; then
     echo
     echo "moving myself!"
     mv ~/.zshrc ~/.zshrc.tmp
-    echo "this will spawn a new shell. pleaes exit this one so i can finish"
+    echo "this will spawn a new shell. please exit this one so i can finish"
     sh -c "$(curl -fsSL $OMZSH)"
+<<<<<<< HEAD
+    echo "thanks, i'm finishing up now!"
+=======
     echo "thanks, i'm finishing up now"
+>>>>>>> jresse theme on dontpanic
     rm ~/.zshrc
     mv ~/.zshrc.tmp ~/.zshrc
 
@@ -72,18 +76,18 @@ case $HOST in
     hh19.sudo.is)
         ZSH_THEME="gianu"
         ;;
-    freespace)
-        ZSH_THEME="gianu"
-        ;;
     burrow)
         alias al="ansible-playbook -K -i ~/projects/infra/ansible/hosts --diff ~/projects/infra/ansible/burrow.yml"
-	    ZSH_THEME="jreese"
+        ZSH_THEME="jreese"
         ;;
     mathom)
         ZSH_THEME="jreese"
         ;;
     dontpanic)
-        ZSH_THEME="evan"
+        ZSH_THEME="jreese"
+        ;;
+    freespace)
+        ZSH_THEME="jreese"
         ;;
     *)
         ZSH_THEME="robbyrussell"
