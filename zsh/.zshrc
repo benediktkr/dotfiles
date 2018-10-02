@@ -14,11 +14,7 @@ if [ ! -d $ZSH ]; then
     mv ~/.zshrc ~/.zshrc.tmp
     echo "this will spawn a new shell. please exit this one so i can finish"
     sh -c "$(curl -fsSL $OMZSH)"
-<<<<<<< HEAD
     echo "thanks, i'm finishing up now!"
-=======
-    echo "thanks, i'm finishing up now"
->>>>>>> jresse theme on dontpanic
     rm ~/.zshrc
     mv ~/.zshrc.tmp ~/.zshrc
 
