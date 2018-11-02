@@ -69,10 +69,24 @@ Host dom-use
     User bkristinsson
     HostName dom-use-util-01.use.dom.carezen.net
     #ProxyCommand ssh -A bolprodgw1 nc %h %p
+    #ProxyCommand ssh -A dom-use-bastion nc %h %p
+    ForwardAgent yes
+
+Host dom-use-bastion
+    User bkristinsson
+    HostName prod-bastion.use.dom.carezen.net
+    ProxyCommand ssh -A freespace nc %h %p
     ForwardAgent yes
 
 Host omni-control
     HostName control.mgmt.omni.carezen.net
     ProxyCommand ssh -A bolprodops1 nc %h %p
+    #ProxyCommand ssh -A omni-control-bastion nc %h %p
     ForwardAgent yes
     User bkristinsson
+
+Host omni-control-bastion
+    User bkristinsson
+    HostName bastion.mgmt.omni.carezen.net
+    #ProxyCommand ssh -A freespace nc %h %p
+    ForwardAgent yes

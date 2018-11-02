@@ -362,3 +362,11 @@
 (require 'neotree)
 (setq-default neo-show-hidden-files t)
 (setq neo-smart-open t)
+
+;; try to speed up tramp
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+                    vc-ignore-dir-regexp
+                    tramp-file-name-regexp))
+(setq tramp-verbose 1)

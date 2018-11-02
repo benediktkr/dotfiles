@@ -94,9 +94,11 @@ case $ROLE in
         # Refers to the various util servers I use at Care. Eventiually my zsh shell
         # will find itself on other care servers as well.
         ZSH_THEME="afowler"
+        BITBUCKET_LOGIN_NAM="benedikt.kristinsson"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias changed="less -R -j -1 -p 'changed:' $(ls -1 /var/log/ansible/$USER/ansible-* | tail -1)"
-        export PATH=/absible/conf/bin:/ansible/shared/bin:$PATH
+        alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
+        export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
 
         # Set things that are specific to each environment.
