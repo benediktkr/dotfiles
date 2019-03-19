@@ -82,6 +82,9 @@ case $HOST in
     dontpanic)
         ZSH_THEME="jreese"
         ;;
+    f)
+        ZSH_THEME="maran"
+        ;;
     freespace)
         ZSH_THEME="jreese"
         ;;
