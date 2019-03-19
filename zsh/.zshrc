@@ -83,7 +83,7 @@ case $HOST in
         ZSH_THEME="jreese"
         ;;
     f)
-        ZSH_THEME="cypher"
+        ZSH_THEME="jreese"
         ;;
     freespace)
         ZSH_THEME="jreese"
