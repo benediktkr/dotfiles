@@ -326,7 +326,9 @@
    (quote
     ("b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default)))
  '(doc-view-continuous t)
- ;'(package-selected-packages '(package1 package2)) (also needs package-install-selected-pacakges)
+ '(package-selected-packages
+   (quote
+    (groovy-mode jinja2-mode ansible yaml-mode terraform-mode neotree markdown-mode magit haskell-mode epl dockerfile-mode company clojure-mode cargo)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
