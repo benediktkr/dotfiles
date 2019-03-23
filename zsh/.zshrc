@@ -129,12 +129,6 @@ case $ROLE in
                 ;;
         esac
 
-        # Automatically attach to the tmux session on SSH
-        if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-            tmux attach-session -t ssh || tmux new-session -s ssh
-        fi
-        echo "I should only see this if tmux isn't auto attached"
-
         ;;
 esac
 
@@ -212,4 +206,9 @@ if [[ -n $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
     #PROMPT="$FLAG $PROMPT"
     RPROMPT=$FLAG
+fi
+
+# Automatically attach to the tmux session on SSH
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+    tmux attach-session -t ssh || tmux new-session -s ssh
 fi
