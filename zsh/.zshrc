@@ -53,6 +53,9 @@ case $HOST in
         ZSH_THEME="robbyrussell"
         alias emacs="/usr/local/bin/emacs -nw"
         ;;
+    hogwarts)
+        ZSH_THEME="robbyrussell"
+        ;;
     *.omni.carezen.net)
         ROLE="care"
         SUBROLE="omni"
