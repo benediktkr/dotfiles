@@ -328,7 +328,7 @@
  '(doc-view-continuous t)
  '(package-selected-packages
    (quote
-    (groovy-mode jinja2-mode ansible yaml-mode terraform-mode neotree markdown-mode magit haskell-mode epl dockerfile-mode company clojure-mode cargo)))
+    (flycheck groovy-mode jinja2-mode ansible yaml-mode terraform-mode neotree markdown-mode magit haskell-mode epl dockerfile-mode company clojure-mode cargo)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
