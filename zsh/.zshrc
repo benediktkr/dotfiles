@@ -47,6 +47,14 @@ US_FLAG="🇺🇸"
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
 
+system=$(uname -s)
+case $system in
+    Darwin)
+        alias coke="sudo pmset -a disablesleep 1"
+        alias weed="sudo pmset -a disablesleep 0"
+        ;;
+esac
+
 case $HOST in
     BER-Bkristinsson)
         ## My MacBook from Care.com
