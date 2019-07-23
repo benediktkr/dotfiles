@@ -123,8 +123,10 @@ case $ROLE in
             intl-euw|intl-use)
                 if [[ $SUBROLE == "intl-euw" ]]; then
                     FLAG=$EU_FLAG
+                    region=euw
                 elif [[ $SUBROLE == "intl-use" ]]; then
                     FLAG=$CA_FLAG
+                    region=use
                 fi
                 alias prod-mysql='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd.czen'
                 alias prod-mysql-rrdb='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd-rrdb.czen'
