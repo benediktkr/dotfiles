@@ -117,6 +117,8 @@ case $ROLE in
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
+        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
+        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
 
         # Set things that are specific to each environment.
         case $SUBROLE in
