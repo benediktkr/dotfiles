@@ -47,6 +47,14 @@ US_FLAG="🇺🇸"
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
 
+system=$(uname -s)
+case $system in
+    Darwin)
+        alias coke="sudo pmset -a disablesleep 1"
+        alias weed="sudo pmset -a disablesleep 0"
+        ;;
+esac
+
 case $HOST in
     BER-Bkristinsson)
         ## My MacBook from Care.com
@@ -109,14 +117,18 @@ case $ROLE in
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
+        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
+        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
 
         # Set things that are specific to each environment.
         case $SUBROLE in
             intl-euw|intl-use)
                 if [[ $SUBROLE == "intl-euw" ]]; then
                     FLAG=$EU_FLAG
+                    region=euw
                 elif [[ $SUBROLE == "intl-use" ]]; then
                     FLAG=$CA_FLAG
+                    region=use
                 fi
                 alias prod-mysql='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd.czen'
                 alias prod-mysql-rrdb='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd-rrdb.czen'
