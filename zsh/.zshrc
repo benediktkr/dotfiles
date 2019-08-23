@@ -185,13 +185,14 @@ plugins=(git screen lein pip python gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-export WORKON_HOME=~/.virtualenvs/
+# 23.08.2019: Commenting this out since i dont think any of it is in use.
+#export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export WORKON_HOME=~/.virtualenvs/
 #source /home/benedikt/.local/bin/virtualenvwrapper.sh
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
 
 # For Tramp in Emacs
 if [[ $TERM == "dumb" ]]; then
