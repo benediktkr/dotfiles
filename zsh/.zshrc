@@ -151,17 +151,6 @@ fixssh() {
     eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
 }
 
-hs () {
-    pygmentize -l haskell $1 | less -R
-}
-
-py () {
-    pygmentize -l python $1 | less -R
-}
-
-sh () {
-    pygmentize -l bash $1 | less -R
-}
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
