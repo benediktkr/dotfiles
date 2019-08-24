@@ -349,6 +349,7 @@
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook 'linum-mode)
 (add-hook 'cargo-minor-mode 'visual-line-mode)
+(setq rust-format-on-save t)
 
 ;; ansi color in read-only buffers
 (defun display-ansi-colors ()
