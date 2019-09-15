@@ -93,7 +93,7 @@ case $HOST in
     f)
         ZSH_THEME="gianu"
         ;;
-    pi0)
+    pi0.sudo.is)
         ZSH_THEME="gianu"
         ;;
     freespace)
