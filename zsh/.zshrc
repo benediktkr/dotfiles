@@ -80,9 +80,6 @@ case $HOST in
         ROLE="care"
         SUBROLE="dom"
         ;;
-    hh19.sudo.is)
-        ZSH_THEME="gianu"
-        ;;
     burrow)
         alias al="ansible-playbook -K -i ~/projects/infra/ansible/hosts --diff ~/projects/infra/ansible/burrow.yml"
         ZSH_THEME="jreese"
@@ -94,6 +91,9 @@ case $HOST in
         ZSH_THEME="jreese"
         ;;
     f)
+        ZSH_THEME="gianu"
+        ;;
+    pi0)
         ZSH_THEME="gianu"
         ;;
     freespace)
