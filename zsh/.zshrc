@@ -90,7 +90,7 @@ case $HOST in
     dontpanic)
         ZSH_THEME="jreese"
         ;;
-    f)
+    f.sudo.is)
         ZSH_THEME="gianu"
         ;;
     pi0.sudo.is)
