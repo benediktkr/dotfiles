@@ -99,7 +99,7 @@ case $HOST in
     freespace)
         ZSH_THEME="gianu"
         ;;
-    lon-vpn)
+    lon-vpn.sudo.is)
         ZSH_THEME="gianu"
         ;;
     *)
