@@ -102,6 +102,9 @@ case $HOST in
     lon-vpn.sudo.is)
         ZSH_THEME="gianu"
         ;;
+    *.sudo.is)
+        ZSH_THEME="gianu"
+        ;;
     *)
         ZSH_THEME="robbyrussell"
 esac

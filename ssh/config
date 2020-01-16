@@ -24,6 +24,12 @@ host f-initramfs
      # normal ssh key also works
      #IdentityFile ~/.ssh/id_rsa.initramfs
 
+host mathom
+     HostName 89.17.144.78
+     User benedikt
+     Port 2020
+     DynamicForward 4002    
+
 host *.sudo.is
      User ben
 
@@ -31,3 +37,4 @@ Host hh19.sudo.local
      HostName 192.168.61.106
      User bk
      ForwardAgent yes
+
