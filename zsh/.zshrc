@@ -80,6 +80,10 @@ case $HOST in
         ROLE="care"
         SUBROLE="dom"
         ;;
+    *.mgmt.internal)
+        ROLE="care"
+        SUBROLE="mgmt"
+        ;;
     burrow)
         alias al="ansible-playbook -K -i ~/projects/infra/ansible/hosts --diff ~/projects/infra/ansible/burrow.yml"
         ZSH_THEME="jreese"
