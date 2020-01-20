@@ -50,7 +50,7 @@ US_FLAG="🇺🇸"
 system=$(uname -s)
 case $system in
     Darwin)
-        alias coke="sudo pmset -a disablesleep 1"
+        alias speed="sudo pmset -a disablesleep 1"
         alias weed="sudo pmset -a disablesleep 0"
         ;;
 esac
