@@ -55,7 +55,13 @@ Host intl-euw-legacy
 Host intl-use
     User bkristinsson
     HostName intl-use-util-01.use.intl.carezen.net
-    ProxyCommand ssh -A bolprodops1 nc %h %p
+    #ProxyCommand ssh -A bolprodops1 nc %h %p
+    ForwardAgent yes
+
+Host intl-euw
+    User bkristinsson
+    HostName intl-euw-util-01.euw.intl.carezen.net
+    #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host intl-euw
