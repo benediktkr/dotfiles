@@ -281,6 +281,10 @@
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
 
+;; Rust
+(eval-after-load 'cargo-minor-mode
+  '(define-key cargo-minor-mode-map (kbd "C-c C-c") 'cargo-process-run))
+
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 ;; (setq jedi:setup-keys t)                      ; optional
