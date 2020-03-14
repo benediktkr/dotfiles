@@ -259,6 +259,7 @@
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-j") 'newline-and-indent)
+(global-set-key (kbd "C-c C-s") 'sort-lines)
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)
@@ -283,8 +284,6 @@
 ;; Rust
 (eval-after-load 'cargo-minor-mode
   '(define-key cargo-minor-mode-map (kbd "C-c C-c") 'cargo-process-run))
-
-
 
 ;; Useful things for python
 ;; (add-hook 'python-mode-hook 'jedi:setup)
