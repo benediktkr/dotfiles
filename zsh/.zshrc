@@ -50,7 +50,7 @@ US_FLAG="🇺🇸"
 system=$(uname -s)
 case $system in
     Darwin)
-        alias coke="sudo pmset -a disablesleep 1"
+        alias speed="sudo pmset -a disablesleep 1"
         alias weed="sudo pmset -a disablesleep 0"
         ;;
 esac
@@ -80,8 +80,9 @@ case $HOST in
         ROLE="care"
         SUBROLE="dom"
         ;;
-    hh19.sudo.is)
-        ZSH_THEME="gianu"
+    *.mgmt.internal)
+        ROLE="care"
+        SUBROLE="mgmt"
         ;;
     burrow)
         alias al="ansible-playbook -K -i ~/projects/infra/ansible/hosts --diff ~/projects/infra/ansible/burrow.yml"
@@ -93,13 +94,19 @@ case $HOST in
     dontpanic)
         ZSH_THEME="jreese"
         ;;
-    f)
+    f.sudo.is)
+        ZSH_THEME="gianu"
+        ;;
+    pi0.sudo.is)
         ZSH_THEME="gianu"
         ;;
     freespace)
         ZSH_THEME="gianu"
         ;;
-    lon-vpn)
+    lon-vpn.sudo.is)
+        ZSH_THEME="gianu"
+        ;;
+    *.sudo.is)
         ZSH_THEME="gianu"
         ;;
     *)
@@ -112,13 +119,15 @@ case $ROLE in
         # will find itself on other care servers as well.
         ZSH_THEME="afowler"
         BITBUCKET_LOGIN_NAME="benedikt.kristinsson"
+        alias ssh="fixssh; ssh"
+        alias git="fixssh; git"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
         alias changed="less -R -j -1 -p 'changed:' $(ls -1 /var/log/ansible/$USER/ansible-* | tail -1)"
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
-        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
-        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml"
+        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; export ANSIBLE_LOG_PATH=/dev/null"
+        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; unset ANSIBLE_LOG_PATH"
 
         # Set things that are specific to each environment.
         case $SUBROLE in
