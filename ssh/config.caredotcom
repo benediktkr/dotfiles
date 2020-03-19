@@ -96,3 +96,8 @@ Host omni-control-bastion
     HostName bastion.mgmt.omni.carezen.net
     #ProxyCommand ssh -A freespace nc %h %p
     ForwardAgent yes
+
+Host mgmt-control
+    User bkristinsson
+    HostName control.gold.mgmt.carezen.net
+    ForwardAgent yes
