@@ -29,6 +29,8 @@
 
 ")
 (setq vc-follow-symlinks t)
+;; Distance between linum and code
+(setq linum-format "%4d \u2502")
 
 ;; syntax highlight everywhere and mark selections
 (global-font-lock-mode t)
@@ -255,9 +257,6 @@
 ;; display line number and column number in modeline as (l,c)
 (setq-default column-number-mode 1)
 
-
-;; Distance between linum and code
-(setq linum-format "%4d \u2502")
 
 
 
