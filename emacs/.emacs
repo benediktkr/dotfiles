@@ -18,6 +18,7 @@
 
 ;;; Emacs settings
 (menu-bar-mode -1)
+(global-set-key (kbd "C-j") 'newline-and-indent)
 (setq backup-directory-alist '(("." . "~/.saves")))
 (setq use-dialog-box nil)
 (setq inhibit-startup-message 1)
@@ -33,7 +34,6 @@
 (setq linum-format "%4d \u2502")
 
 ;; syntax highlight everywhere and mark selections
-(global-font-lock-mode t)
 (transient-mark-mode 1)
 
 ;; spaces > tabs
@@ -121,6 +121,7 @@
 
 (use-package markdown-mode
   :ensure t
+  :bind ("C-j" . markdown-enter-key)
   :config
   (message "loaded markdown-mode"))
 
@@ -145,10 +146,10 @@
   :config
   (message "loaded org-mode"))
 
-(use-package python-mode
+(use-package python
   :ensure t
   :mode ("\\.py\\'" . python-mode)
-  :interpreter ("python" . python-mode)
+  ;; :interpreter ("python" . python-mode)
   :init
   (message "loading python-mode")
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -183,15 +184,21 @@
 
 (use-package tramp
   :ensure t
-  :config
-  (use-package ibuffer-tramp)
-  (use-package ibuffer-vc)
+  :init
   (setq tramp-default-method "ssh")
   ;; try to speed up tramp
   (setq remote-file-name-inhibit-cache nil)
   (setq vc-ignore-dir-regexp
         (format "%s\\|%s" vc-ignore-dir-regexp tramp-file-name-regexp))
   (setq tramp-verbose 1)
+  (use-package ibuffer-tramp
+    :config
+    (message "ibuffer-tramp loaded"))
+  (use-package ibuffer-vc
+    :config
+    (message "ibuffer-vc-loaded"))
+
+  :config
   (message "loaded tramp"))
 
 (use-package terraform-mode
@@ -204,19 +211,25 @@
   :ensure t
   :mode ("\\.yaml\\'" "\\.yml\\'")
   :config
-  (add-hook 'yaml-mode-hook 'flycheck-mode)
-  (add-hook 'yaml-mode-hook 'flyspell-mode)
+  ;; (add-hook 'yaml-mode-hook 'flycheck-mode)
+  ;; (add-hook 'yaml-mode-hook 'flyspell-mode)
   (message "loaded yaml-mode"))
+  ;; (use-package flycheck-yamllint
+  ;;   :ensure t
+  ;;   :init
+  ;;   (progn
+  ;;     (eval-after-load 'flycheck
+  ;;       '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup)))
+  ;;   :config
+  ;;   (message "loaded flycheck-yamllint")))
 
 
-(use-package flycheck-yamllint
-  :ensure t
-  :init
-  (progn
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup)))
-  :config
-  (message "loaded flycheck-yamllint"))
+;; (use-package flycheck
+;;   :ensure t
+;;   :init
+;;   (global-flycheck-mode)
+;;   :config
+;;   (message "flycheck loaded"))
 
 
 ;; packages that use-package cant use, maybe delete
@@ -302,7 +315,6 @@
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "C-c C-s") 'sort-lines)
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
@@ -353,7 +365,7 @@
     ("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default)))
  '(package-selected-packages
    (quote
-    (flycheck-yamllint yaml-mode use-package terraform-mode python-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode flycheck dockerfile-mode company clojure-mode cargo ansible))))
+    (yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
