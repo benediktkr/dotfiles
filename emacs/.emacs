@@ -1,130 +1,268 @@
-;; Benedikt Kristinsson
-;; Emacs configuration
+;;; dotfiles/emacs --- emacs config for me
 
-;; Do we have X?
-(defvar emacs-has-x (fboundp 'tool-bar-mode))
+;;; User info
+(setq user-full-name "Benedikt Kristinsson")
+(setq user-mail-address "benedikt@inventati.org")
+(setq add-log-mailing-address "benedikt@inventati.org")
 
-;; Do we care?
-(menu-bar-mode -1)
-
-(setq emacs-dir "~/.emacs.d/")
-
-;; Add better repo
+;; Add better repos
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ;("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://stable.melpa.org/packages/")))
+;; ("marmalade" . "https://marmalade-repo.org/packages/")
+
 (package-initialize)
-; fetch the list of packages available
+
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install packages
-(let ((packages '(magit
-                  markdown-mode
-                  haskell-mode
-                  clojure-mode
-                  dash
-                  rust-mode
-                  neotree
-                  terraform-mode
-                  yaml-mode
-                  ansible
-                  dockerfile-mode
-                  jinja2-mode
-                  groovy-mode)))
-  (dolist (package packages)
-    (unless (package-installed-p package)
-      (package-install package))))
-;      (add-to-list 'package-selected-packages package)))
-;(package-install-selected-packages)
+;;; Emacs settings
+(menu-bar-mode -1)
+(setq backup-directory-alist '(("." . "~/.saves")))
+(setq use-dialog-box nil)
+(setq inhibit-startup-message 1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(icomplete-mode 1)
+(setq inhibit-splash-screen 1)
+(setq initial-major-mode 'markdown-mode)
+(setq initial-scratch-message "# Scratch
 
-
-;; Set theme
-(load-theme 'wombat t)
-
-(set-face-foreground 'mode-line "white")
-(set-face-background 'mode-line "dark green")
-;;(set-face-background 'mode-line-inactive "black")
-
-;; Modeline
-(setq-default mode-line-format
-  (list " "
-        ; */% indicators if the file has been modified
-        'mode-line-modified
-        ; the name of the buffer (i.e. filename)
-        ; note this gets automatically highlighted
-        'mode-line-buffer-identification
-        ; major and minor modes in effect
-        'mode-line-modes
-        ; if which-func-mode is in effect, display which
-        ; function we are currently in.
-        '(which-func-mode ("" which-func-format "--"))
-        ; line, column, file %
-        'mode-line-position
-        ; if vc-mode is in effect, display version control
-        ; info here
-        `(vc-mode vc-mode)
-        " @"
-        ; hostname
-        'system-name
-        ;; dashes sufficient to fill rest of modeline.
-        ;"-%-"
-        )
-)
-
-;; Distance between linum and code
-(setq linum-format "%4d \u2502")
-
-
-;; Always follow e.g. ~/.emacs to ~/repos/dotemacs/.emacs
+")
 (setq vc-follow-symlinks t)
 
-;; User info
-(setq user-full-name "Benedikt Kristinsson")
-(setq user-mail-address "benedikt@inventati.org")
+;; syntax highlight everywhere and mark selections
+(global-font-lock-mode t)
+(transient-mark-mode 1)
 
-;; Used in ChangeLog entries
-(setq add-log-mailing-address "benedikt@inventati.org")
-
-;;; Emacs' interface
+;; spaces > tabs
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+(setq tab-width 4)
 
 ;; Match regardless of capitalization
 (setq read-buffer-completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
 (setq completion-ignore-case t)
 
-;; Don't display the 'Welcome to GNU Emacs' buffer on startup
-(setq inhibit-startup-message t)
-(setq inhibit-splash-screen t)
+;; I don't want stuff like git to start a pager in shell-mode
+(setenv "PAGER" "/bin/cat")
 
-;; Remove scratch message
-(setq initial-scratch-message nil)
+;; ansi color in read-only buffers
+(defun display-ansi-colors ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
 
-;;; Indenting
-;; Use spaces, not tabs
-(setq indent-tabs-mode nil)
-(setq-default indent-tabs-mode nil)
+;; Show matching parens immediately
+(show-paren-mode 1)
+(setq-default show-paren-delay 0.0)
 
-;; Settings for C and C++
+;; When selecting a file to visit, // will mean / and
+(setq file-name-shadow-tty-properties '(invisible t))
+(file-name-shadow-mode 1)
+
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+
+(use-package ansible
+  :defer 3
+  :ensure t)
+
+;; (use-package cargo
+;;   :ensure t)
+
+(use-package clojure-mode
+  :mode "\\.clj\\'"
+  :config
+  (message "loaded clojure-mode")
+  :ensure t)
+
+(use-package dash
+  :defer 3
+  :ensure t)
+
+(use-package dockerfile-mode
+  :mode "Dockerfile"
+  :config
+  (message "loaded dockerfile-mode")
+  :ensure t)
+
+(use-package epl
+  :defer 3
+  :ensure t)
+
+(use-package groovy-mode
+  :mode "\\.groovy\\'"
+  :ensure t
+  :config
+  (message "loaded groovy-mode"))
+
+(use-package haskell-mode
+  :ensure t
+  :mode "\\.hs\\'"
+  :config
+  (message "loaded haskell-mode"))
+
+(use-package jinja2-mode
+  :ensure t
+  :mode "\\.j2\\'"
+  :config
+  (message "loaded jinja2-mode"))
+
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status)
+  :config
+  (message "loaded magit"))
+
+(use-package markdown-mode
+  :ensure t
+  :config
+  (message "loaded markdown-mode"))
+
+(use-package neotree
+  :ensure t
+  :bind ("C-c n" . neotree-toggle)
+  :config
+  (message "starting to load neotree")
+  (setq-default neo-show-hidden-files t)
+  (setq neo-smart-open t)
+  (message "loaded neotree"))
+
+(use-package nord-theme
+  :ensure t
+)
+
+(use-package org-mode
+  :mode ("\\.org\\'" . org-mode)
+  :bind ("C-c a" . org-agenda)
+  :init
+  (setq org-log-done 1)
+  :config
+  (message "loaded org-mode"))
+
+(use-package python-mode
+  :ensure t
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  :init
+  (message "loading python-mode")
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (setq backward-delete-char-untabify nil)
+  :config
+  (message "loaded python-mode"))
+
+(use-package rust-mode
+  :ensure t
+  :mode "\\.rs\\'"
+  ;;:bind ("C-c C-c" . cargo-process-run)
+  :init
+  (message "loading rust-mode")
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'rust-mode-hook 'linum-mode)
+  (add-hook 'cargo-minor-mode 'visual-line-mode)
+  (setq rust-format-on-save t)
+  :config
+  (message "loaded rust-mode"))
+
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :init
+;;   (add-hook 'prog-mode-hook 'lsp-mode)
+;;   :config
+;;   (use-package lsp-flycheck
+;;     :after flycheck))
+
+;; (use-package lsp-rust
+;;   :ensure t
+;;   :after lsp-mode)
+
+(use-package tramp
+  :ensure t
+  :config
+  (use-package ibuffer-tramp)
+  (use-package ibuffer-vc)
+  (setq tramp-default-method "ssh")
+  ;; try to speed up tramp
+  (setq remote-file-name-inhibit-cache nil)
+  (setq vc-ignore-dir-regexp
+        (format "%s\\|%s" vc-ignore-dir-regexp tramp-file-name-regexp))
+  (setq tramp-verbose 1)
+  (message "loaded tramp"))
+
+(use-package terraform-mode
+  :ensure t
+  :mode "\\.tf\\'"
+  :config
+  (message "loaded terraform-mode"))
+
+(use-package yaml-mode
+  :ensure t
+  :mode ("\\.yaml\\'" "\\.yml\\'")
+  :config
+  (add-hook 'yaml-mode-hook 'flycheck-mode)
+  (add-hook 'yaml-mode-hook 'flyspell-mode)
+  (message "loaded yaml-mode"))
+
+
+(use-package flycheck-yamllint
+  :ensure t
+  :init
+  (progn
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup)))
+  :config
+  (message "loaded flycheck-yamllint"))
+
+
+;; packages that use-package cant use, maybe delete
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq comment-style 'multi-line)
 
-;; Load modes based on file extensions
-(add-to-list 'auto-mode-alist '("\\.cpp$" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.vcl$" . vcl-mode))
+;; Set theme
+;; theme looks nicer if i load wombat first, to get the background color
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+(load-theme 'wombat t)
+(load-theme 'nord t)
 
-;; Use 4 spaces by default for tabbing
-(setq default-tab-width 4)
-(setq tab-width 4)
+;;; Modeline
+(setq-default mode-line-format
+  (list " "
+        ;; */% indicators if the file has been modified
+        'mode-line-modified
+        ;; the name of the buffer (i.e. filename)
+        ;; note this gets automatically highlighted
+        'mode-line-buffer-identification
+        ;; major and minor modes in effect
+        'mode-line-modes
+        ;; if which-func-mode is in effect, display which
+        ;; function we are currently in.
+        '(which-func-mode ("" which-func-format "--"))
+        ;; line, column, file %
+        'mode-line-position
+        ;; if vc-mode is in effect, display version control
+        ;; info here
+        `(vc-mode vc-mode)
+        " @"
+        ;; hostname
+        'system-name
+        ;;; dashes sufficient to fill rest of modeline.
+        ;"-%-"
+        ))
 
-;; Force 4 space tabs in text-mode (seems to be ineffective)
-(setq tab-stop-list (number-sequence 4 200 4))
+;; display line number and column number in modeline as (l,c)
+(setq-default column-number-mode 1)
 
-                   ;;;; Forked begin ;;;;
 
-;; Make C-w remove lines without marking them
+;; Distance between linum and code
+(setq linum-format "%4d \u2502")
+
+
+
+
+;;; Make C-w remove lines without marking them
 (defadvice kill-ring-save (before slickcopy activate compile)
   "When called interactively with no active region, copy
  a single line instead."
@@ -141,112 +279,19 @@
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
-
-;; Don't use graphic dialog boxes
-(setq use-dialog-box nil)
-
-
-;; syntax highlight everywhere
-(global-font-lock-mode t)
-
-;; Show matching parens (mixed style)
-(show-paren-mode t)
-(setq show-paren-delay 0.2)
-
-;; 'mixed highlights the whole sexp making it unreadable, maybe tweak
-;; color display?   ←??
-(setq show-paren-style 'mixed)
-
-;; Highlight selection
-(transient-mark-mode t)
-
-;; make all "yes or no" prompts show "y or n" instead
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; Switching
-;; (iswitchb-mode -1)
-(icomplete-mode 1)
-
-;; Smash the training wheels
-(put 'narrow-to-region 'disabled nil)
-(put 'not-modified 'disabled t)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-(put 'erase-buffer 'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
-
-;; Backup files
-;(setq make-backup-files nil)
-;(setq auto-save-default nil)
-
-;; Make C-h a act as C-u C-h a
-;(setq apropos-do-all t)
-
-;; I don't want stuff like git to start a pager in shell-mode
-(setenv "PAGER" "/bin/cat")
-
-;; Electric minibuffer!
-;; When selecting a file to visit, // will mean / and
-;; ~ will mean $HOME regppppppardless of preceding text.
-(setq file-name-shadow-tty-properties '(invisible t))
-(file-name-shadow-mode 1)
-
-;; Colors to improve readability in my dark terminals
-(set-face-foreground 'minibuffer-prompt "white")
-(set-face-attribute 'link nil :foreground "light blue" :underline t)
-
-(setq backward-delete-char-untabify nil)
-
-
-                   ;;;; Forked end ;;;;
-
-
-
-
-;;; Modules
-
-;; emacs-lisp-mode
-;(add-hook 'emacs-lisp-mode-hook 'eldoc-mode t)
-
-;; org-mode
-(when (require 'org)
-  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-  (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda)
-  (setq org-log-done t))
-
-;; rudel
-; require returns nil if not found
-(when (require 'rudel-loaddefs nil t)
-  (global-rudel-minor-mode 1))
-
-;(require 'rudel-loaddefs)
-
-;(load-file "rudel/rudel-loaddefs.el")
-;(global-rudel-minor-mode 1)
-
-;; magit
-(autoload 'magit-status "magit" nil t)
-
-;; tramp
-(setq tramp-default-method "ssh")
-
-;; python-mode
-;(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-;(setq interpreter-mode-alist (cons '("python" . python-mode)
-;                                       interpreter-mode-alist))
-;(autoload 'python-mode "python-mode" "Python editing mode." t)
+;;; Smash the training wheels
+;; (put 'narrow-to-region 'disabled nil)
+;; (put 'not-modified 'disabled t)
+;; (put 'upcase-region 'disabled nil)
+;; (put 'downcase-region 'disabled nil)
+;; (put 'erase-buffer 'disabled nil)
+;; (put 'dired-find-alternate-file 'disabled nil)
 
 ;;; Keybindings
-;; GIT
-(global-set-key (kbd "C-x g") 'magit-status)
 
-;; Misc
 (global-set-key (kbd "C-c M-e") 'eshell)
-(global-set-key (kbd "C-c S") 'ispell-change-dictionary)
 (global-set-key (kbd "C-c g") 'grep)
 
-;; Buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-w") 'kill-region)
 ;(global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -265,116 +310,54 @@
 (global-set-key (kbd "C-x m") 'manual-entry)
 (global-set-key (kbd "M-c") 'comment-region)
 (global-set-key (kbd "M-C") 'uncomment-region)
-(global-set-key (kbd "C-c n") 'neotree-toggle)
 (global-set-key (kbd "C-c l") 'linum-mode)
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-;; Terminal
 (global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
 
-;; Home and End keys
+;;; Home and End keys
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
 
-;; Rust
-(eval-after-load 'cargo-minor-mode
-  '(define-key cargo-minor-mode-map (kbd "C-c C-c") 'cargo-process-run))
 
-;; Useful things for python
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:setup-keys t)                      ; optional
-;; (setq jedi:complete-on-dot t)                 ; optional
-
-; On-the-fly pyflakes checking
-; shows errors in the minibuffer when highlighted (http://bitbucket.org/brodie/dotfiles/src/tip/.emacs.d/plugins/flymake-point.el)
-;; (require 'flymake-point "~/.emacs.d/flymake-point.el")
-;; (setq python-check-command "pyflakes")
-;; (when (load "flymake" t)
-;;   (defun flymake-pyflakes-init ()
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                        'flymake-create-temp-inplace))
-;;            (local-file (file-relative-name
-;;                         temp-file
-;;                         (file-name-directory buffer-file-name))))
-;;       (list "pyflakes" (list local-file))))
-;;   (add-to-list 'flymake-allowed-file-name-masks
-;;                '("\\.py\\'" flymake-pyflakes-init)))
-
-;; For when i need to work with peculiar people :)
-;; (add-hook 'python-mode-hook
-;;           (lambda ()
-;;             (when (string-match "dohop" (buffer-file-name))
-;;               (when (not (string-match "varnish" (buffer-file-name)))
-;;                 (setq indent-tabs-mode t)
-;;                 (setq tab-width 4)
-;;                 (setq python-indent 4)))
-;;             (flymake-mode 1)))
-
-(add-hook 'python-mode-hook
+;; write elisp properly, its emacs after all
+(add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+            ;; Use spaces, not tabs.
+            (setq indent-tabs-mode nil)
+            ;; Keep M-TAB for `completion-at-point'
+            (define-key flyspell-mode-map "\M-\t" nil)
+            ;; Pretty-print eval'd expressions.
+            (define-key emacs-lisp-mode-map
+              "\C-x\C-e" 'pp-eval-last-sexp)
+            ;; Recompile if .elc exists.
+            (add-hook (make-local-variable 'after-save-hook)
+                      (lambda ()
+                        (byte-force-recompile default-directory)))
+            (define-key emacs-lisp-mode-map
+              "\r" 'reindent-then-newline-and-indent)))
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-PDF-mode t)
- '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default)))
- '(doc-view-continuous t)
+    ("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default)))
  '(package-selected-packages
    (quote
-    (flycheck-pycheckers flycheck groovy-mode jinja2-mode ansible yaml-mode terraform-mode neotree markdown-mode magit haskell-mode epl dockerfile-mode company clojure-mode cargo)))
- '(show-paren-mode t))
+    (flycheck-yamllint yaml-mode use-package terraform-mode python-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode flycheck dockerfile-mode company clojure-mode cargo ansible))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(ido-mode -1)
-
-;; vcl-mode things
-(setq vcl-indent-level 4)
-
-;; Groovy-mode bug, won't load unless this is required first.
-(require 'cl)
-
-;; Rust stuff goes here I guess
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'rust-mode-hook 'linum-mode)
-(add-hook 'cargo-minor-mode 'visual-line-mode)
-(setq rust-format-on-save t)
-
-;; ansi color in read-only buffers
-(defun display-ansi-colors ()
-  (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
-
-;; Remove trailing whitespaces
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-
-;; neotree
-(require 'neotree)
-(setq-default neo-show-hidden-files t)
-(setq neo-smart-open t)
-
-;; try to speed up tramp
-(setq remote-file-name-inhibit-cache nil)
-(setq vc-ignore-dir-regexp
-      (format "%s\\|%s"
-                    vc-ignore-dir-regexp
-                    tramp-file-name-regexp))
-(setq tramp-verbose 1)
