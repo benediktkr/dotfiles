@@ -60,9 +60,11 @@ case $HOST in
         ## My MacBook from Care.com
         ZSH_THEME="robbyrussell"
         alias emacs="/usr/local/bin/emacs -nw"
+        export EDITOR=emacs
         ;;
     hogwarts)
         ZSH_THEME="robbyrussell"
+        export EDITOR=emacs
         ;;
     *.omni.carezen.net)
         ROLE="care"
