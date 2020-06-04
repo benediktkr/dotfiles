@@ -196,7 +196,7 @@ plugins=(git screen lein pip python gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=$/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 #export PATH="$HOME/.cargo/bin:/:$PATH"
 
 
