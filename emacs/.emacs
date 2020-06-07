@@ -18,7 +18,6 @@
 
 ;;; Emacs settings
 (menu-bar-mode -1)
-(global-set-key (kbd "C-j") 'newline-and-indent)
 (setq backup-directory-alist '(("." . "~/.saves")))
 (setq use-dialog-box nil)
 (setq inhibit-startup-message 1)
@@ -122,6 +121,8 @@
 (use-package markdown-mode
   :ensure t
   :bind ("C-j" . markdown-enter-key)
+  :init
+  (local-set-key (kbd "C-j") 'markdown-enter-key)
   :config
   (message "loaded markdown-mode"))
 
@@ -153,6 +154,7 @@
   :init
   (message "loading python-mode")
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  ;(add-hook 'python-mode-hook 'flycheck-mode)
   (setq backward-delete-char-untabify nil)
   :config
   (message "loaded python-mode"))
@@ -190,6 +192,8 @@
   (setq remote-file-name-inhibit-cache nil)
   (setq vc-ignore-dir-regexp
         (format "%s\\|%s" vc-ignore-dir-regexp tramp-file-name-regexp))
+  (setq tramp-auto-save-directory "~/.saves/tramp/")
+  ;; (setq tramp-chunksize 2000)
   (setq tramp-verbose 1)
   (use-package ibuffer-tramp
     :config
@@ -223,13 +227,22 @@
   ;;   :config
   ;;   (message "loaded flycheck-yamllint")))
 
-
 ;; (use-package flycheck
 ;;   :ensure t
 ;;   :init
 ;;   (global-flycheck-mode)
 ;;   :config
 ;;   (message "flycheck loaded"))
+
+;; (use-package flycheck-pycheckers
+;;   :ensure t
+;;   :init
+;;   (global-flycheck-mode 1)
+;;   (with-eval-after-load 'flycheck
+;;     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+;;   :config
+;;   (message "flycheck-pycheres loaded"))
+
 
 
 ;; packages that use-package cant use, maybe delete
@@ -269,9 +282,6 @@
 
 ;; display line number and column number in modeline as (l,c)
 (setq-default column-number-mode 1)
-
-
-
 
 
 ;;; Make C-w remove lines without marking them
@@ -319,6 +329,7 @@
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)
+(global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "M-c") 'comment-region)
 (global-set-key (kbd "M-C") 'uncomment-region)
 (global-set-key (kbd "C-c l") 'linum-mode)
@@ -372,3 +383,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'set-goal-column 'disabled nil)
+
+
+;; added to silennce the linter
+(provide '.emacs)
+;;; .emacs ends here
