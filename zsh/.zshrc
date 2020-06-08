@@ -199,6 +199,10 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 #export PATH="$HOME/.cargo/bin:/:$PATH"
 
+# for loops over "space separated strings" like bash
+setopt shwordsplit
+
+
 
 # For Tramp in Emacs
 if [[ $TERM == "dumb" ]]; then
