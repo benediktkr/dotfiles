@@ -1,26 +1,38 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-if [[ ! -d $ZSH ]]; then
+if [[ -d $HOME/projects/dotfiles ]] ||
+       [[ -d $HOME/dotfiles ]] ||
+       [[ -d /srv/dotfiles ]]; then
+    USE_OMZ='true'
+else
+    USE_OMZ='false'
+fi
+
+if [[ -x "$(command -v tmux)" ]]; then
+    HAS_TMUX="true"
+else
+    HAS_TUMX="false"
+fi
+
+if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
     read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
+    echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
         # handle exits from shell or function but don't exit interactive shell
         [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
     fi
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-    echo
-    echo "moving myself!"
-    mv ~/.zshrc ~/.zshrc.tmp
-    echo "this will spawn a new shell. please exit this one so i can finish"
-    sh -c "$(curl -fsSL $OMZSH)"
-    echo "thanks, i'm finishing up now!"
-    rm ~/.zshrc
-    mv ~/.zshrc.tmp ~/.zshrc
+
+    curl -fsSL $OMZSH > $HOME/omz-install.sh
+    RUNZSH='no' CHSH='no' KEEP_ZSHRC='yes' sh $HOME/omz-install.sh
+    rm $HOME/omz-install.sh
+    echo "Done setting up oh-my-zsh!"
 
 fi
 
-# |--  aliases
+# |--  aliases (overrides oh-my-zsh plugin aliases)
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
@@ -128,8 +140,7 @@ case $ROLE in
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
-        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; export ANSIBLE_LOG_PATH=/dev/null"
-        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; unset ANSIBLE_LOG_PATH"
+        ssh() { scp ~/.zshrc $1:~/.zshrc && /usr/bin/ssh $* }
 
         # Set things that are specific to each environment.
         case $SUBROLE in
@@ -141,6 +152,8 @@ case $ROLE in
                     FLAG=$CA_FLAG
                     region=use
                 fi
+                alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; export ANSIBLE_LOG_PATH=/dev/null"
+                alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; unset ANSIBLE_LOG_PATH"
                 alias prod-mysql='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd.czen'
                 alias prod-mysql-rrdb='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd-rrdb.czen'
                 alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
@@ -159,7 +172,11 @@ case $ROLE in
 esac
 
 fixssh() {
-    eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+    if [[ $HAS_TMUX = "true" ]]; then
+        eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+    else
+        echo "fixssh doesnt do anything without tmux"
+    fi
 }
 
 
@@ -189,12 +206,42 @@ fixssh() {
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git screen lein pip python gpg-agent)
+if [[ $USE_OMZ = 'true' ]]; then
+    plugins=(
+        # emacs # open files via emacsclient everywhere
+        ansible
+        aws # auto-complete aws commands
+        catimg
+        colored-man-pages
+        colorize
+        docker # auto complete
+        git
+        gpg-agent
+        nmap
+        pep8
+        pip # autocomplete
+        pylint # autocomplete
+        python # pyfind, pygrep, etc
+        rust # autocomplete
+        rustup # autocomplete
+        safe-paste
+        urltools # urlencode and urldecode
+    )
+    if [[ $system = "Darwin" ]]; then
+        plugins+=(osx brew)
+    fi
+    source $ZSH/oh-my-zsh.sh
+    if [[ $ROLE = "care" ]]; then
+        unalias a
+    fi
 
-source $ZSH/oh-my-zsh.sh
+else
+    # on a system without oh-my-zsh (f.ex. non util/control nodes)
+    # set some basic settings
+    SAVEHIST=10000
+    HISTFILE=~/.zsh_history
+fi
+
 
 export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 #export PATH="$HOME/.cargo/bin:/:$PATH"
@@ -224,6 +271,8 @@ if [[ -z $FLAG ]]; then
 fi
 
 # Automatically attach to the tmux session on SSH
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    tmux attach-session -t ssh || tmux new-session -s ssh
+if [[ -x "$(command -v tmux)" ]]; then
+    if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+        tmux attach-session -t ssh || tmux new-session -s ssh
+    fi
 fi
