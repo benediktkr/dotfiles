@@ -5,6 +5,11 @@
 (setq user-mail-address "benedikt@inventati.org")
 (setq add-log-mailing-address "benedikt@inventati.org")
 
+
+;; if a local file is modified from underneath us, ask what to do
+;; and dont just reset the buffer. default behaviour over tramp
+(global-auto-revert-mode nil)
+
 ;; Add better repos
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
