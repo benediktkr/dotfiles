@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-if [ ! -d $ZSH ]; then
+if [[ ! -d $ZSH ]]; then
     read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
