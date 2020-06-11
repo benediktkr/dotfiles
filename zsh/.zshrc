@@ -213,7 +213,7 @@ case $ROLE in
                     current=$(pwd)
                     cd ~/terraform-intl
                     for env in "$@"; do
-                        echo "${env}> ${cmd}"
+                        echo "${env}> tf ${cmd}"
 
                         cd ${env}/misc/
                         unset AWS_SESSION_TOKEN
