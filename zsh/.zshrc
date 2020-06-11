@@ -166,6 +166,68 @@ case $ROLE in
             omni)
                 source /etc/profile.d/vault-env.sh
                 ;;
+            mgmt)
+                intlbronzeenvs=("intl-bronze-euwest1 intl-bronze-useast1")
+                intlgoldenvs=("intl-gold-euwest1 intl-gold-useast1 ")
+                tfplan () {
+                    tfcmd $1 "plan"
+                }
+                tfpost() {
+                    if [[ -z $2 ]]; then
+                        echo "missing PR number"
+                    else
+                        # $1 = pr number
+                        # $2 = bronze/gold/all
+                        tfcmd $2 "post" $1
+                    fi
+                }
+
+                tfcmd () {
+                    cmd=$2
+                    if [[ "$cmd" == "post" ]]; then
+                        cmd="post $3"
+                    fi
+                    case $1 in
+                        bronze)
+                            dotfcmd $cmd ${intlbronzeenvs[@]}
+                            ;;
+                        gold)
+                            dotfcmd $cmd ${intlgoldenvs[@]}
+                            ;;
+                        all)
+                            dotfcmd $cmd ${intlbronzeenvs[@]}
+                            dotfcmd $cmd ${intlgoldenvs[@]}
+                            ;;
+                        *)
+                            echo "badarg : '$1'"
+                    esac
+                }
+                dotfcmd () {
+                    cmd=$1
+                    shift
+                    if [[ "${cmd}" == "post" ]]; then
+                        cmd="post $1"
+                        shift
+                    fi
+
+                    current=$(pwd)
+                    cd ~/terraform-intl
+                    for env in "$@"; do
+                        echo "${env}> ${cmd}"
+
+                        cd ${env}/misc/
+                        unset AWS_SESSION_TOKEN
+                        unset AWS_CRED_EXPIRATION
+                        unset AWS_SECRET_ACCESS_KEY
+                        unset AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN
+                        if [[ "${cmd}" == "plan" ]]; then
+                            ts
+                        fi
+                        tf ${cmd}
+                        cd ../../
+                    done
+                    cd $current
+                }
         esac
 
         ;;
