@@ -169,51 +169,38 @@ case $ROLE in
             mgmt)
                 intlbronzeenvs=("intl-bronze-euwest1 intl-bronze-useast1")
                 intlgoldenvs=("intl-gold-euwest1 intl-gold-useast1 ")
-                tfplan () {
-                    tfcmd $1 "plan"
-                }
+                tfplan () { tfcmd $1 "plan" }
+                tfapply() { tfcmd $1 "apply" }
                 tfpost() {
-                    if [[ -z $2 ]]; then
-                        echo "missing PR number"
-                    else
-                        # $1 = pr number
-                        # $2 = bronze/gold/all
-                        tfcmd $2 "post" $1
-                    fi
+                    class=$1
+                    shift
+                    tfcmd $class "post" $@
                 }
 
+
                 tfcmd () {
-                    cmd=$2
-                    if [[ "$cmd" == "post" ]]; then
-                        cmd="post $3"
-                    fi
-                    case $1 in
+                    class=$1
+                    shift
+                    cmd=$1
+                    shift
+
+                    case $class in
                         bronze)
-                            dotfcmd $cmd ${intlbronzeenvs[@]}
+                            envs="${intlbronzeenvs}"
                             ;;
                         gold)
-                            dotfcmd $cmd ${intlgoldenvs[@]}
+                            envs="${intlgoldenvs}"
                             ;;
                         all)
-                            dotfcmd $cmd ${intlbronzeenvs[@]}
-                            dotfcmd $cmd ${intlgoldenvs[@]}
+                            envs="${intlbronzeenvs} ${intlgoldenvs[@]}"
                             ;;
                         *)
                             echo "badarg : '$1'"
+                            return
                     esac
-                }
-                dotfcmd () {
-                    cmd=$1
-                    shift
-                    if [[ "${cmd}" == "post" ]]; then
-                        cmd="post $1"
-                        shift
-                    fi
-
-                    current=$(pwd)
-                    cd ~/terraform-intl
-                    for env in "$@"; do
-                        echo "${env}> tf ${cmd}"
+                    for env in ${envs[@]}; do
+                        current=$(pwd)
+                        cd ~/terraform-intl
 
                         cd ${env}/misc/
                         unset AWS_SESSION_TOKEN
@@ -221,9 +208,13 @@ case $ROLE in
                         unset AWS_SECRET_ACCESS_KEY
                         unset AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN
                         if [[ "${cmd}" == "plan" ]]; then
+                            echo "${env}> ts"
                             ts
                         fi
-                        tf ${cmd}
+                        tf ${cmd} $@
+                        rc=$?
+                        echo "${env}> tf ${cmd} ${@}"
+                        echo "[${rc}]"
                         cd ../../
                     done
                     cd $current
