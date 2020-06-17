@@ -78,7 +78,7 @@ case $HOST in
         ZSH_THEME="robbyrussell"
         export EDITOR=emacs
         ;;
-    *.omni.carezen.net)
+    *.omni.internal)
         ROLE="care"
         SUBROLE="omni"
         ;;
