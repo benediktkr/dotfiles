@@ -140,7 +140,7 @@ case $ROLE in
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
-        ssh() { scp ~/.zshrc $1:~/.zshrc && /usr/bin/ssh $* }
+        #ssh() { scp ~/.zshrc $1:~/.zshrc && /usr/bin/ssh $* }
 
         # Set things that are specific to each environment.
         case $SUBROLE in
