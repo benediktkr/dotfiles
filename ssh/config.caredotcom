@@ -91,7 +91,7 @@ Host dom-use-bastion
     ForwardAgent yes
 
 Host omni-control
-    HostName control.gold.mgmt.omni.carezen.net
+    HostName control.gold.omni.carezen.net
     #ProxyCommand ssh -A bolprodops1 nc %h %p
     #ProxyCommand ssh -A omni-control-bastion nc %h %p
     ForwardAgent yes
