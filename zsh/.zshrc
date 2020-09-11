@@ -47,14 +47,6 @@ US_FLAG="🇺🇸"
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
 
-system=$(uname -s)
-case $system in
-    Darwin)
-        alias speed="sudo pmset -a disablesleep 1"
-        alias weed="sudo pmset -a disablesleep 0"
-        ;;
-esac
-
 case $HOST in
     BER-Bkristinsson)
         ## My MacBook from Care.com
@@ -162,6 +154,15 @@ fixssh() {
     eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
 }
 
+system=$(uname -s)
+case $system in
+    Darwin)
+        alias speed="sudo pmset -a disablesleep 1"
+        alias weed="sudo pmset -a disablesleep 0"
+        # defaulting to brew-installed python3
+        export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+        ;;
+esac
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
