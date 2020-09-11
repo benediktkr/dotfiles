@@ -1,26 +1,38 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-if [ ! -d $ZSH ]; then
+if [[ -d $HOME/projects/dotfiles ]] ||
+       [[ -d $HOME/dotfiles ]] ||
+       [[ -d /srv/dotfiles ]]; then
+    USE_OMZ='true'
+else
+    USE_OMZ='false'
+fi
+
+if [[ -x "$(command -v tmux)" ]]; then
+    HAS_TMUX="true"
+else
+    HAS_TUMX="false"
+fi
+
+if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
     read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
+    echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
         # handle exits from shell or function but don't exit interactive shell
         [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
     fi
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-    echo
-    echo "moving myself!"
-    mv ~/.zshrc ~/.zshrc.tmp
-    echo "this will spawn a new shell. please exit this one so i can finish"
-    sh -c "$(curl -fsSL $OMZSH)"
-    echo "thanks, i'm finishing up now!"
-    rm ~/.zshrc
-    mv ~/.zshrc.tmp ~/.zshrc
+
+    curl -fsSL $OMZSH > $HOME/omz-install.sh
+    RUNZSH='no' CHSH='no' KEEP_ZSHRC='yes' sh $HOME/omz-install.sh
+    rm $HOME/omz-install.sh
+    echo "Done setting up oh-my-zsh!"
 
 fi
 
-# |--  aliases
+# |--  aliases (overrides oh-my-zsh plugin aliases)
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
 alias less="less -R"
@@ -58,7 +70,7 @@ case $HOST in
         ZSH_THEME="robbyrussell"
         export EDITOR=emacs
         ;;
-    *.omni.carezen.net)
+    *.omni.internal)
         ROLE="care"
         SUBROLE="omni"
         ;;
@@ -112,7 +124,7 @@ case $ROLE in
         # Refers to the various util servers I use at Care. Eventiually my zsh shell
         # will find itself on other care servers as well.
         ZSH_THEME="afowler"
-        BITBUCKET_LOGIN_NAME="benedikt.kristinsson"
+        export BITBUCKET_LOGIN_NAME="benedikt.kristinsson"
         alias ssh="fixssh; ssh"
         alias git="fixssh; git"
         alias emacs="emacs -nw --daemon && emacsclient -nw || emacsclient -nw"
@@ -120,8 +132,7 @@ case $ROLE in
         alias powerdown='unset AWS_SESSION_TOKEN AWS_CRED_EXPIRATION AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN'
         export PATH=/ansible/conf/bin:/ansible/shared/bin:$PATH
         powerup () { eval $(/usr/local/bin/powerup $*) ; }
-        alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; export ANSIBLE_LOG_PATH=/dev/null"
-        alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; unset ANSIBLE_LOG_PATH"
+        #ssh() { scp ~/.zshrc $1:~/.zshrc && /usr/bin/ssh $* }
 
         # Set things that are specific to each environment.
         case $SUBROLE in
@@ -133,6 +144,8 @@ case $ROLE in
                     FLAG=$CA_FLAG
                     region=use
                 fi
+                alias groovydiff="sed -i 's/no_log: True/no_log: False/g' ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; export ANSIBLE_LOG_PATH=/dev/null"
+                alias nogroovydiff="git checkout ~/ansible/intl/roles/{deploy,webapp,back}/tasks/main.yml; unset ANSIBLE_LOG_PATH"
                 alias prod-mysql='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd.czen'
                 alias prod-mysql-rrdb='mysql --defaults-file=/usr/local/etc/.my.cnf.useprd-rrdb.czen'
                 alias prod-elb='watch -n 5 elb-check $(elb-check -l | grep prd | grep web)'
@@ -145,13 +158,70 @@ case $ROLE in
             omni)
                 source /etc/profile.d/vault-env.sh
                 ;;
+            mgmt)
+                intlbronzeenvs=("intl-bronze-euwest1 intl-bronze-useast1")
+                intlgoldenvs=("intl-gold-euwest1 intl-gold-useast1 ")
+                tfplan () { tfcmd $1 "plan" }
+                tfapply() { tfcmd $1 "apply" }
+                tfpost() {
+                    class=$1
+                    shift
+                    tfcmd $class "post" $@
+                }
+
+
+                tfcmd () {
+                    class=$1
+                    shift
+                    cmd=$1
+                    shift
+
+                    case $class in
+                        bronze)
+                            envs="${intlbronzeenvs}"
+                            ;;
+                        gold)
+                            envs="${intlgoldenvs}"
+                            ;;
+                        all)
+                            envs="${intlbronzeenvs} ${intlgoldenvs[@]}"
+                            ;;
+                        *)
+                            echo "badarg : '$1'"
+                            return
+                    esac
+                    for env in ${envs[@]}; do
+                        current=$(pwd)
+                        cd ~/terraform-intl
+
+                        cd ${env}/misc/
+                        unset AWS_SESSION_TOKEN
+                        unset AWS_CRED_EXPIRATION
+                        unset AWS_SECRET_ACCESS_KEY
+                        unset AWS_ACCESS_KEY_ID AWS_SECURITY_TOKEN
+                        if [[ "${cmd}" == "plan" ]]; then
+                            echo "${env}> ts"
+                            ts
+                        fi
+                        tf ${cmd} $@
+                        rc=$?
+                        echo "${env}> tf ${cmd} ${@}"
+                        echo "[${rc}]"
+                        cd ../../
+                    done
+                    cd $current
+                }
         esac
 
         ;;
 esac
 
 fixssh() {
-    eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+    if [[ $HAS_TMUX = "true" ]]; then
+        eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+    else
+        echo "fixssh doesnt do anything without tmux"
+    fi
 }
 
 system=$(uname -s)
@@ -190,15 +260,49 @@ esac
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git screen lein pip python gpg-agent)
+if [[ $USE_OMZ = 'true' ]]; then
+    plugins=(
+        # emacs # open files via emacsclient everywhere
+        ansible
+        aws # auto-complete aws commands
+        catimg
+        colored-man-pages
+        colorize
+        docker # auto complete
+        git
+        gpg-agent
+        nmap
+        pep8
+        pip # autocomplete
+        pylint # autocomplete
+        python # pyfind, pygrep, etc
+        rust # autocomplete
+        rustup # autocomplete
+        safe-paste
+        urltools # urlencode and urldecode
+    )
+    if [[ $system = "Darwin" ]]; then
+        plugins+=(osx brew)
+    fi
+    source $ZSH/oh-my-zsh.sh
+    if [[ $ROLE = "care" ]]; then
+        unalias a
+    fi
 
-source $ZSH/oh-my-zsh.sh
+else
+    # on a system without oh-my-zsh (f.ex. non util/control nodes)
+    # set some basic settings
+    SAVEHIST=10000
+    HISTFILE=~/.zsh_history
+fi
+
 
 export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 #export PATH="$HOME/.cargo/bin:/:$PATH"
+
+# for loops over "space separated strings" like bash
+setopt shwordsplit
+
 
 
 # For Tramp in Emacs
@@ -214,13 +318,15 @@ if [[ $TERM == "dumb" ]]; then
     unfunction preexec
 fi
 
-if [[ -z $FLAG ]]; then
+if [[ ! -z $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
     #PROMPT="$FLAG $PROMPT"
     RPROMPT=$FLAG
 fi
 
 # Automatically attach to the tmux session on SSH
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    tmux attach-session -t ssh || tmux new-session -s ssh
+if [[ -x "$(command -v tmux)" ]]; then
+    if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+        tmux attach-session -t ssh || tmux new-session -s ssh
+    fi
 fi

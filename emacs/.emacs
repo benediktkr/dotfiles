@@ -5,6 +5,11 @@
 (setq user-mail-address "benedikt@inventati.org")
 (setq add-log-mailing-address "benedikt@inventati.org")
 
+
+;; if a local file is modified from underneath us, ask what to do
+;; and dont just reset the buffer. default behaviour over tramp
+(global-auto-revert-mode nil)
+
 ;; Add better repos
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -326,6 +331,7 @@
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c C-s") 'sort-lines)
+;(global-set-key (kbd "C-c C-s") 'sort-fields)
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
 (global-set-key (kbd "C-x m") 'manual-entry)

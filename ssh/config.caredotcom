@@ -73,7 +73,7 @@ Host intl-euw
 Host intl-euw
     User bkristinsson
     HostName intl-euw-util-01.euw.intl.carezen.net
-    ProxyCommand ssh -A bolprodops1 nc %h %p
+    #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
@@ -91,8 +91,8 @@ Host dom-use-bastion
     ForwardAgent yes
 
 Host omni-control
-    HostName control.gold.mgmt.omni.carezen.net
-    ProxyCommand ssh -A bolprodops1 nc %h %p
+    HostName control.gold.omni.carezen.net
+    #ProxyCommand ssh -A bolprodops1 nc %h %p
     #ProxyCommand ssh -A omni-control-bastion nc %h %p
     ForwardAgent yes
     User bkristinsson
