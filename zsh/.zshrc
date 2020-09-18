@@ -91,7 +91,6 @@ case $HOST in
         SUBROLE="mgmt"
         ;;
     burrow)
-        alias al="ansible-playbook -K -i ~/projects/infra/ansible/hosts --diff ~/projects/infra/ansible/burrow.yml"
         ZSH_THEME="jreese"
         ;;
     mathom)
@@ -104,16 +103,14 @@ case $HOST in
         ZSH_THEME="gianu"
         ;;
     pi0.sudo.is)
-        ZSH_THEME="gianu"
+        ZSH_THEME="jreese"
         ;;
     freespace)
         ZSH_THEME="gianu"
         ;;
-    lon-vpn.sudo.is)
-        ZSH_THEME="gianu"
-        ;;
     *.sudo.is)
-        ZSH_THEME="gianu"
+        ZSH_CUSTOM="$HOME/.zsh.d/"
+        ZSH_THEME="jreese2"
         ;;
     *)
         ZSH_THEME="robbyrussell"
