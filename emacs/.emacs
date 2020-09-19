@@ -371,7 +371,12 @@
               "\r" 'reindent-then-newline-and-indent)))
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list ".*" "locale" "LC_ALL=C"))
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (ibuffer-tramp-set-filter-groups-by-tramp-connection)))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
