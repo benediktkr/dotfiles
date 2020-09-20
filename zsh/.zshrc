@@ -322,7 +322,7 @@ if [[ ! -z $FLAG ]]; then
 fi
 
 # Automatically attach to the tmux session on SSH
-if [[ -x "$(command -v tmux)" ]]; then
+if [[ -x "$(command -v tmux)" ]] && [ "$WANTS_TMUX" != "false" ]; then
     if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
         tmux attach-session -t ssh || tmux new-session -s ssh
     fi
