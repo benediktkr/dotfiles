@@ -14,6 +14,7 @@ if [[ -x "$(command -v tmux)" ]]; then
 else
     HAS_TUMX="false"
 fi
+SSH_TMUX="false"
 
 if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
     read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
@@ -121,6 +122,7 @@ case $ROLE in
         # Refers to the various util servers I use at Care. Eventiually my zsh shell
         # will find itself on other care servers as well.
         ZSH_THEME="afowler"
+        SSH_TMUX="true"
         export BITBUCKET_LOGIN_NAME="benedikt.kristinsson"
         alias ssh="fixssh; ssh"
         alias git="fixssh; git"
@@ -322,7 +324,7 @@ if [[ ! -z $FLAG ]]; then
 fi
 
 # Automatically attach to the tmux session on SSH
-if [[ -x "$(command -v tmux)" ]]; then
+if [[ -x "$(command -v tmux)" ]] && [ "$SSH_TUMUX" = "true" ]; then
     if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
         tmux attach-session -t ssh || tmux new-session -s ssh
     fi
