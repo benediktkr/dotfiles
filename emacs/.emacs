@@ -8,12 +8,12 @@
 
 ;; if a local file is modified from underneath us, ask what to do
 ;; and dont just reset the buffer. default behaviour over tramp
-(global-auto-revert-mode nil)
+(global-auto-revert-mode 0)
 
 ;; Add better repos
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "https://stable.melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 ;; ("marmalade" . "https://marmalade-repo.org/packages/")
 
 (package-initialize)
@@ -344,7 +344,7 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-(global-set-key (kbd "C-t") (lambda nil (interactive) (ansi-term "/bin/zsh")))
+(global-set-key (kbd "C-t") (lambda nil (interactive) (vterm)))
 
 ;;; Home and End keys
 (global-set-key [home] 'beginning-of-buffer)
@@ -383,11 +383,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default)))
+   '("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default))
  '(package-selected-packages
-   (quote
-    (yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible))))
+   '(indent-tools highlight-indentation yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
