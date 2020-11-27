@@ -112,9 +112,16 @@ case $HOST in
     *.sudo.is)
         ZSH_CUSTOM="$HOME/.zsh.d/"
         ZSH_THEME="jreese2"
+        alias docker='sudo docker'
+        alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
         ;;
     *)
         ZSH_THEME="robbyrussell"
+esac
+
+case $HOST in
+    mainframe.sudo.is)
+        alias nc-occ='docker exec --user www-data nextcloud php occ'
 esac
 
 case $ROLE in
@@ -324,7 +331,19 @@ if [[ ! -z $FLAG ]]; then
 fi
 
 # Automatically attach to the tmux session on SSH
-if [[ -x "$(command -v tmux)" ]] && [ "$SSH_TMUX" = "true" ]; then
+vterm_printf(){
+    if [ -n "$TMUX" ]; then
+        # Tell tmux to pass the escape sequences through
+        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+if [[ -x "$(command -v tmux)" ]] && [ "$SSH_TUMUX" = "true" ]; then
     if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
         tmux attach-session -t ssh || tmux new-session -s ssh
     fi
