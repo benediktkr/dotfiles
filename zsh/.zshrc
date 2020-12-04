@@ -113,13 +113,13 @@ case $ROLE in
         alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 
         case $HOST in
-            mainspace.sudo.is)
+            mainspace.sudo.is | ber0.sudo.is)
                 alias nc-occ='docker exec --user www-data nextcloud php occ'
                 alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
             ;;
             sensor-*)
-            alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
-            alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
+                alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" --exclude="*egg-info" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
+                alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
             ;;
         esac
 
