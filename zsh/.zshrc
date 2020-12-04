@@ -118,7 +118,7 @@ case $ROLE in
                 alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
             ;;
             sensor-*)
-            alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot . ) && poetry run sudoisbot'
+            alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
             alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
             ;;
         esac
