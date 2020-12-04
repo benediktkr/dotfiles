@@ -305,9 +305,10 @@ fi
 export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 #export PATH="$HOME/.cargo/bin:/:$PATH"
 
-# for loops over "space separated strings" like bash
-setopt shwordsplit
-
+setopt shwordsplit # for loops over "space separated strings" like bash
+setopt append_history # append rather then overwrite
+setopt extended_history # save timestamp
+setopt inc_append_history # add history immediately after typing a command
 
 
 # For Tramp in Emacs
