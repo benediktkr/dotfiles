@@ -9,6 +9,10 @@ else
     USE_OMZ='false'
 fi
 
+if [[ -d "$HOME/.zsh.d" ]]; then
+    ZSH_CUSTOM="$HOME/.zsh.d/"
+fi
+
 if [[ -x "$(command -v tmux)" ]]; then
     HAS_TMUX="true"
 else
@@ -67,7 +71,7 @@ case $HOST in
         alias emacs="/usr/local/bin/emacs -nw"
         export EDITOR=emacs
         ;;
-    hogwarts)
+    hogwarts | burrow)
         ZSH_THEME="robbyrussell"
         export EDITOR=emacs
         ;;
@@ -91,40 +95,35 @@ case $HOST in
         ROLE="care"
         SUBROLE="mgmt"
         ;;
-    burrow)
-        ZSH_THEME="jreese"
-        ;;
-    mathom)
-        ZSH_THEME="jreese"
-        ;;
-    dontpanic)
-        ZSH_THEME="jreese"
-        ;;
-    f.sudo.is)
-        ZSH_THEME="gianu"
-        ;;
-    pi0.sudo.is)
-        ZSH_THEME="jreese"
-        ;;
-    freespace)
-        ZSH_THEME="gianu"
-        ;;
     *.sudo.is)
-        ZSH_CUSTOM="$HOME/.zsh.d/"
-        ZSH_THEME="jreese2"
-        alias docker='sudo docker'
-        alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+        ROLE="sudois"
         ;;
     *)
-        ZSH_THEME="robbyrussell"
-esac
-
-case $HOST in
-    mainframe.sudo.is)
-        alias nc-occ='docker exec --user www-data nextcloud php occ'
+        ZSH_THEME="gianu"
 esac
 
 case $ROLE in
+    sudois)
+        ZSH_CUSTOM="$HOME/.zsh.d/"
+        ZSH_THEME="jreese2"
+
+        export EDITOR=emacs
+
+        alias docker='sudo docker'
+        alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+
+        case $HOST in
+            mainspace.sudo.is)
+                alias nc-occ='docker exec --user www-data nextcloud php occ'
+                alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
+            ;;
+            sensor-*)
+            alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot . ) && poetry run sudoisbot'
+            alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
+            ;;
+        esac
+
+        ;;
     care)
         # Refers to the various util servers I use at Care. Eventiually my zsh shell
         # will find itself on other care servers as well.
