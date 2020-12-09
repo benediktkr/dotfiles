@@ -18,6 +18,15 @@ Host *
     #ControlPath ~/.ssh/sockets/%h
     #ControlPersist 30
 
+Host *.s21.sudo.is
+    User ben
+    ForwardAgent yes
+    ProxyCommand ssh -A pi1.sudo.is nc %h %p
+
+Host *.sudo.is
+   User ben
+   ForwardAgent yes
+
 Host freespace
     HostName freespace.sudo.is
     User benedikt
@@ -105,5 +114,11 @@ Host omni-control-bastion
 
 Host mgmt-control
     User bkristinsson
+    HostName control.gold.mgmt.carezen.net
+    ForwardAgent yes
+
+Host mgmt-control2
+    User bkristinsson
+    ProxyCommand ssh -A bolprodops1 nc %h %p
     HostName control.gold.mgmt.carezen.net
     ForwardAgent yes
