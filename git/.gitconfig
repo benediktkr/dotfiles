@@ -3,3 +3,5 @@
 	name = Benedikt Kristinsson
 [diff]
 	submodule = log
+[pull]
+	rebase = false
