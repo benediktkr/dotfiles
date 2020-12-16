@@ -95,8 +95,22 @@ case $HOST in
         ROLE="care"
         SUBROLE="mgmt"
         ;;
+    mainframe.sudo.is)
+        ROLE="sudois"
+        SUBROLE="main"
+        ;;
+    sensor-*.s21.sudo.is)
+        ROLE="sudois"
+        SUBROLE="sensor"
+        TEMPSENSOR="true"
+        ;;
+    ber1.sudo.is)
+        ROLE="sudois"
+        SUBROLE="sensornode"
+        ;;
     *.sudo.is)
         ROLE="sudois"
+        SUBROLE="server"
         ;;
     *)
         ZSH_THEME="gianu"
@@ -112,12 +126,15 @@ case $ROLE in
         alias docker='sudo docker'
         alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 
-        case $HOST in
-            mainspace.sudo.is | ber0.sudo.is)
+        case $SUBROLE in
+            main)
                 alias nc-occ='docker exec --user www-data nextcloud php occ'
                 alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
+                alias tf='./tf.py'
             ;;
-            sensor-*)
+            sensor*)
+                #if [[ $HOST = sensor-*.sudo.is ]]; then fi
+
                 alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" --exclude="*egg-info" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
                 alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
             ;;
@@ -269,8 +286,6 @@ if [[ $USE_OMZ = 'true' ]]; then
     plugins=(
         # emacs # open files via emacsclient everywhere
         ansible
-        aws # auto-complete aws commands
-        catimg
         colored-man-pages
         colorize
         docker # auto complete
@@ -278,11 +293,6 @@ if [[ $USE_OMZ = 'true' ]]; then
         gpg-agent
         nmap
         pep8
-        pip # autocomplete
-        pylint # autocomplete
-        python # pyfind, pygrep, etc
-        rust # autocomplete
-        rustup # autocomplete
         safe-paste
         urltools # urlencode and urldecode
     )
@@ -328,6 +338,9 @@ if [[ ! -z $FLAG ]]; then
     # If a $FLAG is set, add it to the PROMPT
     #PROMPT="$FLAG $PROMPT"
     RPROMPT=$FLAG
+fi
+if [[ ! -z $TEMPSENSOR ]]; then
+    PROMPT="🌡️   $PROMPT"
 fi
 
 # Automatically attach to the tmux session on SSH
