@@ -253,6 +253,7 @@ case $system in
         alias weed="sudo pmset -a disablesleep 0"
         # defaulting to brew-installed python3
         export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+        export PATH="$HOME/Library/Python/3.8/bin:$PATH"
         ;;
 esac
 
