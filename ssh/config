@@ -1,8 +1,12 @@
 VisualHostKey yes
 ServerAliveInterval 5
 
+host github.com
+     VisualHostKey no
+
+
 host *.s21.sudo.is
-     ProxyCommand ssh -A pi1.sudo.is nc %h %p
+     ProxyCommand ssh -A ber0.sudo.is nc %h %p
 
 
 host freespace
