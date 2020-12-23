@@ -8,6 +8,8 @@ host github.com
 host *.s21.sudo.is
      ProxyCommand ssh -A ber0.sudo.is nc %h %p
 
+host *.sdf.org
+     User mazet
 
 host freespace
      HostName 176.9.152.42
