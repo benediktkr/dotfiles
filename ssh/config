@@ -10,6 +10,7 @@ host *.s21.sudo.is
 
 host *.sdf.org
      User mazet
+     DynamicForward 4001
 
 #host freespace
      #HostName 176.9.152.42
