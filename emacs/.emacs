@@ -248,7 +248,7 @@
 ;;   :config
 ;;   (message "flycheck-pycheres loaded"))
 
-
+(setq dired-listing-switches "-laFGgh") ;; -Gg --time-style=+")
 
 ;; packages that use-package cant use, maybe delete
 (setq c-default-style "k&r" c-basic-offset 4)
