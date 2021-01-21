@@ -11,20 +11,33 @@ host *.s21.sudo.is
 host *.sdf.org
      User mazet
 
-host freespace
-     HostName 176.9.152.42
-     User benedikt
-     DynamicForward 4001
+#host freespace
+     #HostName 176.9.152.42
+     #User benedikt
+     #DynamicForward 4001
      #LocalForward 5002 localhost:5002
      #LocalForward 4025 localhost:25
      #RemoteForward *:8088 localhost:8088
-     IdentityFile ~/.ssh/id_rsa
+     #IdentityFile ~/.ssh/id_rsa
 
 host f
      HostName 193.25.101.163
      User ben
      DynamicForward 4000
      IdentityFile ~/.ssh/id_rsa
+
+
+host freespace-initramfs
+     HostName freespace.sudo.is
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
+     # normal ssh key also works
+     #IdentityFile ~/.ssh/id_rsa.initramfs
+
+host rvk1-initramfs
+     HostName rvk1.sudo.is
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
 
 host f-initramfs
      HostName 193.25.101.163
