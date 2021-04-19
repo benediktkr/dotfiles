@@ -8,6 +8,12 @@ host github.com
 host *.s21.sudo.is
      ProxyCommand ssh -A ber0.sudo.is nc %h %p
 
+Host *.s21
+     User ben
+     ForwardAgent yes
+     HostName %h.sudo.is
+     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+
 host *.sdf.org
      User mazet
      DynamicForward 4001
@@ -53,16 +59,6 @@ host mathom
      Port 2020
      DynamicForward 4002
 
-host *.sudo.is
+Host *.sudo.is
      User ben
      ForwardAgent yes
-
-Host hh19.sudo.local
-     HostName 192.168.61.106
-     User bk
-     ForwardAgent yes
-
-Host pi1
-    HostName 192.168.1.2
-    User ben
-    ForwardAgent yes
