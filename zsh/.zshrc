@@ -344,6 +344,11 @@ if [[ ! -z $TEMPSENSOR ]]; then
     PROMPT="🌡️   $PROMPT"
 fi
 
+if [[ -f "~/.ssh/agent" ]]; then
+    chmod 700 ~/.ssh/agent
+    eval $(cat ~/.ssh/agent)
+fi
+
 # Automatically attach to the tmux session on SSH
 vterm_printf(){
     if [ -n "$TMUX" ]; then
