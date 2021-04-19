@@ -4,61 +4,49 @@ ServerAliveInterval 5
 host github.com
      VisualHostKey no
 
-
-host *.s21.sudo.is
-     ProxyCommand ssh -A ber0.sudo.is nc %h %p
-
-Host *.s21
-     User ben
-     ForwardAgent yes
-     HostName %h.sudo.is
-     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+host git.sudo.is
+     VisualHostKey no
 
 host *.sdf.org
      User mazet
      DynamicForward 4001
 
-#host freespace
-     #HostName 176.9.152.42
-     #User benedikt
-     #DynamicForward 4001
-     #LocalForward 5002 localhost:5002
-     #LocalForward 4025 localhost:25
-     #RemoteForward *:8088 localhost:8088
-     #IdentityFile ~/.ssh/id_rsa
-
-host f
-     HostName 193.25.101.163
-     User ben
-     DynamicForward 4000
-     IdentityFile ~/.ssh/id_rsa
-
-
 host freespace-initramfs
      HostName freespace.sudo.is
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
-     # normal ssh key also works
-     #IdentityFile ~/.ssh/id_rsa.initramfs
+
+host mainframe-initramfs
+     HostName mainframe.sudo.is
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
 
 host rvk1-initramfs
      HostName rvk1.sudo.is
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
-host f-initramfs
-     HostName 193.25.101.163
+host ber0-local-initramfs
+     HostName 192.168.21.4
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
-     # normal ssh key also works
-     #IdentityFile ~/.ssh/id_rsa.initramfs
 
-host mathom
-     HostName 89.17.144.78
-     User benedikt
-     Port 2020
-     DynamicForward 4002
+host mathom-local-initramfs
+     HostName 192.168.21.42
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
 
 Host *.sudo.is
      User ben
      ForwardAgent yes
+
+host *.s21.sudo.is
+     User ben
+     ForwardAgent yes
+     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+
+Host *.s21
+     User ben
+     ForwardAgent yes
+     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+     HostName %h.sudo.is
