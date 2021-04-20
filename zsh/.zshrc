@@ -344,7 +344,7 @@ if [[ ! -z $TEMPSENSOR ]]; then
     PROMPT="🌡️   $PROMPT"
 fi
 
-if [[ -f "~/.ssh/agent" ]]; then
+if [[ -f "${HOME}/.ssh/agent" ]]; then
     chmod 700 ~/.ssh/agent
     eval $(cat ~/.ssh/agent)
 fi
