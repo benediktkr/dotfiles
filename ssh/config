@@ -36,6 +36,11 @@ host mathom-local-initramfs
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
+Host cisco.s21.sudo.is
+     User root
+     KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+     HostName 192.168.21.2
+
 Host *.sudo.is
      User ben
      ForwardAgent yes
