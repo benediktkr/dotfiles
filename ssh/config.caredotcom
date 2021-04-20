@@ -27,13 +27,8 @@ Host *.sudo.is
    User ben
    ForwardAgent yes
 
-Host freespace
-    HostName freespace.sudo.is
-    User benedikt
-    ForwardAgent yes
-
 Host *.carezen.net
-    User bkristinsson
+    User benedikt.kristinsson
     ForwardAgent yes
 
 Host bolprodgw1
@@ -55,38 +50,20 @@ Host boltools1
     ForwardAgent yes
     ProxyCommand ssh -A bolprodops1 nc %h %p
 
-Host intl-euw-legacy
-    User bkristinsson
-    HostName euwprd-util-1-a.euw.carezen.net
-    #ProxyCommand ssh -A bolprodops1 nc %h %p
-    ForwardAgent yes
-
 Host intl-use
-    User bkristinsson
+    User benedikt.kristinsson
     HostName intl-use-util-01.use.intl.carezen.net
     #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
-#Host intl-euw
-#    User bkristinsson
-#    HostName intl-euw-util-01.euw.intl.carezen.net
-#    #ProxyCommand ssh -A bolprodops1 nc %h %p
-#    ForwardAgent yes
-
 Host intl-euw
-    User bkristinsson
-    HostName intl-euw-util-01.euw.intl.carezen.net
-    #ProxyCommand ssh -A bolprodops1 nc %h %p
-    ForwardAgent yes
-
-Host intl-euw
-    User bkristinsson
+    User benedikt.kristinsson
     HostName intl-euw-util-01.euw.intl.carezen.net
     #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
-    User bkristinsson
+    User benedikt.kristinsson
     HostName dom-use-util-01.use.dom.carezen.net
     #ProxyCommand ssh -A bolprodgw1 nc %h %p
     #ProxyCommand ssh -A dom-use-bastion nc %h %p
@@ -94,7 +71,7 @@ Host dom-use
     RemoteForward 11988 127.0.0.1:11988
 
 Host dom-use-bastion
-    User bkristinsson
+    User benedikt.kristinsson
     HostName prod-bastion.use.dom.carezen.net
     ProxyCommand ssh -A freespace nc %h %p
     ForwardAgent yes
@@ -104,21 +81,15 @@ Host omni-control
     #ProxyCommand ssh -A bolprodops1 nc %h %p
     #ProxyCommand ssh -A omni-control-bastion nc %h %p
     ForwardAgent yes
-    User bkristinsson
+    User benedikt.kristinsson
 
 Host omni-control-bastion
-    User bkristinsson
+    User benedikt.kristinsson
     HostName bastion.mgmt.omni.carezen.net
     #ProxyCommand ssh -A freespace nc %h %p
     ForwardAgent yes
 
 Host mgmt-control
-    User bkristinsson
-    HostName control.gold.mgmt.carezen.net
-    ForwardAgent yes
-
-Host mgmt-control2
-    User bkristinsson
-    ProxyCommand ssh -A bolprodops1 nc %h %p
+    User benedikt.kristinsson
     HostName control.gold.mgmt.carezen.net
     ForwardAgent yes
