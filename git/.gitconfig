@@ -7,3 +7,13 @@
 	rebase = false
 [init]
 	defaultBranch = master
+
+[alias]
+
+  ci = commit
+  st = status
+
+  graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
+
+  bradd = !sh -c 'git checkout master && git pull && git checkout -b "$1" master && git push -u origin "$1"' -
+  brdel = !sh -c 'git checkout master && git pull && git branch --delete "$1" && git push origin --delete "$1"' -
