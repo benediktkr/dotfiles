@@ -36,17 +36,12 @@ host mathom-local-initramfs
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
+host rvk0.sudo.is
+     User ben
+     HostName 192.168.21.116
+     ForwardAgent yes
+     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+
 Host *.sudo.is
      User ben
      ForwardAgent yes
-
-host *.s21.sudo.is
-     User ben
-     ForwardAgent yes
-     ProxyCommand ssh -A ber0.sudo.is nc %h %p
-
-Host *.s21
-     User ben
-     ForwardAgent yes
-     ProxyCommand ssh -A ber0.sudo.is nc %h %p
-     HostName %h.sudo.is
