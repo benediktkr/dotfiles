@@ -36,11 +36,13 @@ host mathom-local-initramfs
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
-host rvk0.sudo.is
+Host mainframe
      User ben
-     HostName 192.168.21.116
+     HostName mainframe.sudo.is
      ForwardAgent yes
-     ProxyCommand ssh -A ber0.sudo.is nc %h %p
+     DynamicForward 4000
+     LocalForward 127.0.0.1:8008 172.18.0.30:8008
+     LocalForward 127.0.0.1:4089 192.168.21.4:3389
 
 Host *.sudo.is
      User ben
