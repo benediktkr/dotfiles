@@ -128,7 +128,7 @@ case $ROLE in
 
         case $SUBROLE in
             main)
-                alias nc-occ='docker exec --user www-data nextcloud php occ'
+                alias nc-occ='docker exec -it --user www-data nextcloud php occ'
                 alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
                 alias tf='./tf.py'
             ;;
