@@ -1,4 +1,4 @@
-VisualHostKey yes
+#VisualHostKey yes
 ServerAliveInterval 5
 
 host github.com
