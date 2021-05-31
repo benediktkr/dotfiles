@@ -71,10 +71,6 @@ case $HOST in
         alias emacs="/usr/local/bin/emacs -nw"
         export EDITOR=emacs
         ;;
-    hogwarts | burrow)
-        ZSH_THEME="robbyrussell"
-        export EDITOR=emacs
-        ;;
     *.omni.internal)
         ROLE="care"
         SUBROLE="omni"

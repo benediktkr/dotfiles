@@ -26,8 +26,18 @@ host rvk1-initramfs
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
-host ber0-local-initramfs
+host ams0-initramfs
+     HostName ams0.sudo.is
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
+
+host ber0-initramfs
      HostName 192.168.21.4
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
+
+host bear-initramfs
+     HostName 192.168.21.10
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
