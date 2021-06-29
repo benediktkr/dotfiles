@@ -18,11 +18,6 @@ Host *
     #ControlPath ~/.ssh/sockets/%h
     #ControlPersist 30
 
-Host *.s21.sudo.is
-    User ben
-    ForwardAgent yes
-    ProxyCommand ssh -A pi1.sudo.is nc %h %p
-
 Host *.sudo.is
    User ben
    ForwardAgent yes
