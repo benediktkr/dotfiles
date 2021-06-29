@@ -5,18 +5,20 @@
 # or
 #
 #    ProxyJump bolprodops1
-#
-# I think they are the same but I'm leaving both here for
-# rerence. ProxyJump seems to be not as reliable as ProxyCommand
+
+
 
 Host *
-    TCPKeepAlive=yes
-    ServerAliveInterval=300
-    ServerAliveCountMax=1
+    TCPKeepAlive yes
+    ServerAliveCountMax 1
+    ServerAliveInterval 300
+
+    IdentityFile ~/.ssh/id_rsa
+
     # https://unix.stackexchange.com/a/406598
-    #ControlMaster auto
-    #ControlPath ~/.ssh/sockets/%h
-    #ControlPersist 30
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 8h
 
 Host *.sudo.is
    User ben
@@ -26,63 +28,25 @@ Host *.carezen.net
     User benedikt.kristinsson
     ForwardAgent yes
 
-Host bolprodgw1
-     # If bolprodops1 is down, use this. As parameter
-     #  $ ssh dom-use -o "ProxyJump=bolprodgw1"
-     # Currently can't access omni
-     HostName bolprodgw1.carezen.local
-     User benedikt.kristinsson
-     ForwardAgent yes
-
-Host bolprodops1
-    HostName bolprodops1.carezen.local
-    User benedikt.kristinsson
-    ForwardAgent yes
-
-Host boltools1
-    HostName boltools1.carezen.local
-    User benedikt.kristinsson
-    ForwardAgent yes
-    ProxyCommand ssh -A bolprodops1 nc %h %p
-
 Host intl-use
     User benedikt.kristinsson
     HostName intl-use-util-01.use.intl.carezen.net
-    #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host intl-euw
     User benedikt.kristinsson
     HostName intl-euw-util-01.euw.intl.carezen.net
-    #ProxyCommand ssh -A bolprodops1 nc %h %p
     ForwardAgent yes
 
 Host dom-use
     User benedikt.kristinsson
     HostName dom-use-util-01.use.dom.carezen.net
-    #ProxyCommand ssh -A bolprodgw1 nc %h %p
-    #ProxyCommand ssh -A dom-use-bastion nc %h %p
-    ForwardAgent yes
-    RemoteForward 11988 127.0.0.1:11988
-
-Host dom-use-bastion
-    User benedikt.kristinsson
-    HostName prod-bastion.use.dom.carezen.net
-    ProxyCommand ssh -A freespace nc %h %p
     ForwardAgent yes
 
 Host omni-control
     HostName control.gold.omni.carezen.net
-    #ProxyCommand ssh -A bolprodops1 nc %h %p
-    #ProxyCommand ssh -A omni-control-bastion nc %h %p
     ForwardAgent yes
     User benedikt.kristinsson
-
-Host omni-control-bastion
-    User benedikt.kristinsson
-    HostName bastion.mgmt.omni.carezen.net
-    #ProxyCommand ssh -A freespace nc %h %p
-    ForwardAgent yes
 
 Host mgmt-control
     User benedikt.kristinsson
