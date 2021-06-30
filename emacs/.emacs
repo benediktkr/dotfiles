@@ -140,9 +140,9 @@
   (setq neo-smart-open t)
   (message "loaded neotree"))
 
-(use-package nord-theme
-  :ensure t
-)
+;; (use-package nord-theme
+;;   :ensure t
+;; )
 
 (use-package org-mode
   :mode ("\\.org\\'" . org-mode)
@@ -188,6 +188,11 @@
 ;; (use-package lsp-rust
 ;;   :ensure t
 ;;   :after lsp-mode)
+
+(use-package indent-tools
+  :ensure t
+  :init (require 'indent-tools)
+  :bind ("C-c >" . indent-tools-hydra/body))
 
 (use-package tramp
   :ensure t
@@ -258,7 +263,7 @@
 ;; theme looks nicer if i load wombat first, to get the background color
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
 (load-theme 'wombat t)
-(load-theme 'nord t)
+;;(load-theme 'nord t)
 
 ;;; Modeline
 (setq-default mode-line-format
@@ -385,7 +390,7 @@
  '(custom-safe-themes
    '("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default))
  '(package-selected-packages
-   '(php-mode indent-tools highlight-indentation yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible)))
+   '(jenkinsfile-mode php-mode indent-tools highlight-indentation yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
