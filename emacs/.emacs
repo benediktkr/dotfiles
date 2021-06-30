@@ -394,7 +394,24 @@
  )
 (put 'set-goal-column 'disabled nil)
 
-
+(auto-insert-mode 1)
+(defvar python-skeleton-insert '(""
+                                 "#!/usr/bin/env python3" \n
+                                 "# " \n
+                                 "" \n
+                                 "def main():" \n
+                                 "pass" \n
+                                 "" \n
+                                 "if __name__ == \"__main__\":" \n
+                                 "main()" ))
+(eval-after-load 'autoinsert
+  '(define-auto-insert
+     '("\\.\\py\\'" . "python skeleton")
+     python-skeleton-insert))
+(eval-after-load 'autoinsert
+  '(define-auto-insert
+     '("\\.\\py\\.\\j2\\'" . "python skeleton")
+     python-skeleton-insert))
 ;; added to silennce the linter
 (provide '.emacs)
 ;;; .emacs ends here
