@@ -1,5 +1,12 @@
-#VisualHostKey yes
-ServerAliveInterval 5
+
+Host *
+     #VisualHostKey yes
+     ServerAliveInterval 5
+
+     # https://unix.stackexchange.com/a/406598
+     ControlMaster auto
+     ControlPath ~/.ssh/cm-%h
+     ControlPersist 8h
 
 host github.com
      VisualHostKey no
