@@ -16,6 +16,11 @@ host freespace-initramfs
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
+host fra2-initramfs
+     HostName fra2.sudo.is
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
+
 host mainframe-initramfs
      HostName mainframe.sudo.is
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
