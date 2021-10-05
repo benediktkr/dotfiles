@@ -357,6 +357,7 @@
 
 (define-key emacs-lisp-mode-map (kbd "M-k") 'kill-sexp)
 
+(set-default 'truncate-lines t)
 
 ;; write elisp properly, its emacs after all
 (add-hook 'emacs-lisp-mode-hook
