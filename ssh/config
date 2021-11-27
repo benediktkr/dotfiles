@@ -22,6 +22,7 @@ host freespace-initramfs
      HostName freespace.sudo.is
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
+     ControlMaster no
 
 host fra2-initramfs
      HostName 176.9.51.165
