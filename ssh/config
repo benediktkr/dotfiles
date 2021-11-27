@@ -25,6 +25,12 @@ host freespace-initramfs
      HostName freespace.sudo.is
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
+     ControlMaster no
+
+host fra2-initramfs
+     HostName 176.9.51.165
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
 
 host mainframe-initramfs
      HostName mainframe.sudo.is
@@ -70,7 +76,6 @@ Host mainframe
      LocalForward 127.0.0.1:4089 192.168.21.4:3389
 
 Host *.sudo.is
-     User ben
      ForwardAgent yes
 
 #host *.s21.sudo.is
