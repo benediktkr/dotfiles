@@ -15,7 +15,7 @@ if [ $UID -eq 0 ]; then
 fi
 
 #TZ="Europe/Berlin"
-PROMPT="%T $PROMPT"
+PROMPT="%D{%H:%M} $PROMPT"
 
 # PROMPT='%{$fg[$NCOLOR]%}%n%{$fg[green]%}@%m%{$reset_color%} %~ \
 
