@@ -7,6 +7,7 @@ Host *
      ControlMaster auto
      ControlPath ~/.ssh/cm-%h
      ControlPersist 8h
+     ForwardAgent yes
 
 host github.com
      VisualHostKey no
@@ -29,6 +30,11 @@ host freespace-initramfs
 
 host fra2-initramfs
      HostName 176.9.51.165
+     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
+     User root
+
+host fsn-g0-initramfs
+     HostName  5.9.51.158
      UserKnownHostsFile ~/.ssh/known_hosts.initramfs
      User root
 
