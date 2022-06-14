@@ -8,6 +8,7 @@ Host *
      ControlPath ~/.ssh/cm-%h
      ControlPersist 8h
      ForwardAgent yes
+     PubkeyAcceptedKeyTypes +ssh-rsa
 
 host github.com
      VisualHostKey no
