@@ -5,7 +5,7 @@ Host *
 
      # https://unix.stackexchange.com/a/406598
      ControlMaster auto
-     ControlPath ~/.ssh/cm-%h
+     ControlPath /tmp/ssh-ssh-%h-%p-%r
      ControlPersist 8h
      ForwardAgent yes
      PubkeyAcceptedKeyTypes +ssh-rsa
