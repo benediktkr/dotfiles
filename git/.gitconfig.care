@@ -16,6 +16,10 @@ defaultBranch = main
 
 [alias]
 
+n = checkout -b
+b = branch
+p = pull
+
 st = status
 
 graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
@@ -39,3 +43,5 @@ helper = /usr/local/bin/credential-github-app
 [github-app-helper]
 key = ~/.caredevopsro.2021-12-01.private-key
  app-id = 155699
+[blame]
+	coloring = highlightRecent
