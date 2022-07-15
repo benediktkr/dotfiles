@@ -26,3 +26,8 @@ caa = commit -a --amend -C HEAD
 
 [core]
 pager = less -F -X
+[status]
+	submodulesummary = 1
+	recurse = true
+[submodule]
+	recurse = false
