@@ -26,52 +26,6 @@ host *.sdf.org
      User mazet
      DynamicForward 4001
 
-host freespace-initramfs
-     HostName freespace.sudo.is
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-     ControlMaster no
-
-host fra2-initramfs
-     HostName 176.9.51.165
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host fsn-g0-initramfs
-     HostName  5.9.51.158
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host mainframe-initramfs
-     HostName mainframe.sudo.is
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host rvk1-initramfs
-     HostName rvk1.sudo.is
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host ams0-initramfs
-     HostName ams0.sudo.is
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host ber0-initramfs
-     HostName 192.168.21.4
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host bear-initramfs
-     HostName 192.168.21.10
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
-host mathom-local-initramfs
-     HostName 192.168.21.42
-     UserKnownHostsFile ~/.ssh/known_hosts.initramfs
-     User root
-
 Host cisco.s21.sudo.is
      User root
      KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1

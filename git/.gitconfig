@@ -3,7 +3,7 @@ email = ben@sudo.is
 name = Ben Kristinsson
 
 [diff]
-submodule = log
+	submodule = log
 
 [pull]
 rebase = false
