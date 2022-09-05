@@ -24,6 +24,11 @@ graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
 # will take all uncomitted and un-staged changes currently in workding dir and add to previous commit
 caa = commit -a --amend -C HEAD
 
+fixup = !sh -c 'git commit --fixup HEAD && EDITOR=cat git rebase --autosquash -i HEAD~2 | grep -v "^#"' -
+fu = fixup
+
+p = push --atomic
+
 [core]
 pager = less -F -X
 [status]

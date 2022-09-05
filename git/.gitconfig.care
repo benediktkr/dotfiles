@@ -32,6 +32,9 @@ brlint = !sh -c 'al -t $(git diff --name-only origin | egrep -i ya?ml$)'
 # will take all uncomitted and un-staged changes currently in workding dir and add to previous commit
 caa = commit -a --amend -C HEAD
 
+fixup = !sh -c 'git commit --fixup HEAD && EDITOR=cat git rebase --autosquash -i HEAD~2 | grep -v "^#"' -
+fu = fixup
+
 [core]
 pager = less -F -X
 hooksPath = "/home/benedikt.kristinsson/.git/hooks"
