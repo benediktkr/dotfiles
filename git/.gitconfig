@@ -36,3 +36,5 @@ pager = less -F -X
 	recurse = true
 [submodule]
 	recurse = false
+[credential]
+	helper = store
