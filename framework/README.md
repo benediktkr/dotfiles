@@ -4,7 +4,7 @@
 
 
  * for longer sleep life: enable `nvme.noacpi`
- * brightness keys clash with ASL. blacklist `hid_sensor_hub` to get control
+ * brightness keys clash with ASL. blacklist `hid_sensor_hub` (ambient light sensor for the monitor) to get control
  * force disable PSR (suttering): `i915.enable_psr=0`
 
 add the options to `GRUB_CMDLINE` in `/etc/default/grub`:
@@ -166,6 +166,7 @@ play a 4K video or something to to get some load
 install and hardware:
  * [Ubuntu 22.04 LTS Installation on the Framework Laptop](https://guides.frame.work/Guide/Ubuntu+22.04+LTS+Installation+on+the+Framework+Laptop/109?lang=en)
  * docs: [hid-sensor](https://www.kernel.org/doc/html/latest/hid/hid-sensor.html) (`hid_sensor_hub` module)
+ * archwiki: [Framework Laptop](https://wiki.archlinux.org/title/Framework_Laptop)
 
 power savings:
  * [Linux battery life tuning](https://community.frame.work/t/linux-battery-life-tuning/6665)
