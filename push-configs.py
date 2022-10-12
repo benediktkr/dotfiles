@@ -21,8 +21,6 @@ parser.add_argument(
     help="print scp commands, do not run them")
 args = parser.parse_args()
 
-## TODO: Make a --care option to push to the relevant hosts
-
 emacs_config = {
     "emacs/.emacs": "~/.emacs",
     "emacs/.emacs.d/": "~/.emacs.d/",
