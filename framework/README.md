@@ -3,15 +3,23 @@
 # grub and kernel modules
 
 
- * for longer sleep life: enable `nvme.noacpi`
- * brightness keys clash with ASL. blacklist `hid_sensor_hub` (ambient light sensor for the monitor) to get control
- * force disable PSR (suttering): `i915.enable_psr=0`
+ 1. `nvme.noacpi`: longer sleep life (nvme consumes too much power while sleeping).
+ 2. `module_blocklist=hid_sensor_hub`: brightness keys clash with the ambient light sensor. disable the ambient light sensor by blacklisting the module.
+ 3. `i915.enable_psr`: force disables "PSR", relevant on devices experiencing mini-freezes.
 
-add the options to `GRUB_CMDLINE` in `/etc/default/grub`:
+ubuntu uses `/etc/default/grub` for the grub config, edit `GRUB_CMDLINE_LILNUX_DEFAULT`.
+
+complete example:
 
 ```bash
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash module_blacklist=hid_sensor_hub nvme.noacpi=1 i915.enable_psr=0"
 GRUB_CMDLINE_LINUX=""
+```
+
+ben's config:
+
+```conf
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvme.noacpi=1"
 ```
 
 and then update grub
