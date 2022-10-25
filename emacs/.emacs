@@ -391,7 +391,7 @@
  '(custom-safe-themes
    '("4ea1959cfaa526b795b45e55f77724df4be982b9cd33da8d701df8cdce5b2955" default))
  '(package-selected-packages
-   '(nginx-mode rainbow-identifiers rainbow-blocks rainbow-mode jenkinsfile-mode php-mode indent-tools highlight-indentation yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible)))
+   '(ibuffer-git nginx-mode rainbow-identifiers rainbow-blocks rainbow-mode jenkinsfile-mode php-mode indent-tools highlight-indentation yaml-mode use-package terraform-mode pyflakes nord-theme neotree markdown-mode magit jinja2-mode ibuffer-vc ibuffer-tramp haskell-mode groovy-mode dockerfile-mode company clojure-mode cargo ansible)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
