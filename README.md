@@ -10,6 +10,7 @@ These are my dotfiles.
 
 ## docs
 
+* [`KDE.md`](docs/KDE.md): KDE/Plasma usage and config
 * [`framework.md`](docs/framework.md): experience, configs and docs for using linux (ubuntu) on the framework laptop (intel 12th gen)
 
 ## mirrors
