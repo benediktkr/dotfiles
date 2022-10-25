@@ -8,6 +8,10 @@
 
 These are my dotfiles.
 
+## docs
+
+* [`framework.md`](docs/framework.md): experience, configs and docs for using linux (ubuntu) on the framework laptop (intel 12th gen)
+
 ## mirrors
 
  * :gitea: git.sudo.is: [`ben/dotfiles`](https://git.sudo.is/ben/dotfiles)
