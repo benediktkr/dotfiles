@@ -2,11 +2,15 @@
 email = ben@sudo.is
 name = Ben Kristinsson
 
+[core]
+pager = less -F -X
+
 [diff]
-	submodule = log
+submodule = log
 
 [pull]
-rebase = false
+# when true, defaults to: git pull --rebase
+rebase = true
 
 [push]
 default = current
@@ -15,7 +19,6 @@ default = current
 defaultBranch = main
 
 [alias]
-
 ci = commit
 st = status
 
@@ -29,12 +32,12 @@ fu = fixup
 
 p = push --atomic
 
-[core]
-pager = less -F -X
 [status]
-	submodulesummary = 1
-	recurse = true
+submodulesummary = 1
+recurse = true
+
 [submodule]
-	recurse = false
+recurse = false
+
 [credential]
-	helper = store
+helper = store
