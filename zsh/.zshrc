@@ -208,9 +208,8 @@ setopt extended_history # save timestamp
 setopt inc_append_history # add history immediately after typing a command
 
 
-# For Tramp in Emacs
 if [[ $TERM == "dumb" ]]; then
-    # Set a dumber PS1 that tramp will understand
+    # if Tramp in Emacs, set a dumber PS1 that tramp will understand
     PS1='> '
     # for tramp to not hang, need the following. cf:
     # http://www.emacswiki.org/emacs/TrampMode
@@ -219,6 +218,9 @@ if [[ $TERM == "dumb" ]]; then
     unsetopt prompt_subst
     unfunction precmd
     unfunction preexec
+else
+    # otherwise default to xterm-256color
+    export TERM=xterm-256color
 fi
 
 # If a $FLAG is set
