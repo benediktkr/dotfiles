@@ -6,12 +6,14 @@
 [![matrix](https://git.sudo.is/ben/infra/media/branch/main/docs/img/shields/matrix-ben-sudo.is.svg)](https://matrix.to/#/@ben:sudo.is)
 [![BSD-3-Clause-No-Military-License](https://git.sudo.is/ben/infra/media/branch/main/docs/img/shields/license-BSD-blue.svg)](LICENSE)
 
-These are my dotfiles.
+here are ben's dotfiles.
 
 ## docs
 
 * [`KDE.md`](docs/KDE.md): KDE/Plasma usage and config
 * [`framework.md`](docs/framework.md): experience, configs and docs for using linux (ubuntu) on the framework laptop (intel 12th gen)
+
+![Leaf Dark](bgpics/Leaf_Dark.png)
 
 ## mirrors
 
