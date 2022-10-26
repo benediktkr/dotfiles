@@ -4,6 +4,8 @@ name = Ben Kristinsson
 
 [core]
 pager = less -F -X
+# apt-get install ksshaskpass
+askpass = /usr/bin/ksshaskpass
 
 [diff]
 submodule = log
@@ -39,5 +41,5 @@ recurse = true
 [submodule]
 recurse = false
 
-[credential]
+[credential] 
 helper = store

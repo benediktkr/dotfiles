@@ -1,0 +1,3 @@
+[submodule "private"]
+	path = private
+	url = https://git.sudo.is/ben/private-dotfiles
