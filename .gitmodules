@@ -1,0 +1,3 @@
+[submodule "private"]
+	path = private
+	url = git@fra2.vpn.sudo.is:ben/private-dotfiles.git
