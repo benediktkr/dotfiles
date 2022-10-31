@@ -39,33 +39,9 @@ if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
 
 fi
 
+
 export TZ="Europe/Berlin"
-
-cast() {
-    webhook_url=$(cat ~/.hass_webhook_url | tr -d '\n')
-    cast_url=$1
-    curl -s -i -X POST -d "url=${cast_url}" $webhook_url | head -n 1
-}
-
-castnr() {
-    url_nr=$1
-    cast $(sed -n "${url_nr}p" ~/.cast_urls.txt)
-}
-
-# |--  aliases (overrides oh-my-zsh plugin aliases)
-alias emacs="emacs -nw"
-alias ipython="ipython --nosep --no-confirm-exit"
-alias less="less -R"
-alias dmesg="dmesg --human --color=always -T"
-alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
-alias prettyjson='python -m json.tool'
-alias cleangit='git branch | grep -v "master" | xargs git branch -D'
-alias nomail="echo 'd *' | mail -N"
-# from jbs
-alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
-alias j2y="json2yaml"
-
-# !-- python2: enable history
+# enables history
 export PYTHONSTARTUP=~/.pystartup
 # pipenv wants this
 export LC_ALL=en_US.UTF-8
@@ -75,68 +51,47 @@ export LANG=en_US.UTF-8
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Set name of the theme to load.
-CA_FLAG="🇨🇦 "
-EU_FLAG="🇪🇺 "
-US_FLAG="🇺🇸"
 # Nice ones that I like
 #  * jreese
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
+ZSH_TEME="jreese2"
 
-case $(hostname --fqdn) in
-    mainframe.sudo.is)
-        ROLE="sudois"
-        SUBROLE="main"
-        ;;
-    sensor-*.s21.sudo.is)
-        ROLE="sudois"
-        SUBROLE="sensor"
-        TEMPSENSOR="true"
-        ;;
-    ber1.sudo.is)
-        ROLE="sudois"
-        SUBROLE="sensornode"
-        ;;
-    *.sudo.is)
-        ROLE="sudois"
-        SUBROLE="server"
-        ;;
-    *)
-        ROLE="none"
-        SUBROLE="none"
-esac
+if [[ -f "${HOME}/.ssh/agent" ]]; then
+    chmod 700 ~/.ssh/agent
+    #eval $(cat ~/.ssh/agent) | grep -v "^Agent pid [0-9]*$"
+    eval $(cat ~/.ssh/agent)
+fi
 
-~/.zsh.d/extra-roles.sh
+if [ -f ~/.emacs ]; then
+    alias emacs="emacs -nw"
+    export EDITOR=emacs
+fi
 
-case $ROLE in
-    sudois)
-        ZSH_CUSTOM="$HOME/.zsh.d/"
-        ZSH_THEME="jreese2"
+if [ -f ~/.zsh.d/caredotcom.sh ]; then
+    source ~/.zsh.d/caredotcom.sh
+fi
 
-        export EDITOR=emacs
 
-        alias docker='sudo docker'
-        alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+alias less="less -R"
+alias dmesg="dmesg --human --color=always -T"
+alias nomail="echo 'd *' | mail -N"
 
-        case $SUBROLE in
-            main)
-                alias nc-occ='docker exec -it --user www-data nextcloud php occ'
-                alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
-                alias tf='./tf.py'
-            ;;
-            sensor*)
-                #if [[ $HOST = sensor-*.sudo.is ]]; then fi
+alias docker='sudo docker'
+alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 
-                alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" --exclude="*egg-info" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
-                alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
-            ;;
-        esac
+alias nc-occ='docker exec -it --user www-data nextcloud php occ'
+alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
+alias tf='./tf.py'
 
-        ;;
-esac
+# from jbs
+alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
+alias j2y="json2yaml"
 
-FLAG=""
-NOFLAG="true"
+## these are almost never used
+#alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
+#alias prettyjson='python -m json.tool'
+#alias cleangit='git branch | grep -v "master" | xargs git branch -D'
 
 fixssh() {
     if [[ $HAS_TMUX = "true" ]]; then
@@ -183,6 +138,7 @@ esac
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# this is what actually loads oh-my-zsh and its plugins
 if [[ $USE_OMZ = 'true' ]]; then
     plugins=(
         # emacs # open files via emacsclient everywhere
@@ -201,10 +157,6 @@ if [[ $USE_OMZ = 'true' ]]; then
         plugins+=(osx brew)
     fi
     source $ZSH/oh-my-zsh.sh
-    if [[ $ROLE = "care" ]]; then
-        unalias a
-    fi
-
 else
     # on a system without oh-my-zsh (f.ex. non util/control nodes)
     # set some basic settings
@@ -237,22 +189,12 @@ else
     export TERM=xterm-256color
 fi
 
-# If a $FLAG is set
-if [[ ! -z $FLAG ]]; then
-    # and $NOFLAG is NOT set
-    if [[ -z $NOFLAG ]]; then
-        RPROMPT=$FLAG
-    fi
-fi
-if [[ ! -z $TEMPSENSOR ]]; then
-    PROMPT="🌡️   $PROMPT"
-fi
-
-if [[ -f "${HOME}/.ssh/agent" ]]; then
-    chmod 700 ~/.ssh/agent
-    #eval $(cat ~/.ssh/agent) | grep -v "^Agent pid [0-9]*$"
-    eval $(cat ~/.ssh/agent)
-fi
+case $(hostname --fqdn) in
+    sensor-*.s21.sudo.is|ber1.sudo.is)
+        PROMPT="🌡️   $PROMPT"
+        ;;
+    *)
+esac
 
 # Automatically attach to the tmux session on SSH
 vterm_printf(){
@@ -272,3 +214,17 @@ if [[ -x "$(command -v tmux)" ]] && [ "$SSH_TUMUX" = "true" ]; then
         tmux attach-session -t ssh || tmux new-session -s ssh
     fi
 fi
+
+
+# alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" --exclude="*egg-info" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
+# alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
+cast() {
+    webhook_url=$(cat ~/.hass_webhook_url | tr -d '\n')
+    cast_url=$1
+    curl -s -i -X POST -d "url=${cast_url}" $webhook_url | head -n 1
+}
+
+castnr() {
+    url_nr=$1
+    cast $(sed -n "${url_nr}p" ~/.cast_urls.txt)
+}
