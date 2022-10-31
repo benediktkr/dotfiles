@@ -102,8 +102,11 @@ case $(hostname --fqdn) in
         SUBROLE="server"
         ;;
     *)
-        source ~/.config/zsh-roles.sh || ZSH_THEME="gianu"
+        ROLE="none"
+        SUBROLE="none"
 esac
+
+~/.zsh.d/extra-roles.sh
 
 case $ROLE in
     sudois)
