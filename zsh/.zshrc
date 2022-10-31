@@ -41,6 +41,17 @@ fi
 
 export TZ="Europe/Berlin"
 
+cast() {
+    webhook_url=$(cat ~/.hass_webhook_url | tr -d '\n')
+    cast_url=$1
+    curl -s -i -X POST -d "url=${cast_url}" $webhook_url | head -n 1
+}
+
+castnr() {
+    url_nr=$1
+    cast $(sed -n "${url_nr}p" ~/.cast_urls.txt)
+}
+
 # |--  aliases (overrides oh-my-zsh plugin aliases)
 alias emacs="emacs -nw"
 alias ipython="ipython --nosep --no-confirm-exit"
