@@ -40,6 +40,7 @@ Host mainframe
      LocalForward 127.0.0.1:4089 192.168.21.4:3389
 
 Host *.sudo.is
+     User ben
      ForwardAgent yes
 
 #host *.s21.sudo.is
