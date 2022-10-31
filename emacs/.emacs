@@ -198,6 +198,8 @@
   :ensure t
   :init
   (setq tramp-default-method "ssh")
+  (setq tramp-use-ssh-controlmaster-options nil)
+  (setq dired-dwim-target "t")
   ;; try to speed up tramp
   (setq remote-file-name-inhibit-cache nil)
   (setq vc-ignore-dir-regexp
@@ -377,9 +379,9 @@
               "\r" 'reindent-then-newline-and-indent)))
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-(add-to-list 'tramp-connection-properties
-             (list ".*" "locale" "LC_ALL=C"))
+;; (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+;; (add-to-list 'tramp-connection-properties
+;;              (list ".*" "locale" "LC_ALL=C"))
 (add-hook 'ibuffer-hook
           (lambda ()
             (ibuffer-tramp-set-filter-groups-by-tramp-connection)))
