@@ -55,7 +55,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #  * jreese
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
-ZSH_TEME="jreese2"
+ZSH_THEME="jreese2"
 
 if [[ -f "${HOME}/.ssh/agent" ]]; then
     chmod 700 ~/.ssh/agent
