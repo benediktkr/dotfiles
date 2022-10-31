@@ -157,6 +157,9 @@ if [[ $USE_OMZ = 'true' ]]; then
         plugins+=(osx brew)
     fi
     source $ZSH/oh-my-zsh.sh
+
+    # remove unwanted aliases set by ohmzh/plugins
+    unalias a
 else
     # on a system without oh-my-zsh (f.ex. non util/control nodes)
     # set some basic settings
