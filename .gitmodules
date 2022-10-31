@@ -1,4 +1,4 @@
 [submodule "private"]
-	path = private
+	path = submodule-private
 	url = https://git.sudo.is/ben/private-dotfiles
 	branch = main
