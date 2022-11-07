@@ -16,8 +16,11 @@
                          ("melpa" . "https://melpa.org/packages/")))
 ;; ("marmalade" . "https://marmalade-repo.org/packages/")
 
-(package-initialize)
+(setq diredp-hide-details-initially-flag 1)
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
+
+(package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -199,7 +202,6 @@
   :init
   (setq tramp-default-method "ssh")
   (setq tramp-use-ssh-controlmaster-options nil)
-  (setq dired-dwim-target "t")
   ;; try to speed up tramp
   (setq remote-file-name-inhibit-cache nil)
   (setq vc-ignore-dir-regexp
