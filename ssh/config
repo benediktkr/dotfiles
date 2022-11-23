@@ -15,13 +15,6 @@ Host *
 Host github.com
      VisualHostKey no
 
-
-host git.sudo.is
-     ForwardAgent no
-     ProxyCommand ssh -A mainframe.sudo.is nc git.sudo.is 22
-     HostName git.sudo.is
-     VisualHostKey no
-
 host *.sdf.org
      User mazet
      DynamicForward 4001
