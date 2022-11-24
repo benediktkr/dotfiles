@@ -169,6 +169,7 @@
 
 (use-package lsp-pyright
   :ensure t
+  :init (add-hook 'before-save-hook 'delete-trailing-whitespace)
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
