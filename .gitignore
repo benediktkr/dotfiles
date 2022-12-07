@@ -12,5 +12,5 @@ private/
 
 .emacs.d/var/
 .emacs.d/bin/
-.emacs.d/cutom.el
+.emacs.d/custom.el
 .emacs.d/tramp

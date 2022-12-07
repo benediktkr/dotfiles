@@ -38,6 +38,10 @@
 (setq default-tab-width 4)
 (setq tab-width 4)
 
+;; (require 'no-littering)
+;; (setq auto-save-file-name-transforms
+;;      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
 ;; reduce littering (couldnt get no-littering to work)
 (setq package-user-dir
       (expand-file-name (format "bin/elpa-%s.%s" emacs-major-version emacs-minor-version)
@@ -110,22 +114,22 @@
   :ensure t)
 
 (use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-l")
-  (setq lsp-session-file "~/.emacs.d/var/.lsp-session-v1")
+  :init (setq lsp-keymap-prefix "C-l")
+        (setq lsp-session-file "~/.emacs.d/var/.lsp-session-v1")
+        (setq lsp-auto-guess-root t)
   :hook ((python-mode . lsp-deferred)
          (yaml-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp lsp-deferred)
 
 (use-package which-key
-    :config
-    (which-key-mode)
+    :config (which-key-mode)
     :ensure t)
 
 (use-package lsp-pyright
   :ensure t
   :init (trailing-ws)
+        (auto-insert-mode 1)
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
                           (lsp-deferred))))
@@ -289,7 +293,8 @@
 (global-set-key (kbd "C-c Q") 'query-replace)
 (global-set-key (kbd "C-c q") 'query-replace-regexp)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-c C-s") 'sort-lines)
+(global-set-key (kbd "C-c C-s") 'sort-paragraphs)
+;(global-set-key (kbd "C-c C-s") 'sort-lines)
 ;(global-set-key (kbd "C-c C-s") 'sort-fields)
 (global-set-key (kbd "C-x n") 'next-multiframe-window)
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
@@ -323,7 +328,8 @@
 
 (put 'set-goal-column 'disabled nil)
 
-(auto-insert-mode 1)
+
+(auto-insert-mode -1)
 (defvar python-skeleton-insert '(""
                                  "#!/usr/bin/env python3" \n
                                  "# " \n
@@ -342,12 +348,8 @@
      '("\\.\\py\\.\\j2\\'" . "python skeleton")
      python-skeleton-insert))
 
-
-
+;; load even if the file doesnt exist
 (load custom-file t)
 ;;(if (file-exists-p custom-file)
 ;;  (load custom-file)
 ;;  (write-region "" nil custom-file))
-;; (require 'no-littering)
-;; (setq auto-save-file-name-transforms
-;;      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
