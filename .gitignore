@@ -9,3 +9,5 @@ emacs/emacs.d/transient/
 framework/ectool/framework-ec
 
 private/
+
+.lsp-session*
