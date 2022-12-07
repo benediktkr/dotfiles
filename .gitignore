@@ -10,4 +10,7 @@ framework/ectool/framework-ec
 
 private/
 
-.lsp-session*
+.emacs.d/var/
+.emacs.d/bin/
+.emacs.d/cutom.el
+.emacs.d/tramp
