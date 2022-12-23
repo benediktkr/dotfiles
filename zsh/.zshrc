@@ -73,6 +73,8 @@ if [ -f ~/.zsh.d/caredotcom.sh ]; then
 fi
 
 
+alias dl-audio="yt-dlp --extract-audio --audio-format best --audio-quality 0"
+
 alias less="less -R"
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
