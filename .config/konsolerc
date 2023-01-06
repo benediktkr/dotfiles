@@ -5,7 +5,15 @@ DefaultProfile=ben.profile
 ShowMenuBarByDefault=false
 
 [MainWindow]
+:0.0 Height 3840x2160=2073
+:0.0 Width 3840x2160=1920
+DP-4 Height 3840x2160=2073
+DP-4 Width 3840x2160=1920
 MenuBar=Disabled
+eDP-1 Height 2256x1504=1423
+eDP-1 Width 2256x1504=1128
+eDP-1 XPosition 2256x1504=1178
+eDP-1 YPosition 2256x1504=510
 
 [ThumbnailsSettings]
 EnableThumbnails=false
