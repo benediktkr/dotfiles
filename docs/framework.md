@@ -19,7 +19,7 @@ GRUB_CMDLINE_LINUX=""
 ben's config:
 
 ```conf
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvme.noacpi=1"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_pstate=disable nvme.noacpi=1"
 ```
 
 and then update grub
@@ -30,11 +30,20 @@ sudo update-grub
 
 # tune power usage
 
-get `powertop`.
+install packages:
 
 ```shell
-sudo apt-get install powertop
+sudo apt-get install powertop tlp cpufreqd cpufrequtils
+sudo snap install auto-cpufreq
 
+```
+
+add `intel_pstate=disable` to `GRUB_CMDLINE_LINUX_DEFAULT` for
+auto-cpufreq (or recomennded by auto-cpufreq).
+
+use `powertop`:
+
+```shell
 sudo powertop --auto-tune
 ```
 
