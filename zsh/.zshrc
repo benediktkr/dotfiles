@@ -63,6 +63,14 @@ if [[ -f "${HOME}/.ssh/agent" ]]; then
     eval $(cat ~/.ssh/agent)
 fi
 
+# gpg-agent
+export GPG_TTY=$(tty)
+
+if [[ -f "${HOME}/.gnupg/agent-info.env" ]]; then
+    eval $(cat ${HOME}/.gnupg/agent-info.env)
+fi
+
+
 if [ -f ~/.emacs ]; then
     alias emacs="emacs -nw"
     export EDITOR=emacs
