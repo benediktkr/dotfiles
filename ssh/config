@@ -1,4 +1,3 @@
-
 Host *
      #VisualHostKey yes
      ServerAliveInterval 5
@@ -15,7 +14,7 @@ Host *
 Host github.com
      VisualHostKey no
 
-host *.sdf.org
+Host *.sdf.org
      User mazet
      DynamicForward 4001
 

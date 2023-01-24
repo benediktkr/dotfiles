@@ -117,6 +117,8 @@
   :init (setq lsp-keymap-prefix "C-l")
         (setq lsp-session-file "~/.emacs.d/var/.lsp-session-v1")
         (setq lsp-auto-guess-root t)
+        ; https://emacs-lsp.github.io/lsp-mode/page/performance/#check-if-logging-is-switched-off
+        (setq lsp-log-io nil)
   :hook ((python-mode . lsp-deferred)
          (yaml-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
@@ -173,17 +175,22 @@
 (use-package tramp
   :ensure t
   :init
+  (setq dired-dwin-target "t")
   (setq tramp-default-method "ssh")
   (setq tramp-use-ssh-controlmaster-options nil)
+  (setq create-lockfiles nil)
+  (setq make-backup-files nil)
+
   (use-package ibuffer-tramp
     :ensure t)
   ;; try to speed up tramp
   (setq remote-file-name-inhibit-cache nil)
   (setq vc-ignore-dir-regexp
         (format "%s\\|%s" vc-ignore-dir-regexp tramp-file-name-regexp))
-   (setq tramp-auto-save-directory "~/.emacs.d/.clutter/tramp-auto-save/")
-   ;; (setq tramp-chunksize 2000)
-   (setq tramp-verbose 1))
+
+  (setq tramp-auto-save-directory "~/.emacs.d/.clutter/tramp-auto-save/")
+  ;; (setq tramp-chunksize 2000)
+  (setq tramp-verbose 1))
 
 ;; (use-package python
 ;;   :ensure t
