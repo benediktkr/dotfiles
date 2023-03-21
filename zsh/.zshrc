@@ -74,8 +74,10 @@ fi
 if [ -f ~/.zsh.d/caredotcom.sh ]; then
     source ~/.zsh.d/caredotcom.sh
     alias emacs='~/.local/emacs/bin/emacs -nw'
+    alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
 else
     alias emacs="emacs -nw"
+    alias emacsclient="emacsclient -nw"
 fi
 
 if [ -f ~/.emacs ]; then
