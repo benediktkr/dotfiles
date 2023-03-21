@@ -315,6 +315,9 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
+(global-set-key (kbd "C-S-P") 'begining-of-buffer)
+(global-set-key (kbd "C-S-N") 'end-of-buffer)
+
 (global-set-key (kbd "C-t") (lambda nil (interactive) (vterm)))
 
 ;;; Home and End keys
@@ -360,3 +363,6 @@
 ;;(if (file-exists-p custom-file)
 ;;  (load custom-file)
 ;;  (write-region "" nil custom-file))
+
+
+;; (load-file "~/.emacs.d/jira.el")
