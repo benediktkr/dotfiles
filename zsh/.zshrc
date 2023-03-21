@@ -71,15 +71,16 @@ if [[ -f "${HOME}/.gnupg/agent-info.env" ]]; then
 fi
 
 
-if [ -f ~/.emacs ]; then
-    alias emacs="emacs -nw"
-    export EDITOR=emacs
-fi
-
 if [ -f ~/.zsh.d/caredotcom.sh ]; then
     source ~/.zsh.d/caredotcom.sh
+    alias emacs='~/.local/emacs/bin/emacs -nw'
+else
+    alias emacs="emacs -nw"
 fi
 
+if [ -f ~/.emacs ]; then
+    export EDITOR=emacs
+fi
 
 alias dl-audio="yt-dlp --extract-audio --audio-format best --audio-quality 0"
 
