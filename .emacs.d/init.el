@@ -113,28 +113,28 @@
   (setq vterm-always-compile-module t)
   :ensure t)
 
-(use-package lsp-mode
-  :init (setq lsp-keymap-prefix "C-l")
-        (setq lsp-session-file "~/.emacs.d/var/.lsp-session-v1")
-        (setq lsp-auto-guess-root t)
-        ; https://emacs-lsp.github.io/lsp-mode/page/performance/#check-if-logging-is-switched-off
-        (setq lsp-log-io nil)
-  :hook ((python-mode . lsp-deferred)
-         (yaml-mode . lsp-deferred)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp lsp-deferred)
+;; (use-package lsp-mode
+;;   :init (setq lsp-keymap-prefix "C-l")
+;;         (setq lsp-session-file "~/.emacs.d/var/.lsp-session-v1")
+;;         (setq lsp-auto-guess-root t)
+;;         ; https://emacs-lsp.github.io/lsp-mode/page/performance/#check-if-logging-is-switched-off
+;;         (setq lsp-log-io nil)
+;;   :hook ((python-mode . lsp-deferred)
+;;          (yaml-mode . lsp-deferred)
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp lsp-deferred)
 
 (use-package which-key
     :config (which-key-mode)
     :ensure t)
 
-(use-package lsp-pyright
-  :ensure t
-  :init (trailing-ws)
-        (auto-insert-mode 1)
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp-deferred))))
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :init (trailing-ws)
+;;         (auto-insert-mode 1)
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-pyright)
+;;                           (lsp-deferred))))
 
 ;; highlights text representing color codes as that color
 (use-package rainbow-mode :ensure t :delight)
