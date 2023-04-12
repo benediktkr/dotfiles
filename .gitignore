@@ -1,10 +1,11 @@
 *~
 #*#
 *#*#
-emacs/emacs.d/elpa/
+.emacs.d/elpa/gnupg/
 emacs/emacs.d/network-security.data
 emacs/emacs.d/tramp
 emacs/emacs.d/transient/
+
 
 framework/ectool/framework-ec
 
