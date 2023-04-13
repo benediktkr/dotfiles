@@ -84,7 +84,9 @@ if [ -f ~/.emacs ]; then
     export EDITOR=emacs
 fi
 
-alias dl-audio="yt-dlp --extract-audio --audio-format best --audio-quality 0"
+
+alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "mp3" --format "ba"'
+alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
 
 alias less="less -R"
 alias dmesg="dmesg --human --color=always -T"
