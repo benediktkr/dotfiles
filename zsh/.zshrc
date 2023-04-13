@@ -85,7 +85,7 @@ if [ -f ~/.emacs ]; then
 fi
 
 
-alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "mp3" --format "ba"'
+alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
 alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
 
 alias less="less -R"
