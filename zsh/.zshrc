@@ -3,32 +3,25 @@ unset MAILCHECK || true
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-if [[ -d $HOME/projects/dotfiles ]] ||
-       [[ -d $HOME/dotfiles ]] ||
-       [[ -d /srv/dotfiles ]]; then
+if [[ -d $HOME/projects/dotfiles || -d $HOME/dotfiles || -d /srv/dotfiles ]]; then
     USE_OMZ='true'
 else
     USE_OMZ='false'
 fi
 
-if [[ -d "$HOME/.zsh.d" ]]; then
+if [[ -d ~/.zsh.d ]]; then
     ZSH_CUSTOM="$HOME/.zsh.d/"
 fi
 
-if [[ -x "$(command -v tmux)" ]]; then
-    HAS_TMUX="true"
-else
-    HAS_TUMX="false"
-fi
-SSH_TMUX="false"
+SSH_TMUX_AUTO_ATTACH="false"
 
-if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
+if [[ $USE_OMZ == "true" ]] && [[ ! -d $ZSH ]]; then
     read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
         # handle exits from shell or function but don't exit interactive shell
-        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+        [[ "$0" == "$BASH_SOURCE" ]] && exit 1 || return 1
     fi
     OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 
@@ -36,7 +29,6 @@ if [[ $USE_OMZ = 'true' ]] && [[ ! -d $ZSH ]]; then
     RUNZSH='no' CHSH='no' KEEP_ZSHRC='yes' sh $HOME/omz-install.sh
     rm $HOME/omz-install.sh
     echo "Done setting up oh-my-zsh!"
-
 fi
 
 
@@ -57,7 +49,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #  * alanpeabody (doesnt show full path and color blends with background)
 ZSH_THEME="jreese2"
 
-if [[ -f "${HOME}/.ssh/agent" ]]; then
+if [[ -f ~/.ssh/agent ]]; then
     chmod 700 ~/.ssh/agent
     #eval $(cat ~/.ssh/agent) | grep -v "^Agent pid [0-9]*$"
     eval $(cat ~/.ssh/agent)
@@ -65,13 +57,12 @@ fi
 
 # gpg-agent
 export GPG_TTY=$(tty)
-
-if [[ -f "${HOME}/.gnupg/agent-info.env" ]]; then
+if [[ -f ~/.gnupg/agent-info.env ]]; then
     eval $(cat ${HOME}/.gnupg/agent-info.env)
 fi
 
 
-if [ -f ~/.zsh.d/caredotcom.sh ]; then
+if [[ -f ~/.zsh.d/caredotcom.sh ]]; then
     source ~/.zsh.d/caredotcom.sh
     alias emacs='~/.local/emacs/bin/emacs -nw'
     alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
@@ -80,7 +71,7 @@ else
     alias emacsclient="emacsclient -nw"
 fi
 
-if [ -f ~/.emacs ]; then
+if [[ -f ~/.emacs.d/init.el ]]; then
     export EDITOR=emacs
 fi
 
@@ -109,7 +100,7 @@ alias j2y="json2yaml"
 #alias cleangit='git branch | grep -v "master" | xargs git branch -D'
 
 fixssh() {
-    if [[ $HAS_TMUX = "true" ]]; then
+    if [[ -x "$(command -v tmux)" ]]; then
         eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
     else
         echo "fixssh doesnt do anything without tmux"
@@ -122,8 +113,7 @@ case $system in
         alias speed="sudo pmset -a disablesleep 1"
         alias weed="sudo pmset -a disablesleep 0"
         # defaulting to brew-installed python3
-        export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-        export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+        export PATH="$HOME/Library/Python/3.9/bin:$PATH"
         ;;
 esac
 
@@ -216,19 +206,19 @@ esac
 
 # Automatically attach to the tmux session on SSH
 vterm_printf(){
-    if [ -n "$TMUX" ]; then
+    if [[ -n "$TMUX" ]]; then
         # Tell tmux to pass the escape sequences through
         # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
         printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
+    elif [[ "${TERM%%-*}" == "screen" ]]; then
         # GNU screen (screen, screen-256color, screen-256color-bce)
         printf "\eP\e]%s\007\e\\" "$1"
     else
         printf "\e]%s\e\\" "$1"
     fi
 }
-if [[ -x "$(command -v tmux)" ]] && [ "$SSH_TUMUX" = "true" ]; then
-    if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+if [[ -x "$(command -v tmux)" &&  "$SSH_TMUX_AUTO_ATTACH" == "true" ]]; then
+    if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then
         tmux attach-session -t ssh || tmux new-session -s ssh
     fi
 fi
