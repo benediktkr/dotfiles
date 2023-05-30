@@ -144,7 +144,7 @@ esac
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # this is what actually loads oh-my-zsh and its plugins
-if [[ $USE_OMZ = 'true' ]]; then
+if [[ $USE_OMZ == 'true' ]]; then
     plugins=(
         # emacs # open files via emacsclient everywhere
         ansible
