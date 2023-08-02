@@ -60,7 +60,7 @@ if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     # git submodule update --init  --recursive
 fi
 
-source ${DOTFILES}/private/zsh.d/care-env.sh
+source ${DOTFILES}/private/zsh.d/care-env.sh 2>/dev/null
 if [[ -n "${CARE_ENV}" ]]; then
     ENV="care.com"
     source ~/.zsh.d/caredotcom.sh
