@@ -121,7 +121,6 @@ if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
         motd_ssh_agent=$(ssh-add -l | awk -F' ' '{ print $3 }' | xargs basename | xargs echo -e "${color_purple}ssh-agent${color_nc}  ")
     else
         rm -v $SSH_AGENT_ENVFILE
-        motd_ssh_agent="${color_purple}ssh-agent${color_nc}  none"
     fi
 
 fi
@@ -229,7 +228,9 @@ if [[ $TERM == "dumb" ]]; then
 else
     # otherwise default to xterm-256color
     export TERM=xterm-256color
-    echo -e "$motd_ssh_agent"
+    if [[ -n "$motd_ssh_agent" ]]; then
+        echo -e "$motd_ssh_agent"
+    fi
     if [[ -n "${SSH_CLIENT}" ]]; then
         echo -ne "${color_purple}from ipv4${color_nc}   "
         echo $SSH_CLIENT | awk '{ print $1 }'
