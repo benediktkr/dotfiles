@@ -2,9 +2,7 @@
 #*#
 *#*#
 .emacs.d/elpa/gnupg/
-emacs/emacs.d/network-security.data
-emacs/emacs.d/tramp
-emacs/emacs.d/transient/
+.emacs.d/image-dired/
 
 
 framework/ectool/framework-ec
