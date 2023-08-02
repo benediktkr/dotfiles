@@ -1,98 +1,169 @@
 unset MAILCHECK || true
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+export DOTFILES="${HOME}/projects/dotfiles"; export DOTFILES
+ZSH_CUSTOM="${DOTFILES}/zsh/zsh.d"
+SSH_AGENT_ENVFILE="${HOME}/.agent-ssh.env"
+OMZSH="${DOTFILES}/zsh/.oh-my-zsh"
+ZSH_THEME="jreese2"
 
-if [[ -d $HOME/projects/dotfiles || -d $HOME/dotfiles || -d /srv/dotfiles ]]; then
-    USE_OMZ='true'
-else
-    USE_OMZ='false'
-fi
+# the variable that oh-my-zsh expects
+ZSH=$OMZSH
 
-if [[ -d ~/.zsh.d ]]; then
-    ZSH_CUSTOM="$HOME/.zsh.d/"
-fi
-
-SSH_TMUX_AUTO_ATTACH="false"
-
-if [[ $USE_OMZ == "true" ]] && [[ ! -d $ZSH ]]; then
-    read -q "REPLY?Do you want to download oh-my-zsh with curlpipe? " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]
-    then
-        # handle exits from shell or function but don't exit interactive shell
-        [[ "$0" == "$BASH_SOURCE" ]] && exit 1 || return 1
-    fi
-    OMZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-
-    curl -fsSL $OMZSH > $HOME/omz-install.sh
-    RUNZSH='no' CHSH='no' KEEP_ZSHRC='yes' sh $HOME/omz-install.sh
-    rm $HOME/omz-install.sh
-    echo "Done setting up oh-my-zsh!"
-fi
-
-
-export TZ="Europe/Berlin"
-# enables history
-export PYTHONSTARTUP=~/.pystartup
-# pipenv wants this
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# donet telemetry....
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
-
-# Set name of the theme to load.
-# Nice ones that I like
+# nice omzsh themes:
 #  * jreese
 #  * gentoo
 #  * alanpeabody (doesnt show full path and color blends with background)
-ZSH_THEME="jreese2"
 
-if [[ -f ~/.ssh/agent ]]; then
-    chmod 700 ~/.ssh/agent
-    #eval $(cat ~/.ssh/agent) | grep -v "^Agent pid [0-9]*$"
-    eval $(cat ~/.ssh/agent)
-fi
+color_red='\033[0;31m'
+color_red_light='\033[1;31m'
+color_green='\033[0;32m'
+color_green_light='\033[1;32m'
+color_orange='\033[0;33m'
+color_yellow='\033[1;33m'
+color_blue='\033[0;34m'
+color_purple='\033[0;35m'
+color_cyan='\033[0;36m'
+color_purple='\033[0;35m'
 
-# gpg-agent
+color_nc='\033[0m'
+
+export TZ="Europe/Berlin"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 export GPG_TTY=$(tty)
-if [[ -f ~/.gnupg/agent-info.env ]]; then
-    eval $(cat ${HOME}/.gnupg/agent-info.env)
-fi
 
+# in case dotnet happens to be installed, disable the telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-if [[ -f ~/.zsh.d/caredotcom.sh ]]; then
-    source ~/.zsh.d/caredotcom.sh
-    alias emacs='~/.local/emacs/bin/emacs -nw'
-    alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
-else
-    alias emacs="emacs -nw"
-    alias emacsclient="emacsclient -nw"
-fi
+setopt shwordsplit # for loops over "space separated strings" like bash
+setopt append_history # append rather then overwrite
+setopt extended_history # save timestamp
+setopt inc_append_history # add history immediately after typing a command
+
+alias less="less -R"
+alias dmesg="dmesg --human --color=always -T"
+alias nomail="echo 'd *' | mail -N"
+# from jbs
+alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
+alias j2y="json2yaml"
 
 if [[ -f ~/.emacs.d/init.el ]]; then
     export EDITOR=emacs
 fi
 
+# in submodules, .git is a file:
+# $ cat ${OMZSH}/.git
+# gitdir: ../../.git/modules/zsh/.oh-my-zsh
+if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
+    echo "oh-my-zsh submodule needs to be initialized"
+    # git submodule update --init  --recursive
+fi
 
-alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
-alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+source ${DOTFILES}/private/zsh.d/care-env.sh
+if [[ -n "${CARE_ENV}" ]]; then
+    ENV="care.com"
+    source ~/.zsh.d/caredotcom.sh
 
-alias less="less -R"
-alias dmesg="dmesg --human --color=always -T"
-alias nomail="echo 'd *' | mail -N"
+    # set colors for jreese2
+    export PROMPT_HOSTNAME=$CARE_ENV
+    export PROMPT_COLOR_HOSTNAME=green
+    export PROMPT_COLOR=blue
+    ENV_COLOR=$color_green
 
-alias docker='sudo docker'
-alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+    alias noflag="unset RPROMPT"
+    alias emacs='~/.local/emacs/bin/emacs -nw'
+    alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
 
-alias nc-occ='docker exec -it --user www-data nextcloud php occ'
-alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
-alias tf='./tf.py'
+    powerup () {
+        /usr/local/bin/powerup $* > ${HOME}/.aws/powerup.env
+        source ${HOME}/.aws/powerup.env
+    }
 
-# from jbs
-alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
-alias j2y="json2yaml"
+elif [[ -d "/meta" || -d "/sdf" ]]; then
+    ENV="sdf.org"
+    export PROMPT_COLOR_HOSTNAME=yellow
+    export PROMPT_COLOR=blue
+    ENV_COLOR=$color_orange
+else
+    ENV="sudo.is"
+    export PROMPT_COLOR_HOSTNAME=green
+    export PROMPT_COLOR=red
+    ENV_COLOR=$color_blue
+
+    export PATH="$HOME/.cargo/bin:$PATH"
+    alias emacs="emacs -nw"
+    alias emacsclient="emacsclient -nw"
+    alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+
+    alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
+    alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+    alias nc-occ='docker exec -it --user www-data nextcloud php occ'
+    alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
+fi
+motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
+
+# safely load ssh-agent without eval
+if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
+    chmod 700 $SSH_AGENT_ENVFILE
+    source $SSH_AGENT_ENVFILE > /dev/null
+
+    if `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
+        SSH_AGENT_PID_ALIVE=true
+    else
+        SSH_AGENT_PID_ALIVE=false
+    fi
+
+    # -S : is a socket file
+    if [[ -S ${SSH_AUTH_SOCK} && "${SSH_AGENT_PID_ALIVE}" == "true" ]]; then
+        export SSH_AUTH_SOCK
+        export SSH_AGENT_PID
+        motd_ssh_agent=$(ssh-add -l | awk -F' ' '{ print $3 }' | xargs basename | xargs echo -e "${color_purple}ssh-agent${color_nc}  ")
+    else
+        rm -v $SSH_AGENT_ENVFILE
+        motd_ssh_agent="${color_purple}ssh-agent${color_nc}  none"
+    fi
+
+fi
+
+# gpg-agent: this probably isnt needed
+# if [[ -f ~/.gnupg/agent-info.env ]]; then
+#     eval $(cat ${HOME}/.gnupg/agent-info.env)
+# fi
+
+
+if [[ "${OMZSH_DISABLED}" != "true" ]]; then
+    plugins=(
+        # emacs # open files via emacsclient everywhere
+        ansible
+        colored-man-pages
+        colorize
+        docker # auto complete
+        git
+        #gpg-agent
+        nmap
+        #pep8
+        safe-paste
+        urltools # urlencode and urldecode
+    )
+    if [[ $system = "Darwin" ]]; then
+        plugins+=(osx brew)
+    fi
+    source $ZSH/oh-my-zsh.sh
+
+    # remove unwanted aliases set by ohmzh/plugins
+    unalias a
+else
+    # on a system without oh-my-zsh (f.ex. non util/control nodes)
+    # set some basic settings
+    SAVEHIST=10000
+    HISTFILE=~/.zsh_history
+fi
+
+
+
+
+
 
 ## these are almost never used
 #alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
@@ -143,43 +214,6 @@ esac
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# this is what actually loads oh-my-zsh and its plugins
-if [[ $USE_OMZ == 'true' ]]; then
-    plugins=(
-        # emacs # open files via emacsclient everywhere
-        ansible
-        colored-man-pages
-        colorize
-        docker # auto complete
-        git
-        #gpg-agent
-        nmap
-        #pep8
-        safe-paste
-        urltools # urlencode and urldecode
-    )
-    if [[ $system = "Darwin" ]]; then
-        plugins+=(osx brew)
-    fi
-    source $ZSH/oh-my-zsh.sh
-
-    # remove unwanted aliases set by ohmzh/plugins
-    unalias a
-else
-    # on a system without oh-my-zsh (f.ex. non util/control nodes)
-    # set some basic settings
-    SAVEHIST=10000
-    HISTFILE=~/.zsh_history
-fi
-
-
-export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
-#export PATH="$HOME/.cargo/bin:/:$PATH"
-
-setopt shwordsplit # for loops over "space separated strings" like bash
-setopt append_history # append rather then overwrite
-setopt extended_history # save timestamp
-setopt inc_append_history # add history immediately after typing a command
 
 
 if [[ $TERM == "dumb" ]]; then
@@ -195,6 +229,12 @@ if [[ $TERM == "dumb" ]]; then
 else
     # otherwise default to xterm-256color
     export TERM=xterm-256color
+    echo -e "$motd_ssh_agent"
+    if [[ -n "${SSH_CLIENT}" ]]; then
+        echo -ne "${color_purple}from ipv4${color_nc}   "
+        echo $SSH_CLIENT | awk '{ print $1 }'
+    fi
+    echo -e "$motd_env"
 fi
 
 case $(hostname --fqdn) in
@@ -203,6 +243,11 @@ case $(hostname --fqdn) in
         ;;
     *)
 esac
+
+# if [[ -d "${HOME}/.zsh.d" ]]; then
+#     echo "WARNING: ${HOME}/.zsh.d still exists on this system"
+# fi
+
 
 # Automatically attach to the tmux session on SSH
 vterm_printf(){

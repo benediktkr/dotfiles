@@ -2,36 +2,40 @@ local return_code="%(?..%{$fg[red]%}%?%{$reset_color%})"
 
 # to set the colors in the prompt, you can `export` these vars:
 #
-# export HOSTNAME_COLOR="green"
-# export PROMPT_COLOR="red"
 # export PROMPT_HOSTNAME="%m"
+# export PROMPT_COLOR_HOSTNAME="green"
+# export PROMPT_COLOR="red"
+# export PROMPT_SHOW_TIME="true"
 #
 # to get back to these defaults if you change them in a shell
 #
-# unset HOSTNAME_COLOR
-# unset PROMPT_COLOR
 # unset PROMPT_HOSTNAME
+# unset PROMPT_COLOR_HOSTNAME
+# unset PROMPT_COLOR
+# unset PROMPT_SHOW_TIME
 
 # with vars:
-PROMPT='%{$fg[${HOSTNAME_COLOR:-green}]%}${PROMPT_HOSTNAME:-%m}%{$reset_color%} %~ $(git_prompt_info)'
+PROMPT='%{$fg[${PROMPT_COLOR_HOSTNAME:-green}]%}${PROMPT_HOSTNAME:-%m}%{$reset_color%} %~ $(git_prompt_info)'
 
 # original:
 #PROMPT='%{$fg[green]%}%m%{$reset_color%} %~ $(git_prompt_info)'
 
-if [ "$NEWLINE" = "true" ]; then
-    PROMPT="$PROMPT
-"
-fi
+# if [[ "$PROMPT_NEWLINE" == "true" ]]; then
+#     PROMPT="$PROMPT
+# "
+# fi
 
 PROMPT="$PROMPT%{$fg[${PROMPT_COLOR:-red}]%}%(!.#.$)%{$reset_color%} "
 
 
-if [ $UID -eq 0 ]; then
+if [[ $UID == 0 ]]; then
     PROMPT="%{$fg[red]%}%n%{$fg[white]%}@$PROMPT"
 fi
 
 #TZ="Europe/Berlin"
-PROMPT="%D{%H:%M} $PROMPT"
+if [[ "${PROMPT_SHOW_TIME}" == "true" ]]; then
+    PROMPT="%D{%H:%M} $PROMPT"
+fi
 
 # PROMPT='%{$fg[$NCOLOR]%}%n%{$fg[green]%}@%m%{$reset_color%} %~ \
 
