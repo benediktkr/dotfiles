@@ -57,7 +57,7 @@ fi
 # gitdir: ../../.git/modules/zsh/.oh-my-zsh
 if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     echo "oh-my-zsh submodule needs to be initialized"
-    # git submodule update --init  --recursive
+    git submodule update --init  --recursive
 fi
 
 source ${DOTFILES}/private/zsh.d/care-env.sh 2>/dev/null
@@ -152,7 +152,7 @@ if [[ "${OMZSH_DISABLED}" != "true" ]]; then
     source $ZSH/oh-my-zsh.sh
 
     # remove unwanted aliases set by ohmzh/plugins
-    unalias a
+    unalias a 2>/dev/null
 else
     # on a system without oh-my-zsh (f.ex. non util/control nodes)
     # set some basic settings
