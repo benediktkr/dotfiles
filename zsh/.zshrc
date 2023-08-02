@@ -107,23 +107,17 @@ motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
 if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
     chmod 700 $SSH_AGENT_ENVFILE
     source $SSH_AGENT_ENVFILE > /dev/null
-
-    if `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
-        SSH_AGENT_PID_ALIVE=true
-    else
-        SSH_AGENT_PID_ALIVE=false
-    fi
-
-    # -S : is a socket file
-    if [[ -S ${SSH_AUTH_SOCK} && "${SSH_AGENT_PID_ALIVE}" == "true" ]]; then
-        export SSH_AUTH_SOCK
-        export SSH_AGENT_PID
-        motd_ssh_agent=$(ssh-add -l | awk -F' ' '{ print $3 }' | xargs basename | xargs echo -e "${color_purple}ssh-agent${color_nc}  ")
-    else
-        rm -v $SSH_AGENT_ENVFILE
-    fi
-
+    export SSH_AUTH_SOCK
+    export SSH_AGENT_PID
 fi
+
+# -S : is a socket file
+if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
+    motd_ssh_agent=$(ssh-add -l | awk -F' ' '{ print $3 }' | xargs basename | xargs echo -e "${color_purple}ssh-agent${color_nc}  ")
+elif [[ -f $SSH_AGENT_ENVFILE ]]; then
+    rm -v $SSH_AGENT_ENVFILE
+fi
+
 
 # gpg-agent: this probably isnt needed
 # if [[ -f ~/.gnupg/agent-info.env ]]; then
