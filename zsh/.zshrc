@@ -113,7 +113,13 @@ fi
 
 # -S : is a socket file
 if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
-    motd_ssh_agent=$(ssh-add -l | awk -F' ' '{ print $3 }' | xargs basename | xargs echo -e "${color_purple}ssh-agent${color_nc}  ")
+    #motd_ssh_agent=$(
+
+    motd_ssh_agent=$(while IFS= read -r line; do
+        echo -e "${color_purple}ssh-agent${color_nc}   ${color_orange}${line}${color_nc}"
+    done) <<< $(ssh-add -l | awk -F' ' '{ print $3 }')
+
+
 elif [[ -f $SSH_AGENT_ENVFILE ]]; then
     rm -v $SSH_AGENT_ENVFILE
 fi
@@ -222,14 +228,15 @@ if [[ $TERM == "dumb" ]]; then
 else
     # otherwise default to xterm-256color
     export TERM=xterm-256color
+    echo -e "$motd_env"
+    if [[ -n "${SSH_CLIENT}" ]]; then
+        echo -ne "${color_purple}from ipv4${color_nc}   ${color_cyan}"
+        echo -n $SSH_CLIENT | awk '{ print $1 }'
+        echo -e "${color_nc}"
+    fi
     if [[ -n "$motd_ssh_agent" ]]; then
         echo -e "$motd_ssh_agent"
     fi
-    if [[ -n "${SSH_CLIENT}" ]]; then
-        echo -ne "${color_purple}from ipv4${color_nc}   "
-        echo $SSH_CLIENT | awk '{ print $1 }'
-    fi
-    echo -e "$motd_env"
 fi
 
 case $(hostname --fqdn) in
