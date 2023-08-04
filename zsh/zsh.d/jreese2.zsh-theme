@@ -20,10 +20,11 @@ PROMPT='%{$fg[${PROMPT_COLOR_HOSTNAME:-green}]%}${PROMPT_HOSTNAME:-%m}%{$reset_c
 # original:
 #PROMPT='%{$fg[green]%}%m%{$reset_color%} %~ $(git_prompt_info)'
 
-# if [[ "$PROMPT_NEWLINE" == "true" ]]; then
-#     PROMPT="$PROMPT
-# "
-# fi
+if [[ "$PROMPT_NEWLINE" == "true" ]]; then
+    #PROMPT="$PROMPT%{$fg[${PROMPT_COLOR:-red}]%} %{$reset_color%}"
+    PROMPT="$PROMPT
+"
+fi
 
 PROMPT="$PROMPT%{$fg[${PROMPT_COLOR:-red}]%}%(!.#.$)%{$reset_color%} "
 

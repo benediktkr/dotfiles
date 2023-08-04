@@ -57,7 +57,10 @@ fi
 # gitdir: ../../.git/modules/zsh/.oh-my-zsh
 if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     echo "oh-my-zsh submodule needs to be initialized"
-    git submodule update --init  --recursive
+    (
+        cd ${DOTFILES}
+        git submodule update --init  --recursive
+    )
 fi
 
 source ${DOTFILES}/private/zsh.d/care-env.sh 2>/dev/null
