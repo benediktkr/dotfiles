@@ -49,7 +49,7 @@ alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys
 alias j2y="json2yaml"
 
 if [[ -f ~/.emacs.d/init.el ]]; then
-    export EDITOR=emacs
+    export EDITOR="emacs -nw"
 fi
 
 # in submodules, .git is a file:
@@ -92,6 +92,7 @@ else
     ENV="sudo.is"
     export PROMPT_COLOR_HOSTNAME=green
     export PROMPT_COLOR=red
+    export PROMPT_NEWLINE=false
     ENV_COLOR=$color_blue
 
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -116,13 +117,9 @@ fi
 
 # -S : is a socket file
 if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
-    #motd_ssh_agent=$(
-
     motd_ssh_agent=$(while IFS= read -r line; do
         echo -e "${color_purple}ssh-agent${color_nc}   ${color_orange}${line}${color_nc}"
     done) <<< $(ssh-add -l | awk -F' ' '{ print $3 }')
-
-
 elif [[ -f $SSH_AGENT_ENVFILE ]]; then
     rm -v $SSH_AGENT_ENVFILE
 fi
