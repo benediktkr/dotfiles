@@ -1,10 +1,28 @@
 unset MAILCHECK || true
 
-export DOTFILES="${HOME}/projects/dotfiles"; export DOTFILES
+DOTFILES="${HOME}/projects/dotfiles"; export DOTFILES
+
+if [[ -d "${DOTFILES}/private" ]]; then
+   source ${DOTFILES}/private/zsh.d/care-env.sh
+fi
+
+if [[ -n "${CARE_ENV}" ]]; then
+    ENV="care.com"
+elif [[ -d "/meta" || -d "/sdf" ]]; then
+    ENV="sdf.org"
+else
+    ENV="sudo.is"
+    if [[ ! -d "${DOTFILES}" && -d "/srv/dotfiles" ]]; then
+        SUDO_ENV="server"
+        DOTFILES="/srv/dotfiles/dotfiles"; export DOTFILES
+    else
+        SUDO_ENV="shell"
+    fi
+fi
+
 ZSH_CUSTOM="${DOTFILES}/zsh/zsh.d"
 SSH_AGENT_ENVFILE="${HOME}/.agent-ssh.env"
 OMZSH="${DOTFILES}/zsh/.oh-my-zsh"
-ZSH_THEME="jreese2"
 
 # the variable that oh-my-zsh expects
 ZSH=$OMZSH
@@ -63,9 +81,10 @@ if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     )
 fi
 
-source ${DOTFILES}/private/zsh.d/care-env.sh 2>/dev/null
-if [[ -n "${CARE_ENV}" ]]; then
+if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
+    ZSH_THEME="jreese2"
+
     source ~/.zsh.d/caredotcom.sh
 
     # set colors for jreese2
@@ -85,25 +104,28 @@ if [[ -n "${CARE_ENV}" ]]; then
 
 elif [[ -d "/meta" || -d "/sdf" ]]; then
     ENV="sdf.org"
+    ZSH_THEME="jreese2"
+
     export PROMPT_COLOR_HOSTNAME=yellow
     export PROMPT_COLOR=blue
     ENV_COLOR=$color_orange
 else
     ENV="sudo.is"
-    export PROMPT_COLOR_HOSTNAME=green
-    export PROMPT_COLOR=red
-    export PROMPT_NEWLINE=false
-    ENV_COLOR=$color_blue
-
-    export PATH="$HOME/.cargo/bin:$PATH"
-    alias emacs="emacs -nw"
-    alias emacsclient="emacsclient -nw"
-    alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+    if [[ "$SUDO_ENV" == "server" ]]; then
+        ZSH_THEME="gentoo"
+    else
+        ZSH_THEME="jreese2"
+    fi
 
     alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
     alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+    alias dl-audio-keep='yt-dlp --keep-video --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+
+    alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
     alias nc-occ='docker exec -it --user www-data nextcloud php occ'
     alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
+    alias emacs="emacs -nw"
+    alias emacsclient="emacsclient -nw"
 fi
 motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
 
