@@ -28,6 +28,38 @@ and then update grub
 sudo update-grub
 ```
 
+# turned off wifi power management
+
+did this a while ago and forgot to document it:
+
+```
+amine ~ $ sudo cat /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+# https://unix.stackexchange.com/questions/595116/wi-fi-powersaving-in-networkmanager
+# https://unix.stackexchange.com/questions/269661/how-to-turn-off-wireless-power-management-permanently
+
+[connection]
+wifi.powersave = 2
+
+# NM_SETTING_WIRELESS_POWERSAVE_DEFAULT (0): use the default value
+# NM_SETTING_WIRELESS_POWERSAVE_IGNORE (1): don't touch existing setting
+# NM_SETTING_WIRELESS_POWERSAVE_DISABLE (2): disable powersave
+# NM_SETTING_WIRELESS_POWERSAVE_ENABLE (3): enable powersave
+```
+
+restart network manager:
+
+```
+amine ~ $ sudo systemctl restart NetworkManager
+```
+
+check with:
+
+```
+amine ~ $ apt-get install wireless-tools
+amine ~ $ iwconfig 2>&1 | grep -i "power management"
+          Power Management:off
+```
+
 # tune power usage
 
 install packages:
