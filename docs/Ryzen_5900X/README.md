@@ -21,6 +21,21 @@ The energy consumption with these settings is quite high:
 | idle            | `~75W`
 | running `xmrig` | `145W`
 
+## The default BIOS settings loaded
+
+Uses a lot less energy. After setting the cpu frequency govenor to `powersave` with
+
+```shell
+cpupower frequency-set -g powersave
+```
+
+it uses approx
+
+| State           | Power (W)
+|----------------:|:---------------
+| idle            | `~38W`
+
+
 ### System info
 
 ![](img/systeminfo.jpeg)
