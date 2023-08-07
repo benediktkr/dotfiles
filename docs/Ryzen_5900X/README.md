@@ -17,16 +17,19 @@ The energy consumption with these settings is quite high:
 
 | State           | Power (W)
 |----------------:|:---------------
-| booting         | ~130W
-| idle            | ~75W
-| running `xmrig` | 145W
+| booting         | `~130W`
+| idle            | `~75W`
+| running `xmrig` | `145W`
+
+### System info
 
 ![](img/systeminfo.jpeg)
 
+# BIOS settings
+
+
 The "Save and exit" section can export the complete settings (in some binary format), so the settings
 are saved as [`asus-b550-xmrig.bin`](asus-b550-xmrig.bin).
-
-# BIOS settings
 
 Its not easy to tell in the BIOS itself wether something is
 on its default value or not, but the manual includes the default value
