@@ -1,4 +1,19 @@
+[registry]
+default = "gitea"
 
+[registries.gitea]
+index = "https://git.sudo.is/ben/_cargo-index.git"
+
+[registries.gitea-private]
+index = "https://git.sudo.is/b/_cargo-index.git"
+
+[registries.gitea-ops]
+index = "https://git.sudo.is/ops/_cargo-index.git"
+
+[net]
+git-fetch-with-cli = true
+
+## cross-compiling
 [build]
 rustflags = ["-C", "target-feature=+crt-static"]
 [target.x86_64-pc-windows-msvc]
