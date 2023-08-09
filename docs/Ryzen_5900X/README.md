@@ -1,5 +1,7 @@
 # Ryzen 5900X BIOS settings
 
+## Otimizing for energy use instead of `xmrig`
+
 Documenting BIOS settings I had made to get the most performance out
 of `xmrig` on the Ryzen 5900X before restoring defaults and applying
 something more energy efficient.
@@ -11,7 +13,7 @@ something more energy efficient.
 | Manual                     | [`mb_manual_b550-aorus-elite-ax_e.pdf`](mb_manual_b550-aorus-elite-ax_e.pdf) |
 | Exported BIOS profile file | [`asus-b550-xmrig.bin`](asus-b550-xmrig.bin)                                 |
 
-## Tuned for `xmrig`
+### Tuned for `xmrig`
 
 The energy consumption with these settings is quite high:
 
@@ -21,7 +23,7 @@ The energy consumption with these settings is quite high:
 | idle            | `~75W`
 | running `xmrig` | `145W`
 
-## The default BIOS settings loaded
+###  The default BIOS settings loaded
 
 Uses a lot less energy. After setting the cpu frequency govenor to `powersave` with
 
@@ -40,7 +42,7 @@ it uses approx
 
 ![](img/systeminfo.jpeg)
 
-# BIOS settings
+## Reveting BIOS settings to deafults
 
 
 The "Save and exit" section can export the complete settings (in some binary format), so the settings
@@ -311,3 +313,57 @@ _Not relevant, there are no settings here_
 </details>
 
 _Not relevant_
+
+
+# Trying out "Eco mode"
+
+According to [someone on reddit](https://www.reddit.com/r/AMDHelp/comments/nv0iav/pptedctdc_for_a_ryzen_5900x/), these are the default values for 5900X:
+
+| Name | Value  |
+|------|--------|
+| PPT  | `142W` |
+| TDC  | `95A`  |
+| EDC  | `149A` |
+
+
+And [someone else on reddit](https://old.reddit.com/r/Amd/comments/osuakm/eco_mode_not_showing_ryzen_master/h6qyd84/) says its the same default values as
+5800X, and that ECO mode on that one sets these value to one of
+
+| Name               | Value |
+|--------------------|-------|
+| PPT                | `88W` |
+| TDC                | `60A` |
+| EDC                | `90A` |
+|--------------------|-------|
+| Energy consumption | `65W` |
+
+
+| Name               | Value |
+|--------------------|-------|
+| PPT                | `61W` |
+| TDC                | `45A` |
+| EDC                | `60A` |
+|--------------------|-------|
+| Energy consumption | `45W` |
+
+
+Where to find the settings in the biosfind the settings in bios: https://www.pcworld.com/article/1352253/how-to-enable-eco-mode-with-ryzen-7000.html
+
+<details>
+<summary>Screenshot</summary>
+
+  ![](img/eco-mode-settings-tried.jpeg)
+
+  _I misread and typed the wrong value in PPT. Couldnt boot, and restored to defaults. Will then try with the actual values
+
+</details>
+
+
+# Enable "AC BACK"
+
+This setting controls what happens the motherboard/PSU get AC power.
+
+Changed it to `Always on`. That means if the computer gets AC power,
+it powers itself on. Good for remotely turning it on.
+
+And Wake-on-LAN has also been enabled.
