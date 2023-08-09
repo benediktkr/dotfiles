@@ -60,6 +60,39 @@ amine ~ $ iwconfig 2>&1 | grep -i "power management"
           Power Management:off
 ```
 
+# useful commands
+
+`tlp`:
+
+```
+$ sudo tlp-stat -h
+Usage: tlp-stat [ -b | --battery   | -c | --config    |
+                  -d | --disk      | -e | --pcie      |
+                  -g | --graphics  | -p | --processor |
+                  -r | --rfkill    | -s | --system    |
+                  -t | --temp      | -u | --usb       |
+                  -w | --warn      | -v | --verbose   |
+                     | --cdiff     |    | --pev       |
+                  -P | --psup      | -T | --trace     |
+```
+
+`cpupower`:
+
+```
+$ sudo apt-get install linux-tools-common linux-tools-generic
+$ cpupower
+Usage:  cpupower [-d|--debug] [-c|--cpu cpulist ] <command> [<args>]
+Supported commands are:
+        frequency-info
+        frequency-set
+        idle-info
+        idle-set
+        set
+        info
+        monitor
+        help
+```
+
 # tune power usage
 
 install packages:
