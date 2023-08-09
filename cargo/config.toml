@@ -1,3 +1,18 @@
 
 [build]
 rustflags = ["-C", "target-feature=+crt-static"]
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# vacuum robot
+[target.aarch64-unknown-linux-musl]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# turris
+[target.armv7-unknown-linux-gnueabihf]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# unifi ap
+[target.mips-unknown-linux-musl]
+rustflags = ["-C", "target-feature=+crt-static"]
+
