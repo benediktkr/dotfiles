@@ -116,6 +116,9 @@ else
     else
         ZSH_THEME="jreese2"
     fi
+    if [[ -d "$HOME/.cargo" ]]; then
+        export PATH="$HOME/.cargo/bin:$PATH"
+    fi
 
     alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
     alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
