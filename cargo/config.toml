@@ -1,5 +1,4 @@
 [registry]
-default = "gitea"
 
 [registries.gitea]
 index = "https://git.sudo.is/ben/_cargo-index.git"
@@ -15,8 +14,7 @@ git-fetch-with-cli = true
 
 ## cross-compiling
 [build]
-rustflags = ["-C", "target-feature=+crt-static"]
-[target.x86_64-pc-windows-msvc]
+target = "x86_64-unknown-linux-musl"
 rustflags = ["-C", "target-feature=+crt-static"]
 
 # vacuum robot
