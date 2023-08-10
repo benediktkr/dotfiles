@@ -75,6 +75,13 @@ if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     )
 fi
 
+if [[ ! -d "${DOTFILES}" && -d "/srv/dotfiles" ]]; then
+    SUDO_ENV="server"
+    DOTFILES="/srv/dotfiles/dotfiles"; export DOTFILES
+else
+    SUDO_ENV="shell"
+fi
+
 if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
     ZSH_THEME="jreese2"
@@ -107,13 +114,7 @@ else
     ENV="sudo.is"
     if [[ -f "${HOME}/.sudo-env-overrides.env" ]]; then
         source  "${HOME}/.sudo-env-overrides.env"
-    elif [[ ! -d "${DOTFILES}" && -d "/srv/dotfiles" ]]; then
-        SUDO_ENV="server"
-        DOTFILES="/srv/dotfiles/dotfiles"; export DOTFILES
-    else
-        SUDO_ENV="shell"
     fi
-
     if [[ "$SUDO_ENV" == "server" ]]; then
         ZSH_THEME="gentoo"
     else
