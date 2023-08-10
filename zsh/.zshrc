@@ -264,12 +264,14 @@ else
     fi
 fi
 
-case $(hostname --fqdn) in
-    sensor-*.s21.sudo.is|ber1.sudo.is)
-        PROMPT="🌡️   $PROMPT"
-        ;;
-    *)
-esac
+if [[ -x $(which hostname) ]]; then
+    case $(hostname --fqdn) in
+        sensor-*.s21.sudo.is|ber1.sudo.is)
+            PROMPT="🌡️   $PROMPT"
+            ;;
+        *)
+    esac
+fi
 
 # if [[ -d "${HOME}/.zsh.d" ]]; then
 #     echo "WARNING: ${HOME}/.zsh.d still exists on this system"
