@@ -112,6 +112,7 @@ elif [[ -d "/meta" || -d "/sdf" ]]; then
 else
     ENV="sudo.is"
     if [[ "$SUDO_ENV" == "server" ]]; then
+        PROMPT_COLOR=blue
         ZSH_THEME="gentoo"
     else
         ZSH_THEME="jreese2"
