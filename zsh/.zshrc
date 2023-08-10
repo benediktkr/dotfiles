@@ -12,7 +12,6 @@ elif [[ -d "/meta" || -d "/sdf" ]]; then
     ENV="sdf.org"
 else
     ENV="sudo.is"
-
     if [[ ! -d "${DOTFILES}" && -d "/srv/dotfiles" ]]; then
         SUDO_ENV="server"
         DOTFILES="/srv/dotfiles/dotfiles"; export DOTFILES
@@ -82,13 +81,6 @@ if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     )
 fi
 
-if [[ ! -d "${DOTFILES}" && -d "/srv/dotfiles" ]]; then
-    SUDO_ENV="server"
-    DOTFILES="/srv/dotfiles/dotfiles"; export DOTFILES
-else
-    SUDO_ENV="shell"
-fi
-
 if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
     ZSH_THEME="jreese2"
@@ -124,6 +116,9 @@ else
     else
         ZSH_THEME="jreese2"
     fi
+    if [[ -d "$HOME/.cargo" ]]; then
+        export PATH="$HOME/.cargo/bin:$PATH"
+    fi
 
     alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
     alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
@@ -136,10 +131,6 @@ else
     alias emacsclient="emacsclient -nw"
 fi
 motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
-
-if [[ -d "$HOME/.cargo" ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
 
 # safely load ssh-agent without eval
 if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
