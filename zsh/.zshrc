@@ -136,9 +136,10 @@ motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
 # safely load ssh-agent without eval
 if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
     chmod 700 $SSH_AGENT_ENVFILE
-    source $SSH_AGENT_ENVFILE > /dev/null
-    export SSH_AUTH_SOCK
-    export SSH_AGENT_PID
+    # source $SSH_AGENT_ENVFILE > /dev/null
+    # export SSH_AUTH_SOCK
+    # export SSH_AGENT_PID
+    exec $(cat $SSH_AGENT_ENVFILE)
 fi
 
 # -S : is a socket file
