@@ -1,3 +1,4 @@
+# from: https://www.monolune.com/articles/readline-keybindings-for-vim-commands/
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 cnoremap <c-p> <up>
