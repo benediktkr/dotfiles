@@ -13,3 +13,6 @@ private/
 .emacs.d/bin/
 .emacs.d/custom.el
 .emacs.d/tramp
+
+# vim
+*.swp
