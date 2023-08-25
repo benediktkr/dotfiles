@@ -77,7 +77,7 @@ inoremap <c-d> <del>
 inoremap <esc>b <s-left>
 inoremap <esc>f <s-right>
 inoremap <esc><backspace> <c-w>
-nnoremap <c-k> <c->estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
+inoremap <c-k> <c->estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
 
 """ on macs, after changing the keybindings to make some sense on the os level, this
 """ doesnt work. the alt key is command, which cant be remapped in regular vim
