@@ -9,10 +9,12 @@ framework/ectool/framework-ec
 
 private/
 
+# emacs
 .emacs.d/var/
 .emacs.d/bin/
 .emacs.d/custom.el
 .emacs.d/tramp
+.emacs.d/eln-cache/
 
 # vim
 *.swp
