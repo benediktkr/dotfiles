@@ -65,7 +65,6 @@ nnoremap <c-c>L :set relativenumber!<cr>
 "" insert mode
 inoremap <c-x><c-c> <esc>:q<cr>
 inoremap <c-x><c-d> <esc>:wq!<cr>
-inoremap <c-x><c-c> <esc>:quit<cr>
 inoremap <c-x><c-s> <esc>:update<cr>i
 inoremap <c-p> <up>
 inoremap <c-n> <down>
