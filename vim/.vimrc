@@ -21,6 +21,7 @@ set expandtab shiftwidth=4 tabstop=4 softtabstop=4
 set noerrorbells
 set nowrap
 set nobackup
+set noswapfile
 set background=dark
 
 "disable prehistoric freezing feature
