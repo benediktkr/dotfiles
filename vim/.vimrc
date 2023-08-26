@@ -1,8 +1,7 @@
 " add color to the statusline to show insert vs normal mode
-"" colors:
-""" normal mode: green
-""" insert mode: orange
-"" docs: https://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-ctermbg
+"" normal mode: green
+"" insert mode: orange
+" docs: https://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-ctermbg
 
 " always show status line, and color it blue since vim starts in normal mode
 set laststatus=2
@@ -12,6 +11,13 @@ hi StatusLine ctermfg=DarkBlue ctermbg=Black
 "" from: https://vim.fandom.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
 au InsertLeave * hi StatusLine term=reverse ctermfg=DarkBlue ctermbg=Black
 au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
+
+" set syntax highlighting for files with non-standard names
+""from: https://ls3.io/posts/jenkinsfile_vim_highlighting/
+au BufNewFile,BufRead Jenkinsfile setf groovy
+au BufNewFile,BufRead *.py.j2 setf python
+au BufNewFile,BufRead *.yml.j2 setf yaml
+au BufNewFile,BufRead *.yaml.j2 setf yaml
 
 " borrowed from matt
 "" sets tabs to be spaces
@@ -61,6 +67,9 @@ nnoremap <c-c>l :set number!<cr>
 nnoremap <c-l> :set number!<cr>
 nnoremap <esc>l :set relativenumber!<cr>
 nnoremap <c-c>L :set relativenumber!<cr>
+nnoremap <c-x><c-f> :edit<space>
+nnoremap <c-x><c-b> :ls<cr>
+nnoremap <c-x>b :ls<cr>
 
 "" insert mode
 inoremap <c-x><c-c> <esc>:q<cr>
