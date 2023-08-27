@@ -140,7 +140,7 @@ simpler alternative to `tlp` (but they clash):
 
 ## usb expansion slots
 
-HDMI and SD card appear to use ~1W at idle.
+HDMI and storage module appear to use ~1W at idle (from looking at `powertop`).
 
 # stuttering/mini-freezes
 
