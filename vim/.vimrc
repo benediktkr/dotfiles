@@ -68,7 +68,7 @@ nnoremap <c-l> :set number!<cr>
 nnoremap <esc>l :set relativenumber!<cr>
 nnoremap <c-c>L :set relativenumber!<cr>
 nnoremap <c-x><c-f> :edit<space>
-nnoremap <c-x><c-b> :ls<cr>
+nnoremap <c-x><c-b> :ls<cr>:b<space>
 nnoremap <c-x>b :ls<cr>
 
 "" insert mode
