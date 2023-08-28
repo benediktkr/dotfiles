@@ -12,6 +12,9 @@ hi StatusLine ctermfg=DarkBlue ctermbg=Black
 au InsertLeave * hi StatusLine term=reverse ctermfg=DarkBlue ctermbg=Black
 au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
 
+" auto indent after enter/c-j
+set autoindent
+
 " set syntax highlighting for files with non-standard names
 ""from: https://ls3.io/posts/jenkinsfile_vim_highlighting/
 au BufNewFile,BufRead Jenkinsfile setf groovy
