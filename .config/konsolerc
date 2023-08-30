@@ -18,10 +18,10 @@ RememberWindowSize=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
-2256x1504 screen: Height=642
-2256x1504 screen: Width=943
-2256x1504 screen: XPosition=200
-2256x1504 screen: YPosition=231
+2256x1504 screen: Height=552
+2256x1504 screen: Width=1343
+2256x1504 screen: XPosition=702
+2256x1504 screen: YPosition=469
 :0.0 Height 3840x2160=2073
 :0.0 Width 3840x2160=1920
 DP-1 Height 3840x2160=2073
