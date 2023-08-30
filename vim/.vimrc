@@ -1,3 +1,6 @@
+" always enable syntax highlighting
+syntax on
+
 " add color to the statusline to show insert vs normal mode
 "" normal mode: green
 "" insert mode: orange
