@@ -88,7 +88,8 @@ inoremap <c-d> <del>
 inoremap <esc>b <s-left>
 inoremap <esc>f <s-right>
 inoremap <esc><backspace> <c-w>
-inoremap <c-k> <esc>d$<cr>i
+inoremap <c-k> <esc>d$<cr>i<bs>
+inoremap <c-_> <esc>u<cr>i<up>
 
 
 "inoremap <c-k> <c->estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
