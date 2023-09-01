@@ -79,7 +79,8 @@ nnoremap <c-x>b :ls<cr>
 "" insert mode
 inoremap <c-x><c-c> <esc>:q<cr>
 inoremap <c-x><c-d> <esc>:wq!<cr>
-inoremap <c-x><c-s> <esc>:update<cr>i
+"inoremap <c-x><c-s> <esc>:update<cr>i
+inoremap <c-x><c-s> <esc>:update<cr>
 inoremap <c-p> <up>
 inoremap <c-n> <down>
 inoremap <c-a> <home>
