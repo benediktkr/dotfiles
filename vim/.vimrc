@@ -15,6 +15,9 @@ au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
 " auto indent after enter/c-j
 set autoindent
 
+" from: https://superuser.com/a/397009
+set backspace=indent,eol,start
+
 " set syntax highlighting for files with non-standard names
 ""from: https://ls3.io/posts/jenkinsfile_vim_highlighting/
 au BufNewFile,BufRead Jenkinsfile setf groovy
@@ -88,8 +91,8 @@ inoremap <c-d> <del>
 inoremap <esc>b <s-left>
 inoremap <esc>f <s-right>
 inoremap <esc><backspace> <c-w>
-inoremap <c-k> <esc>d$<cr>i<bs>
-inoremap <c-_> <esc>u<cr>i<up>
+inoremap <c-k> <esc>d$<cr>i
+inoremap <c-_> <esc>u<cr>i
 
 
 "inoremap <c-k> <c->estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
