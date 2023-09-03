@@ -27,6 +27,7 @@ au BufNewFile,BufRead Jenkinsfile setf groovy
 au BufNewFile,BufRead *.py.j2 setf python
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
+au BufNewFile,BufRead *.sh.j2 setf sh
 
 " borrowed from matt
 "" sets tabs to be spaces
