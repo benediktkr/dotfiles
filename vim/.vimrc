@@ -56,6 +56,11 @@ silent !stty -ixon
 nnoremap <c-c> <nop>
 inoremap <c-c> <nop>
 
+"" unmap c-d and m-d in normal mode
+nnoremap <c-d> <nop>
+nnoremap <alt-d> <nop>
+
+
 "" :commands below status line
 cnoremap <c-g> <c-c>
 
