@@ -29,6 +29,11 @@ au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
 
+
+" remove trailing whitespace from python files
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.py.j2 :%s/\s\+$//e
+
 " borrowed from matt
 "" sets tabs to be spaces
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
