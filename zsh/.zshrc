@@ -66,9 +66,7 @@ alias nomail="echo 'd *' | mail -N"
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
 
-if [[ -f ~/.emacs.d/init.el ]]; then
-    export EDITOR="emacs -nw"
-fi
+export EDITOR="vim"
 
 # in submodules, .git is a file:
 # $ cat ${OMZSH}/.git
