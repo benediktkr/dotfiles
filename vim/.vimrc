@@ -1,6 +1,11 @@
 " always enable syntax highlighting
 syntax on
 
+" truncate short messages to supress "press enter to continue" when using scp
+"" from: https://stackoverflow.com/questions/12422468/vim-netrw-asking-to-press-enter-or-type-command-to-continue
+set shortmess+=T
+set cmdheight=2
+
 " add color to the statusline to show insert vs normal mode
 "" normal mode: green
 "" insert mode: orange
