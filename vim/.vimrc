@@ -1,6 +1,11 @@
 " always enable syntax highlighting
 syntax on
 
+" truncate short messages to supress "press enter to continue" when using scp
+"" from: https://stackoverflow.com/questions/12422468/vim-netrw-asking-to-press-enter-or-type-command-to-continue
+set shortmess+=T
+set cmdheight=2
+
 " add color to the statusline to show insert vs normal mode
 "" normal mode: green
 "" insert mode: orange
@@ -22,17 +27,28 @@ set autoindent
 set backspace=indent,eol,start
 
 " set syntax highlighting for files with non-standard names
-""from: https://ls3.io/posts/jenkinsfile_vim_highlighting/
+"" from: https://ls3.io/posts/jenkinsfile_vim_highlighting/
 au BufNewFile,BufRead Jenkinsfile setf groovy
 au BufNewFile,BufRead *.py.j2 setf python
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
 
-
 " remove trailing whitespace from python files
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.py.j2 :%s/\s\+$//e
+
+" from /etc/vim/vimrc
+set background=dark        " if using dark bg within edit area
+filetype plugin indent on  " indent rules according to detected filetype
+
+set showcmd            " Show (partial) command in status line.
+set showmatch          " Show matching brackets.
+set ignorecase         " Do case insensitive matching
+"set smartcase          " Do smart case matching
+"set incsearch          " Incremental search
+"set autowrite          " Automatically save before commands like :next and :make
+set hidden             " Hide buffers when they are abandoned
 
 " borrowed from matt
 "" sets tabs to be spaces
