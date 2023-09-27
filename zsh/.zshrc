@@ -83,7 +83,7 @@ if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
     ZSH_THEME="jreese2"
 
-    source ~/.zsh.d/caredotcom.sh
+    source ${DOTFILES}/private/zsh.d/caredotcom.sh
 
     # set colors for jreese2
     export PROMPT_HOSTNAME=$CARE_ENV
