@@ -42,6 +42,7 @@ autocmd BufWritePre *.sh.j2 :%s/\s\+$//e
 autocmd BufWritePre *.txt :%s/\s\+$//e
 autocmd BufWritePre *.md :%s/\s\+$//e
 autocmd BufWritePre Dockerfile* :%s/\s\+$//e
+autocmd BufWritePre Jenkinsfile :%s/\s\+$//e
 
 " from /etc/vim/vimrc
 set background=dark        " if using dark bg within edit area
