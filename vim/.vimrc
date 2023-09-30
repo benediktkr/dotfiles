@@ -34,9 +34,14 @@ au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
 
-" remove trailing whitespace from python files
+" remove trailing whitespace from files
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.py.j2 :%s/\s\+$//e
+autocmd BufWritePre *.sh :%s/\s\+$//e
+autocmd BufWritePre *.sh.j2 :%s/\s\+$//e
+autocmd BufWritePre *.txt :%s/\s\+$//e
+autocmd BufWritePre *.md :%s/\s\+$//e
+autocmd BufWritePre Dockerfile* :%s/\s\+$//e
 
 " from /etc/vim/vimrc
 set background=dark        " if using dark bg within edit area
