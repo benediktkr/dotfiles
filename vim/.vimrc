@@ -88,56 +88,58 @@ silent !stty -ixon
 "  based on: https://www.monolune.com/articles/readline-keybindings-for-vim-commands/
 
 "  free up c-c
-nnoremap <c-c> <nop>
-inoremap <c-c> <nop>
+"nnoremap <c-c> <nop>
+"inoremap <c-c> <nop>
 
 "  unmap c-d and m-d in normal mode
-nnoremap <c-d> <nop>
-nnoremap <alt-d> <nop>
+"nnoremap <c-d> <nop>
+"nnoremap <alt-d> <nop>
 
 
 "  for :commands below status line
 cnoremap <c-g> <c-c>
 
 "  normal mode
-nnoremap <c-g> <c-c>
-nnoremap <c-x><c-c> :q<cr>
-nnoremap <c-x><c-d> :wq!<cr>
-nnoremap <c-x><c-s> :update<cr>
-nnoremap <c-a> <home>
-nnoremap <c-e> <end>
-nnoremap <c-p> <up>
-nnoremap <c-n> <down>
-nnoremap <c-b> <left>
-nnoremap <c-f> <right>
-nnoremap <esc>b <s-left>
-nnoremap <esc>f <s-right>
-nnoremap <c-c>l :set number!<cr>
-nnoremap <c-l> :set number!<cr>
-nnoremap <esc>l :set relativenumber!<cr>
-nnoremap <c-c>L :set relativenumber!<cr>
-nnoremap <c-x><c-f> :edit<space>
-nnoremap <c-x><c-b> :ls<cr>:b<space>
-nnoremap <c-x>b :ls<cr>
+"nnoremap <c-g> <c-c>
+"nnoremap <c-x><c-c> :q<cr>
+"nnoremap <c-x><c-d> :wq!<cr>
+"nnoremap <c-x><c-s> :update<cr>
+"nnoremap <c-a> <home>
+"nnoremap <c-e> <end>
+"nnoremap <c-p> <up>
+"nnoremap <c-n> <down>
+"nnoremap <c-b> <left>
+"nnoremap <c-f> <right>
+"noremap <esc>b <s-left>
+"nnoremap <esc>f <s-right>
+"nnoremap <c-c>l :set number!<cr>
+"nnoremap <c-l> :set number!<cr>
+"nnoremap <c-c>L :set relativenumber!<cr>
+"nnoremap <esc>l :set relativenumber!<cr>
+nnoremap <esc>l :set number!<cr>
+nnoremap <esc>L :set relativenumber!<cr>
+"nnoremap <c-x><c-f> :edit<space>
+"nnoremap <c-x><c-b> :ls<cr>:b<space>
+"nnoremap <c-x>b :ls<cr>
 
 "  insert mode
-inoremap <c-x><c-c> <esc>:q<cr>
-inoremap <c-x><c-d> <esc>:wq!<cr>
+"inoremap <c-x><c-c> <esc>:q<cr>
+"inoremap <c-x><c-d> <esc>:wq!<cr>
 "inoremap <c-x><c-s> <esc>:update<cr>i
-inoremap <c-x><c-s> <esc>:update<cr>
-inoremap <c-p> <up>
-inoremap <c-n> <down>
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-inoremap <c-b> <left>
-inoremap <c-f> <right>
-inoremap <c-j> <enter>
-inoremap <c-d> <del>
-inoremap <esc>b <s-left>
-inoremap <esc>f <s-right>
-inoremap <esc><backspace> <c-w>
-inoremap <c-k> <esc>d$<cr>i
-inoremap <c-_> <esc>u<cr>i
+"inoremap <c-x><c-s> <esc>:update<cr>
+"inoremap <c-p> <up>
+"inoremap <c-n> <down>
+"inoremap <c-a> <home>
+"inoremap <c-e> <end>
+"inoremap <c-b> <left>
+"inoremap <c-f> <right>
+"inoremap <c-j> <enter>
+"inoremap <c-d> <del>
+"inoremap <esc>b <s-left>
+"inoremap <esc>f <s-right>
+"inoremap <esc><backspace> <c-w>
+"inoremap <c-k> <esc>d$<cr>i
+"inoremap <c-_> <esc>u<cr>i
 
 
 "inoremap <c-k> <c->estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
