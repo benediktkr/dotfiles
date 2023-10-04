@@ -1,0 +1,41 @@
+mode = "local"
+project = ""
+shell = "zsh"
+
+[dirs]
+project = []
+python = "isolated"
+data = "/home/ben/.local/share/hatch"
+cache = "/home/ben/.cache/hatch"
+
+[dirs.env]
+
+[projects]
+
+[publish.index]
+repo = "main"
+
+[template]
+name = "Ben Kristinsson"
+email = "ben@sudo.is"
+
+[template.licenses]
+headers = true
+default = [
+    "BSD-2-Clause",
+]
+
+[template.plugins.default]
+tests = true
+# "ci" means github actions
+ci = false
+src-layout = true
+
+[terminal.styles]
+info = "bold"
+success = "bold cyan"
+error = "bold red"
+warning = "bold yellow"
+waiting = "bold magenta"
+debug = "bold"
+spinner = "simpleDotsScrolling"
