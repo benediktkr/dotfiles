@@ -57,10 +57,10 @@ set background=dark        " if using dark bg within edit area
 filetype plugin indent on  " indent rules according to detected filetype
 
 set showcmd            " Show (partial) command in status line.
-"set showmatch          " Show matching brackets.
+set showmatch          " Show matching brackets.
 set ignorecase         " Do case insensitive matching
 "set smartcase          " Do smart case matching
-"set incsearch          " Incremental search
+set incsearch          " Incremental search
 "set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 
@@ -97,7 +97,7 @@ silent !stty -ixon
 
 
 "  for :commands below status line
-cnoremap <c-g> <c-c>
+"cnoremap <c-g> <c-c>
 
 "  normal mode
 "nnoremap <c-g> <c-c>
@@ -116,8 +116,9 @@ cnoremap <c-g> <c-c>
 "nnoremap <c-l> :set number!<cr>
 "nnoremap <c-c>L :set relativenumber!<cr>
 "nnoremap <esc>l :set relativenumber!<cr>
-nnoremap <esc>l :set number!<cr>
-nnoremap <esc>L :set relativenumber!<cr>
+"nnoremap <esc>l :set number!<cr>
+"nnoremap <esc>L :set relativenumber!<cr>
+nnoremap <esc>l :set relativenumber!<cr>:set number!<cr>
 "nnoremap <c-x><c-f> :edit<space>
 "nnoremap <c-x><c-b> :ls<cr>:b<space>
 "nnoremap <c-x>b :ls<cr>
