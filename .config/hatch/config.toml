@@ -25,6 +25,11 @@ default = [
     "BSD-2-Clause",
 ]
 
+[template.urls]
+Documentation = "https://www.sudo.is/docs"
+Issues = "https://git.sudo.is/ben/.../issues"
+Source = "https://git.sudo.is/ben/"
+
 [template.plugins.default]
 tests = true
 # "ci" means github actions
