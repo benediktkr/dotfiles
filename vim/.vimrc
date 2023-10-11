@@ -52,7 +52,7 @@ autocmd BufWritePre 0*-* :%s/\s\+$//e
 " jump to last position when opening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" from /etc/vim/vimrc
+" from /etc/vim/vimrc (on ubuntu)
 set background=dark        " if using dark bg within edit area
 filetype plugin indent on  " indent rules according to detected filetype
 
@@ -63,6 +63,9 @@ set ignorecase         " Do case insensitive matching
 set incsearch          " Incremental search
 "set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
+
+" from /etc/vim/vimrc (on amzn linux)
+set hlsearch
 
 " borrowed from matt
 "  sets tabs to be spaces
@@ -86,6 +89,10 @@ silent !stty -ixon
 "   overview in stackoverflow answer: https://stackoverflow.com/a/71194964
 "  docs: https://vimdoc.sourceforge.net/htmldoc/map.html
 "  based on: https://www.monolune.com/articles/readline-keybindings-for-vim-commands/
+
+"  disable backspace and delete in normal mode
+nnoremap <del> <nop>
+nnoremap <bs> <nop>
 
 "  free up c-c
 "nnoremap <c-c> <nop>
