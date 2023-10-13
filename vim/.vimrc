@@ -90,6 +90,10 @@ silent !stty -ixon
 "  docs: https://vimdoc.sourceforge.net/htmldoc/map.html
 "  based on: https://www.monolune.com/articles/readline-keybindings-for-vim-commands/
 
+"  disable backspace and delete in normal mode
+nnoremap <del> <nop>
+nnoremap <bs> <nop>
+
 "  free up c-c
 "nnoremap <c-c> <nop>
 "inoremap <c-c> <nop>
