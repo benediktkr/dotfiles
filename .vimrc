@@ -1,5 +1,11 @@
 " always enable syntax highlighting
 syntax on
+filetype on
+filetype plugin on
+filetype indent on
+
+set number
+set relativenumber
 
 " truncate short messages to supress "press enter to continue" when using scp
 "  from: https://stackoverflow.com/questions/12422468/vim-netrw-asking-to-press-enter-or-type-command-to-continue
@@ -64,8 +70,9 @@ set incsearch          " Incremental search
 "set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 
-" from /etc/vim/vimrc (on amzn linux)
+" from /etc/vim/vimrc (on amzn linux and fedora)
 set hlsearch
+
 
 " borrowed from matt
 "  sets tabs to be spaces
