@@ -73,10 +73,7 @@ export EDITOR="vim"
 # gitdir: ../../.git/modules/zsh/.oh-my-zsh
 if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
     echo "oh-my-zsh submodule needs to be initialized"
-    (
-        cd ${DOTFILES}
-        git submodule update --init  --recursive
-    )
+    git -C $DOTFILES submodule update --init  --recursive 
 fi
 
 if [[ "$ENV" == "care.com" ]]; then
