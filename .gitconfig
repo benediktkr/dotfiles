@@ -1,45 +1,50 @@
-[user]
-email = ben@sudo.is
-name = Ben Kristinsson
-
 [core]
-pager = less -F -X
-# apt-get install ksshaskpass
-askpass = /usr/bin/ksshaskpass
+    pager = less -F -X
 
 [diff]
-submodule = log
+    submodule = log
 
 [pull]
-# when true, defaults to: git pull --rebase
-rebase = true
+    # when true, defaults to: git pull --rebase
+    rebase = true
 
 [push]
-default = current
+    default = current
 
 [init]
-defaultBranch = main
+    defaultBranch = main
 
 [alias]
-ci = commit
-st = status
+    n = checkout -b   
+    b = branch
+    p = pull
+    ci = commit
+    st = status
+    pa = push --atomic
+    br = rev-parse --abbrev-ref HEAD
 
-graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
+    graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
 
-# will take all uncomitted and un-staged changes currently in workding dir and add to previous commit
-caa = commit -a --amend -C HEAD
+    # will take all uncomitted and un-staged changes currently in workding dir and add to previous commit
+    caa = commit -a --amend -C HEAD
 
-fixup = !sh -c 'git commit --fixup HEAD && EDITOR=cat git rebase --autosquash -i HEAD~2 | grep -v "^#"' -
-fu = fixup
+    fixup = !sh -c 'git commit --fixup HEAD && EDITOR=cat git rebase --autosquash -i HEAD~2 | grep -v "^#"' -
+    fu = fixup
 
-p = push --atomic
 
 [status]
-submodulesummary = 1
-recurse = true
+    submodulesummary = 1
+    recurse = true
 
 [submodule]
-recurse = false
+    recurse = false
 
 [credential] 
-helper = store
+    helper = store
+
+
+[include]
+    path = .gitconfig.local
+
+
+
