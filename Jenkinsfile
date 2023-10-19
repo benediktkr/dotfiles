@@ -7,6 +7,11 @@ pipeline {
     }
 
     stages {
+        stage('env') {
+            steps {
+                sh "env"
+            }
+        }
         stage('build') {
             steps {
                 echo "no build yet"
