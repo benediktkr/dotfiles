@@ -1,13 +1,13 @@
-[registry]
+#[registry]
 
-[registries.gitea]
-index = "https://git.sudo.is/ben/_cargo-index.git"
+#[registries.gitea]
+#index = "https://git.sudo.is/ben/_cargo-index.git"
 
-[registries.gitea-private]
-index = "https://git.sudo.is/b/_cargo-index.git"
+#[registries.gitea-private]
+#index = "https://git.sudo.is/b/_cargo-index.git"
 
-[registries.gitea-ops]
-index = "https://git.sudo.is/ops/_cargo-index.git"
+#[registries.gitea-ops]
+#index = "https://git.sudo.is/ops/_cargo-index.git"
 
 [cargo-new]
 vcs = "git"
