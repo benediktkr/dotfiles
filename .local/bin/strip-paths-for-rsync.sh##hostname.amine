@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FULL_PATH=$1
+#PREFIX=$2
+PREFIX="/home/ben/"
+
+DIR_PATH=$(dirname $FULL_PATH)
+WITHOUT_PREFIX=${DIR_PATH#"${PREFIX}"}
+
+echo $WITHOUT_PREFIX
+

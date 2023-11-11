@@ -1,0 +1,8 @@
+[submodule ".yadm-project"]
+	path = .local/share/yadm/yadm-project
+	url = https://github.com/TheLocehiliosan/yadm.git
+	branch = master
+[submodule ".local/share/yadm/ohmyzsh"]
+	path = .local/share/yadm/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+	branch = master

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+# https://stackoverflow.com/questions/16807876/how-to-check-if-another-instance-of-my-shell-script-is-running
+# if pidof -x "rsync-backup.sh" >/dev/null; then
+#     echo "Process already running"
+#     exit 1
+# fi
+
+# apt-get install procmail
+#
+#LOCKFILE=/tmp/rsync-backup.sh
+#lockfile -r 0 $LOCKFILE
+#
+#function cleanup {
+#    rm -f $LOCKFILE
+#}
+
+#trap cleanup EXIT
+
+# no trailing slash
+BACKUP_SRC=/home/ben
+BACKUP_DEST=/deadspace/backups/users/ben/amine
+BACKUP_HOST=mainframe.sudo.is
+
+# shuold change these to just .nobackup since this isnt the restic part..
+# element tends to remove these, so touch them here
+touch $BACKUP_SRC/.config/Element/Cache/.nobackup.restic
+touch $BACKUP_SRC/.config/Element/IndexedDB/.nobackup.restic
+touch $BACKUP_SRC/.config/Element/EventStore/.nobackup.restic
+touch $BACKUP_SRC/.config/Element/GPUCache/.nobackup.restic
+
+# other things that might remove the markar file
+touch $BACKUP_SRC/.local/share/.nobackup.restic
+touch $BACKUP_SRC/.local/lib/.nobackup.restic
+touch $BACKUP_SRC/.local/pipx/.nobackup.restic
+
+
+EXCLUDE_FILE=/home/ben/.local/rsync-backup-excludes.conf
+
+find $BACKUP_SRC/ -name .nobackup.restic -exec /home/ben/.local/bin/strip-paths-for-rsync.sh {} \; > ${EXCLUDE_FILE}
+
+echo "exclude list:"
+cat $EXCLUDE_FILE
+echo
+
+rsync -rah --numeric-ids --safe-links --info=progress2 \
+	--delete-after --exclude-from=${EXCLUDE_FILE} \
+	${BACKUP_SRC}/ ${BACKUP_HOST}:${BACKUP_DEST}${BACKUP_SRC}/
+
+#rm -f $LOCKFILE

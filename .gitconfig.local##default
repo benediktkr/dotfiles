@@ -1,0 +1,20 @@
+[core]
+    # apt-get install ksshaskpass
+    askpass = /usr/bin/ksshaskpass
+
+[user]
+    email = ben@sudo.is
+    name = Ben Kristinsson
+
+[submodule]
+    recurse = false
+
+[credential] 
+    helper = store
+
+
+
+
+
+
+

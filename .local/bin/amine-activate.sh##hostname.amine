@@ -1,0 +1,80 @@
+#!/bin/bash
+
+set -e
+
+LOCKFILE=/tmp/hass-webhook-active.lock
+if { set -C; 2>/dev/null > $LOCKFILE; }; then
+    trap "rm -f $LOCKFILE" EXIT
+else
+    echo "$(date -I): Lock file exist.. exiting" >> /tmp/hass-active.log
+    exit
+fi
+
+session_state() {
+    set +e
+    loginctl_state=$(/usr/bin/loginctl --value --property=State show-user ben)
+    set -e
+    if [[ "${loginctl_state}" == "active" ]]; then
+        state="active"
+    else
+        state="inactive"
+    fi
+}
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    echo "usage: $0 <active|inactive>"
+    exit 1
+elif [[ ! -z "$1" ]]; then
+    state="$1"
+else
+    idle=$(xprintidle)
+    if [ $idle -lt 60000 ]; then
+        state="active"
+    else
+        state="inactive"
+    fi
+    #session_state
+fi
+
+home_wifi="WooFi"
+nm_active=$(/usr/bin/nmcli -t -f name connection show --active)
+
+case ${nm_active} in
+    *"WooFi"*)
+        webhook_key="guYbNNzYQL6472I02s74ZhmO"
+        webhook_url="https://hass.sudo.is/api/webhook/amine-${webhook_key}"
+        ;;
+    *"BarkNet"*)
+        exit 2
+        ;;
+    *)
+        # exit and do nothing
+        exit 0
+        ;;
+esac
+
+if [[ "$state" == "active" ]]; then
+    data='{"state":true}'
+else
+    data='{"state":false}'
+fi
+
+if [[ "${DEBUG}" == "true" ]]; then
+    echo "state: ${state}"
+    echo "data: ${data}"
+    echo "url: $webhook_url"
+    echo
+    #echo "data: $json_state"
+    curl_opts="-i"
+else
+    curl_opts="-s -o /dev/null"
+fi
+
+echo "$(date -I): amine-active.sh running (state=\"$state\")" >>  /tmp/hass-active.log
+
+/usr/bin/curl \
+    ${curl_opts} \
+    -H "Content-Type: application/json" \
+    -X POST \
+    -d "${data}" \
+    $webhook_url

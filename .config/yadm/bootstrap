@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+
+set -e
+
+BASEDIR=$(dirname $(realpath "$0"))
+
+echo "[o] OS: $OSTYPE"
+if [[ "$OSTYPE" == "linux"* ]]; then
+    echo "[>] Linux tasks"
+    # Clean desktop, ~/.config/user-dirs.dirs sets XDG_DESKTOP_DIR  
+    mkdir -pv ~/.empty
+    chattr -fR +i ~/.empty
+fi
+
+
+if [[ ! -d "~/.local/share/yadm/private/.git" ]]; then
+    echo "[ ] cloning ben/private-dotfiles repo"
+    git -C ~/.local/share/yadm clone https://git.sudo.is/ben/private-dotfiles private
+fi
+
+echo "[ ] pulling ben/private-dotfiles repo"
+git -C ~/.local/share/yadm/private pull
+
+# On amine (fedora), pipx was currently installed with `dnf install pipx`
+# and pip is not installed
+# Can also install `python3-pip` first. 
+if python3 -m pip 2&>1  >/dev/null; then
+    echo "[ ] updating pip"
+    python3 -m pip install --user --upgrade pip
+    echo "[ ] installing: pipx, hatch"
+    python3 -m pip install --user --upgrade pipx
+    python3 -m pip install --user --upgrade hatch
+else 
+    echo "[o] looks like 'pip' is not installed on this system"
+    echo "    dnf install python3-pip"
+    echo "    apt install python3-pip"
+fi  
+
+# $BASEDIR/bootstrap.py
+

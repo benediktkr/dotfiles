@@ -1,0 +1,11 @@
+.zsh.d/care*
+.ssh/conf.d/care*
+.ssh/*
+!.ssh/*.pub
+!.ssh/*.pub\#\#*
+!.ssh/config
+.ssh/conf.d/
+.local/bin/overdrive.sh*
+
+
+

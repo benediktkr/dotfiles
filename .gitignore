@@ -1,0 +1,34 @@
+*~
+#*#
+*#*#
+.emacs.d/elpa/gnupg/
+.emacs.d/image-dired/
+
+
+framework/ectool/framework-ec
+
+private/
+.local/share/yadm/private
+
+# emacs
+.emacs.d/var/
+.emacs.d/bin/
+.emacs.d/custom.el
+.emacs.d/tramp
+.emacs.d/eln-cache/
+
+# vim
+*.swp
+.vim/.netrwhist
+
+.ssh/id_rsa
+.ssh/ed25519
+.ssh/id_ed25519
+.ssh/known_hosts
+.ssh/known_hosts*
+!.ssh/config
+!.ssh/*.pub
+!.ssh/*.pub\#\#*
+!.ssh/conf.d/*
+
+
