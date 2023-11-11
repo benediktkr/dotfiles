@@ -1,16 +1,21 @@
-# yadm-dotfiles
+# `dotfiles`
 
-[![Build Status](https://jenkins.sudo.is/buildStatus/icon?job=ben%2Fyadm-dotfiles%2Fmain&style=flat-square)](https://jenkins.sudo.is/job/ben/job/yadm-dotfiles/)
+[![Build Status](https://jenkins.sudo.is/buildStatus/icon?job=ben%2Fdotfiles%2Fmain&style=flat-square)](https://jenkins.sudo.is/job/ben/job/dotfiles/)
+![version](https://jenkins.sudo.is/buildStatus/icon?job=ben%2Fdotfiles%2Fmain&style=flat-square&status=${description}&subject=version&build=lastStable&color=blue)
+[![git](https://www.sudo.is/readmes/git.sudo.is-ben-dotfiles.svg)](https://git.sudo.is/ben/dotfiles)
+[![github](https://www.sudo.is/readmes/github-benediktkr.svg)](https://github.com/benediktkr/dotfiles)
 [![BSD-2-Clause](https://www.sudo.is/readmes/license-BSD-blue.svg)](LICENSE)
-![version](https://jenkins.sudo.is/buildStatus/icon?job=ben%2Fyadm-dotfiles%2Fmain&style=flat-square&status=${description}&subject=version&build=lastStable&color=blue)
-[![git](https://www.sudo.is/readmes/git.sudo.is-ben-blink1.svg)](https://git.sudo.is/ben/yadm-dotfiles)
-[![github](https://www.sudo.is/readmes/github-benediktkr.svg)](https://github.com/benediktkr/yadm-dotfiles)
+[![docs](https://www.sudo.is/readmes/docs.svg)](https://www.sudo.is/docs)
 [![matrix](https://www.sudo.is/readmes/matrix-ben-sudo.is.svg)](https://matrix.to/#/@ben:sudo.is)
 
+Here are Ben's dotfiles.
 
-Temporary repo for transitioning dotfiles to being managed by yadm
+![Leaf Dark](.local/share/backgrounds/Leaf_Dark.png)
 
-## Chicken and the egg
+The dotfiles are currently managed by [`yadm`](https://yadm.io). Files
+prior to switching to `yadm` are preserved in the branch `dotfiles`.
+
+## 🐣 Chicken and the egg
 
 Normally `yadm` is executed from `~/.local/bin/yadm`, which is managed
 by this repo.
@@ -25,3 +30,9 @@ chmod +x ~/tmp/yadm
 ~/tmp/yadm clone https://git.sudo.is/ben/yadm-dotfiles
 rm ~/tmp/yadm
 ```
+
+# Mirrors
+
+ * :gitea: git.sudo.is: [`ben/dotfiles`](https://git.sudo.is/ben/dotfiles)
+ * :github: github.com [`benediktkr/dotfiles`](https://github.com/benediktkr/dotfiles)
+ * bitbucket.org (private): [`benedikt/dotfiles`](https://bitbucket.org/benedikt/dotfiles)
