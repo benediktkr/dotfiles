@@ -17,10 +17,19 @@ fi
 if [[ ! -d "~/.local/share/yadm/private/.git" ]]; then
     echo "[ ] cloning ben/private-dotfiles repo"
     git -C ~/.local/share/yadm clone https://git.sudo.is/ben/private-dotfiles private
+else
+    echo "[ ] pulling ben/private-dotfiles repo"
+    git -C ~/.local/share/yadm/private pull
 fi
 
-echo "[ ] pulling ben/private-dotfiles repo"
-git -C ~/.local/share/yadm/private pull
+if [[ ! -d "~/.local/share/yadm/yadm-project/.git" ]]; then
+    echo "[ ] cloning yadm-project repo"
+    git -C ~/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
+else
+    echo "[ ] pulling yadm-project repo"
+    git -C ~/.local/share/yadm/yadm-project pull
+fi
+
 
 # On amine (fedora), pipx was currently installed with `dnf install pipx`
 # and pip is not installed
