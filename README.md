@@ -23,7 +23,7 @@ by this repo.
 So the first time cloning the repo on a new system, we have a chicken and
 egg problem
 
-```console
+```shell
 mkdir -p ~/tmp
 wget https://github.com/TheLocehiliosan/yadm/raw/master/yadm -O ~/tmp/yadm
 chmod +x ~/tmp/yadm
