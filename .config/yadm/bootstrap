@@ -3,43 +3,59 @@
 
 set -e
 
+# NOTE: use $HOME instead of ~ in this script, as it doesnt get expanded correctly
+
 BASEDIR=$(dirname $(realpath "$0"))
+
+echo "$BASEDIR"
 
 echo "[o] OS: $OSTYPE"
 if [[ "$OSTYPE" == "linux"* ]]; then
     echo "[>] Linux tasks"
-    # Clean desktop, ~/.config/user-dirs.dirs sets XDG_DESKTOP_DIR  
-    mkdir -pv ~/.empty
-    chattr -fR +i ~/.empty
+    
+    # Clean desktop, $HOME/.config/user-dirs.dirs sets XDG_DESKTOP_DIR  
+    mkdir -pv $HOME/.empty
+    # chattr returns non-zero if its already set 
+    sudo chattr -R +i $HOME/.empty 
 fi
 
-
-if [[ ! -d "~/.local/share/yadm/private/.git" ]]; then
-    echo "[ ] cloning ben/private-dotfiles repo"
-    git -C ~/.local/share/yadm clone https://git.sudo.is/ben/private-dotfiles private
+if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
+    echo "[!] cloning yadm-project repo"
+    git -C $HOME/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
 else
-    echo "[ ] pulling ben/private-dotfiles repo"
-    git -C ~/.local/share/yadm/private pull
+    echo "[>] pulling yadm-project repo"
+    echo -n "    "
+    git -C $HOME/.local/share/yadm/yadm-project pull
 fi
 
-if [[ ! -d "~/.local/share/yadm/yadm-project/.git" ]]; then
-    echo "[ ] cloning yadm-project repo"
-    git -C ~/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
+if [[ ! -d "$HOME/.local/share/yadm/private/.git" ]]; then
+    echo "[!] cloning ben/private-dotfiles repo"
+    git -C $HOME/.local/share/yadm clone https://git.sudo.is/ben/private-dotfiles private
 else
-    echo "[ ] pulling yadm-project repo"
-    git -C ~/.local/share/yadm/yadm-project pull
+    echo "[>] pulling ben/private-dotfiles repo"
+    echo -n "    "
+    git -C $HOME/.local/share/yadm/private pull
 fi
 
+if [[ ! -d "$HOME/.local/share/yadm/ohmyzsh/.git" ]]; then
+    echo "[!] cloning ohmyzsh repo"
+    git -C $HOME/.local/share/yadm clone https://github.com/ohmyzsh/ohmyzsh ohmyzsh
+else
+    echo "[>] pulling ohmyzsh repo"
+    echo -n "    "
+    git -C $HOME/.local/share/yadm/private pull
+fi
 
 # On amine (fedora), pipx was currently installed with `dnf install pipx`
 # and pip is not installed
 # Can also install `python3-pip` first. 
 if python3 -m pip 2&>1  >/dev/null; then
-    echo "[ ] updating pip"
-    python3 -m pip install --user --upgrade pip
-    echo "[ ] installing: pipx, hatch"
-    python3 -m pip install --user --upgrade pipx
-    python3 -m pip install --user --upgrade hatch
+    #echo "[ ] updating pip"
+    #python3 -m pip install --user --upgrade pip
+    #echo "[ ] installing: pipx, hatch"
+    #python3 -m pip install --user --upgrade pipx
+    #python3 -m pip install --user --upgrade hatch
+    echo "[ ] 'pip' is installed on this system"
 else 
     echo "[o] looks like 'pip' is not installed on this system"
     echo "    dnf install python3-pip"
