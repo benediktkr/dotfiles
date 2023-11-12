@@ -19,6 +19,11 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     sudo chattr -R +i $HOME/.empty 
 fi
 
+if [[ -f "/etc/tlp.conf" ]]; then
+    echo "[!] sudo cp ~/.config/tlp.conf /etc/tlp.conf"
+    sudo cp $HOME/.config/tlp/tlp.conf /etc/tlp.conf
+fi
+
 if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
     echo "[!] cloning yadm-project repo"
     git -C $HOME/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
