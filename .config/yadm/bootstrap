@@ -7,12 +7,15 @@ set -e
 
 BASEDIR=$(dirname $(realpath "$0"))
 
-echo "$BASEDIR"
+echo "[ ] BASEDIR: $BASEDIR"
+
 
 echo "[o] OS: $OSTYPE"
 if [[ "$OSTYPE" == "linux"* ]]; then
     echo "[>] Linux tasks"
     
+    # XDG dirs should exist as defined in $HOME/.config/user-dirs.dirs
+    mkdir -pv $HOME/docs $HOME/photos
     # Clean desktop, $HOME/.config/user-dirs.dirs sets XDG_DESKTOP_DIR  
     mkdir -pv $HOME/.empty
     # chattr returns non-zero if its already set 
