@@ -10,7 +10,7 @@ ViewFont=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
 IconSize=22
 PreviewSize=32
 UseSystemFont=false
-ViewFont=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
+ViewFont=Noto Sans Mono,14,-1,5,50,0,0,0,0,0
 
 [General]
 ConfirmClosingMultipleTabs=false
