@@ -1,7 +1,8 @@
 unset MAILCHECK || true
 
-if [[ -d "${HOME}/.yadm/share/private" ]]; then
-   source .local/share/yadm/private/zsh.d/care-env.sh
+if [[ -d "${HOME}/.local/share/private" ]]; then
+    PRIVATE_DOTFILES="${HOME}/.local/share/private"
+    source ${HOME}/.local/share/private/zsh.d/care-env.sh
 fi
 
 if [[ -n "${CARE_ENV}" ]]; then
@@ -20,7 +21,7 @@ fi
 
 # This might need different handling on systems without yadm
 ZSH_CUSTOM="${HOME}/.zsh.d"
-OMZSH="${HOME}/.local/share/yadm/ohmyzsh"
+OMZSH="${HOME}/.local/share/ohmyzsh"
 
 SSH_AGENT_ENVFILE="${HOME}/.agent-ssh.env"
 
@@ -78,14 +79,14 @@ export EDITOR="vim"
 # gitdir: ../../.git/modules/zsh/.oh-my-zsh
 #if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
 #    echo "oh-my-zsh submodule needs to be initialized"
-#    git -C $DOTFILES submodule update --init  --recursive 
+#    git -C $DOTFILES submodule update --init  --recursive
 $fi
 
 if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
     ZSH_THEME="jreese2"
 
-    source ${HOME}/.local/share/yadm/private/zsh.d/caredotcom.sh
+    source ${PRIVATE_DOTFILES}/zsh.d/caredotcom.sh
 
     # set colors for jreese2
     export PROMPT_HOSTNAME=$CARE_ENV
@@ -117,7 +118,7 @@ else
     else
         if [[ "${OSTYPE}" == "darwin"* ]]; then
             PROMPT_COLOR="magenta"
-        fi  
+        fi
         ZSH_THEME="jreese2"
     fi
     if [[ -d "$HOME/.cargo" ]]; then
