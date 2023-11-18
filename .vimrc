@@ -54,5 +54,11 @@ au BufNewFile,BufRead *.sh.j2 setf sh
 " always remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
+" jump to last position in a file
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ endif
+
 " normal mode key bindigs
 nnoremap <esc>l :set relativenumber!<cr>:set number!<cr>
