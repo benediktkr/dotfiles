@@ -12,10 +12,10 @@ elif [[ -d "/meta" || -d "/sdf" ]]; then
 else
     ENV="sudo.is"
     # Might need better handling for the systems where dotfiles are not managed by yadm
-    if [[ ! -d "${HOME}/.local/share/yadm/repo.git" && -d "/srv/dotfiles" ]]; then
-        SUDO_ENV="server"
-    else
+    if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" ]]; then
         SUDO_ENV="shell"
+    else
+        SUDO_ENV="server"
     fi
 fi
 
