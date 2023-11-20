@@ -9,6 +9,7 @@ framework/ectool/framework-ec
 
 private/
 .local/share/yadm/private
+.local/share/private
 
 # emacs
 .emacs.d/var/
