@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# source:
+# https://github.com/chbrown/overdrive
+
 set -e # exit immediately on first error
 set -o pipefail # propagate intermediate pipeline errors
 
