@@ -27,7 +27,7 @@ egg problem
 mkdir -p ~/tmp
 wget https://github.com/TheLocehiliosan/yadm/raw/master/yadm -O ~/tmp/yadm
 chmod +x ~/tmp/yadm
-~/tmp/yadm clone https://git.sudo.is/ben/yadm-dotfiles
+~/tmp/yadm clone https://git.sudo.is/ben/dotfiles
 rm ~/tmp/yadm
 ```
 
