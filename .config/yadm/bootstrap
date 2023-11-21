@@ -28,28 +28,31 @@ if [[ -f "/etc/tlp.conf" ]]; then
 fi
 
 if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
-    echo "[!] cloning yadm-project repo"
+    echo "[!] Cloning yadm-project repo"
     git -C $HOME/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
 else
-    echo "[>] pulling yadm-project repo"
+    echo "[<] Pulling yadm-project repo"
     echo -n "    "
     git -C $HOME/.local/share/yadm/yadm-project pull
 fi
 
 if [[ ! -d "$HOME/.local/share/private/.git" ]]; then
-    echo "[!] cloning ben/private-dotfiles repo"
+    echo "[!] Cloning ben/private-dotfiles repo"
     git -C $HOME/.local/share clone https://git.sudo.is/ben/private-dotfiles private
 else
-    echo "[>] pulling ben/private-dotfiles repo"
+    echo "[<] Pulling ben/private-dotfiles repo"
     echo -n "    "
     git -C $HOME/.local/share/private pull
+    echo "[>] Pushing ben/private-dotfiles repo"
+    echo -n "    "
+    git -C $HOME/.local/share/private push
 fi
 
 if [[ ! -d "$HOME/.local/share/ohmyzsh/.git" ]]; then
-    echo "[!] cloning ohmyzsh repo"
+    echo "[!] Cloning ohmyzsh repo"
     git -C $HOME/.local/share clone https://github.com/ohmyzsh/ohmyzsh ohmyzsh
 else
-    echo "[>] pulling ohmyzsh repo"
+    echo "[<] Pulling ohmyzsh repo"
     echo -n "    "
     git -C $HOME/.local/share/private pull
 fi
