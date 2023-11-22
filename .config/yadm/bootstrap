@@ -54,7 +54,7 @@ if [[ ! -d "$HOME/.local/share/ohmyzsh/.git" ]]; then
 else
     echo "[<] Pulling ohmyzsh repo"
     echo -n "    "
-    git -C $HOME/.local/share/private pull
+    git -C $HOME/.local/share/ohmyzsh pull
 fi
 
 # On amine (fedora), pipx was currently installed with `dnf install pipx`
