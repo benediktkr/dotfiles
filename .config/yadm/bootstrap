@@ -6,8 +6,19 @@ set -e
 # NOTE: use $HOME instead of ~ in this script, as it doesnt get expanded correctly
 
 BASEDIR=$(dirname $(realpath "$0"))
+YADM_DIR=$BASEDIR
+YADM_DATA="$HOME/.local/share/yadm"
 
-echo "[ ] BASEDIR: $BASEDIR"
+echo "[ ] YADM_DIR: $YADM_DIR"
+echo "[ ] YADM_DATA: $YADM_DATA"
+
+# for dir in $YADM_DIR $YADM_DATA; do
+#     echo "[ ] ls -1 $dir"
+#     for item in $(ls -1 --color=always $dir); do
+#         echo "    $item";
+#     done
+# done
+
 echo "[ ] OS: $OSTYPE"
 
 if [[ "$OSTYPE" == "linux"* ]]; then
