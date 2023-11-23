@@ -8,11 +8,10 @@ set -e
 BASEDIR=$(dirname $(realpath "$0"))
 
 echo "[ ] BASEDIR: $BASEDIR"
+echo "[ ] OS: $OSTYPE"
 
-
-echo "[o] OS: $OSTYPE"
 if [[ "$OSTYPE" == "linux"* ]]; then
-    echo "[>] Linux tasks"
+    echo "   [>] Linux tasks"
 
     # XDG dirs should exist as defined in $HOME/.config/user-dirs.dirs
     mkdir -pv $HOME/docs $HOME/photos
@@ -20,40 +19,41 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     mkdir -pv $HOME/.empty
     # chattr returns non-zero if its already set
     sudo chattr -R +i $HOME/.empty
+    if [[ -f "/etc/tlp.conf" ]]; then
+        echo "   [!] sudo cp ~/.config/tlp.conf /etc/tlp.conf"
+        sudo cp $HOME/.config/tlp/tlp.conf /etc/tlp.conf
+    fi
 fi
 
-if [[ -f "/etc/tlp.conf" ]]; then
-    echo "[!] sudo cp ~/.config/tlp.conf /etc/tlp.conf"
-    sudo cp $HOME/.config/tlp/tlp.conf /etc/tlp.conf
-fi
 
+echo "[ ] git repos"
 if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
-    echo "[!] Cloning yadm-project repo"
+    echo "   [<] Cloning yadm-project repo"
     git -C $HOME/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
 else
-    echo "[<] Pulling yadm-project repo"
-    echo -n "    "
+    echo "   [<] Pulling yadm-project repo"
+    echo -n "       "
     git -C $HOME/.local/share/yadm/yadm-project pull
 fi
 
 if [[ ! -d "$HOME/.local/share/private/.git" ]]; then
-    echo "[!] Cloning ben/private-dotfiles repo"
+    echo "   [!] Cloning ben/private-dotfiles repo"
     git -C $HOME/.local/share clone https://git.sudo.is/ben/private-dotfiles private
 else
-    echo "[<] Pulling ben/private-dotfiles repo"
-    echo -n "    "
+    echo "   [<] Pulling ben/private-dotfiles repo"
+    echo -n "       "
     git -C $HOME/.local/share/private pull
-    echo "[>] Pushing ben/private-dotfiles repo"
-    echo -n "    "
+    echo "   [>] Pushing ben/private-dotfiles repo"
+    echo -n "       "
     git -C $HOME/.local/share/private push
 fi
 
 if [[ ! -d "$HOME/.local/share/ohmyzsh/.git" ]]; then
-    echo "[!] Cloning ohmyzsh repo"
+    echo "   [!] Cloning ohmyzsh repo"
     git -C $HOME/.local/share clone https://github.com/ohmyzsh/ohmyzsh ohmyzsh
 else
-    echo "[<] Pulling ohmyzsh repo"
-    echo -n "    "
+    echo "   [<] Pulling ohmyzsh repo"
+    echo -n "       "
     git -C $HOME/.local/share/ohmyzsh pull
 fi
 
@@ -68,7 +68,7 @@ if python3 -m pip 2&>1  >/dev/null; then
     #python3 -m pip install --user --upgrade hatch
     echo "[ ] 'pip' is installed on this system"
 else
-    echo "[o] looks like 'pip' is not installed on this system"
+    echo "[ ] looks like 'pip' is not installed on this system"
     echo "    dnf install python3-pip"
     echo "    apt install python3-pip"
 fi
