@@ -22,6 +22,9 @@ private/
 *.swp
 .vim/.netrwhist
 
+# mac
+.config/iterm2/AppSupport
+
 .ssh/id_rsa
 .ssh/ed25519
 .ssh/id_ed25519
