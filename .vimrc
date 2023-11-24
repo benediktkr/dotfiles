@@ -50,7 +50,7 @@ set background=dark
 "let g:colors_override = 'soft'
 "let g:everforest_better_performance='1'
 let g:everforest_background = 'soft'
-let g:everforest_diesable_italic_commenet='1'
+let g:everforest_disable_italic_comment='1'
 colorscheme everforest
 
 " set syntax highlighting for files with non-standard names
