@@ -2,7 +2,6 @@
 " must be first
 set nocompatible
 
-set background=dark
 
 " turn off vim's backup files and other annoying settings
 set nobackup
@@ -20,7 +19,6 @@ set backspace=indent,eol,start
 
 " show a few lines around the cursor while moving around
 set scrolloff=10
-
 
 " tabs should be spaces
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
@@ -44,6 +42,16 @@ set laststatus=2
 hi StatusLine ctermfg=DarkBlue ctermbg=Black
 au InsertLeave * hi StatusLine term=reverse ctermfg=DarkBlue ctermbg=Black
 au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
+
+set background=dark
+
+" load everforest colorscheme (after StatusLine colors are set, overrides
+" those)
+"let g:colors_override = 'soft'
+"let g:everforest_better_performance='1'
+let g:everforest_background = 'soft'
+let g:everforest_diesable_italic_commenet='1'
+colorscheme everforest
 
 " set syntax highlighting for files with non-standard names
 "  from: https://ls3.io/posts/jenkinsfile_vim_highlighting/

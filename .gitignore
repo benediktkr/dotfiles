@@ -21,6 +21,7 @@ private/
 # vim
 *.swp
 .vim/.netrwhist
+.vim/after
 
 # mac
 .config/iterm2/AppSupport
