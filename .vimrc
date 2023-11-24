@@ -10,8 +10,10 @@ set noswapfile
 set noerrorbells
 set nowrap
 
-" highlight searching
+" searching: highlight, match while typing, case-insensitive
 set hlsearch
+set incsearch
+set ignorecase
 
 " disables backspace in normal mode
 set backspace=indent,eol,start
