@@ -17,7 +17,7 @@ set hlsearch
 set backspace=indent,eol,start
 
 " show a few lines around the cursor while moving around
-set scrolloff=5
+set scrolloff=10
 
 
 " tabs should be spaces
@@ -30,7 +30,7 @@ set ai
 syntax on
 filetype on
 filetype plugin on
-filetype indent on
+"filetype indent on
 
 " show relative line numbers, and absolute line number current line
 set number
