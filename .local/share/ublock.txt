@@ -1,3 +1,19 @@
+! 2023-10-20 https://www.reddit.com
+www.reddit.com##.n4AaEF3hCCYK665NCiJr8._3RhWPJfjpsEoBw52x0fQp2.trdUvQxqQHHqQKOUBcgnr
+
+! 2023-10-22 https://falafel-sababa.metro.rest
+||cdn.website.dish.co/media/07/06/1519734/Falafel-Sababa-2019-09-01-18-27-39.jpg$image
+||cdn.website.dish.co/media/07/06/1519734/Falafel-Sababa-2019-09-01-18-27-39.jpg$image
+||cdn.website.dish.co/media/07/06/1519734/Falafel-Sababa-2019-09-01-18-27-39.jpg$image
+||cdn.website.dish.co/media/07/06/1519734/Falafel-Sababa-2019-09-01-18-27-39.jpg$image
+||cdn.website.dish.co/media/07/06/1519734/Falafel-Sababa-2019-09-01-18-27-39.jpg$image
+
+! 2023-10-28 https://www.bbc.com
+||cdn.privacy-mgmt.com/index.html?message_id=783538&consentUUID=null&requestUUID=7cdc2052-137d-428a-baa5-70f588c378f3&preload_message=true&hasCsp=true&version=v1&consentLanguage=en$subdocument
+||cdn.privacy-mgmt.com/index.html?message_id=783538&consentUUID=null&requestUUID=7cdc2052-137d-428a-baa5-70f588c378f3&preload_message=true&hasCsp=true&version=v1&consentLanguage=en$subdocument
+||cdn.privacy-mgmt.com/$subdocument
+
+
 ! 2023-10-22 https://stackoverflow.com
 stackoverflow.com##.js-consent-banner.r16.l16.b16.bar-lg.fc-white.bg-black-600.sm\:p16.p32.sm\:w-auto.ws4.z-nav-fixed.ps-fixed.ff-sans
 
@@ -31,7 +47,28 @@ teufel.de##html:style(overflow: auto !important;)
 ! 2023-10-27 https://www.reddit.com
 www.reddit.com##.cookie-infobar.with-btn.with-icon.md-container-small.reddit-infobar
 
+! 2023-10-20 https://www.reddit.com
+www.reddit.com##.n4AaEF3hCCYK665NCiJr8._3RhWPJfjpsEoBw52x0fQp2.trdUvQxqQHHqQKOUBcgnr
+
 ! 2023-10-27 https://www.idealo.de
 ||cdn.privacy-mgmt.com/index.html?message_id=818331&consentUUID=undefined&preload_message=true&hasCsp=true&version=v1&consent_origin=https%3A%2F%2Fcdn.privacy-mgmt.com%2Fconsent%2Ftcfv2&mms_origin=https%3A%2F%2Fcdn.privacy-mgmt.com%2Fmms%2Fv2&consentLanguage=de$subdocument
+
+! 2023-11-10 https://ubuntu.com
+ubuntu.com##.p-modal
+
+! 2023-11-13 https://www.medimax.de
+www.medimax.de##.cookies-overlay-dialog
+www.medimax.de##.cookies-overlay-underlay
+www.medimax.de##body,html:style(overflow:auto!important)
+
+! 2023-11-20 https://www.tagesspiegel.de
+||cmp-sp.tagesspiegel.de/index.html?message_id=927618&consentUUID=undefined&preload_message=true&hasCsp=true&version=v1&consent_origin=https%3A%2F%2Fcmp-sp.tagesspiegel.de%2Fconsent%2Ftcfv2&mms_origin=https%3A%2F%2Fcmp-sp.tagesspiegel.de%2Fmms%2Fv2$subdocument
+||cmp-sp.tagesspiegel.de/$subdocument
+
+! 2023-11-25 https://www.kleinanzeigen.de
+www.kleinanzeigen.de##.gdprBannerBackdrop.jsx-351934413
+
+
+
 
 
