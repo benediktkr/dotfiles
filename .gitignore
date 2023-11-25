@@ -25,6 +25,7 @@ private/
 
 # mac
 .config/iterm2/AppSupport
+.DS_Store
 
 .ssh/id_rsa
 .ssh/ed25519
