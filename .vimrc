@@ -2,12 +2,16 @@
 " must be first
 set nocompatible
 
-
 " turn off vim's backup files and other annoying settings
 set nobackup
 set noswapfile
 set noerrorbells
 set nowrap
+
+" prevent delays when switching to insert mode (in default /etc/vimrc on
+" fedora/amzn)
+set timeout
+set timeoutlen=100
 
 " searching: highlight, match while typing, case-insensitive
 set hlsearch
