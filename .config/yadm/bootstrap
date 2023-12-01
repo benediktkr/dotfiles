@@ -68,6 +68,11 @@ else
     git -C $HOME/.local/share/ohmyzsh pull
 fi
 
+if [[ -d "$HOME/projects/infra-private" ]]; then
+    echo "   [<] Pulling infra-private"
+    git -C $HOME/projects/infra-private pull
+fi
+
 # On amine (fedora), pipx was currently installed with `dnf install pipx`
 # and pip is not installed
 # Can also install `python3-pip` first.
