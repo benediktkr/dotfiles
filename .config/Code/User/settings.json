@@ -10,7 +10,6 @@
     ],
     "terminal.external.linuxExec": "xterm-256color",
     "workbench.sideBar.location": "right",
-    "workbench.activityBar.visible": false,
     "editor.fontSize": 13,
     //"terminal.integrated.rightClickBehavior": "paste",
     "terminal.integrated.altClickMovesCursor": false,
