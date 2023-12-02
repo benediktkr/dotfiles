@@ -33,6 +33,8 @@ Places Icons Static Size=22
 [KPropertiesDialog]
 2256x1504 screen: Height=616
 2256x1504 screen: Width=525
+2560x1600 screen: Height=588
+2560x1600 screen: Width=479
 
 [MainWindow]
 ToolBarsMovable=Disabled
