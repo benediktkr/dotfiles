@@ -40,6 +40,9 @@ filetype plugin on
 set number
 set relativenumber
 
+" default to using path of the currently open file:
+set autochdir
+
 " change colors when switching modes
 "  from: https://vim.fandom.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
 set laststatus=2
