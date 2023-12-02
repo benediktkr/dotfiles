@@ -9,6 +9,13 @@ BASEDIR=$(dirname $(realpath "$0"))
 YADM_DIR=$BASEDIR
 YADM_DATA="$HOME/.local/share/yadm"
 
+
+if [[ "$(id -u -n)" == "ben" ]]; then
+    #echo "[ ] rclone.conf"
+    #cat $HOME/.local/share/private/.config/rclone/rclone.conf > $HOME/.config/rclone/rclone.conf
+    PRIVATE=https://git.sudo.is/ben/private-dotfiles
+fi
+
 echo "[ ] YADM_DIR: $YADM_DIR"
 echo "[ ] YADM_DATA: $YADM_DATA"
 
@@ -59,10 +66,6 @@ else
     git -C $HOME/.local/share/private push
 fi
 
-if [[ "$(id -u -n)" == "ben" ]]; then
-    echo "[ ] rclone.conf"
-    cat $HOME/.local/share/private/.config/rclone/rclone.conf > $HOME/.config/rclone/rclone.conf
-fi
 
 if [[ ! -d "$HOME/.local/share/ohmyzsh/.git" ]]; then
     echo "   [!] Cloning ohmyzsh repo"
