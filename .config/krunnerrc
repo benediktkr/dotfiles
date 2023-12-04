@@ -2,7 +2,7 @@
 migrated=true
 
 [Plugins]
-DictionaryEnabled=false
+DictionaryEnabled=true
 PowerDevilEnabled=false
 appstreamEnabled=false
 baloosearchEnabled=false
