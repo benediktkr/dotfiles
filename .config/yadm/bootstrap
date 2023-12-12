@@ -46,22 +46,22 @@ fi
 
 echo "[ ] git repos"
 if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
-    echo "   [<] Cloning yadm-project repo"
+    echo "   [<] Cloning: yadm-project"
     git -C $HOME/.local/share/yadm clone https://github.com/TheLocehiliosan/yadm.git yadm-project
 else
-    echo "   [<] Pulling yadm-project repo"
+    echo "   [<] Pulling: yadm-project"
     echo -n "       "
     git -C $HOME/.local/share/yadm/yadm-project pull
 fi
 
 if [[ ! -d "$HOME/.local/share/private/.git" ]]; then
-    echo "   [!] Cloning ben/private-dotfiles repo"
+    echo "   [!] Cloning: ben/private-dotfiles"
     git -C $HOME/.local/share clone https://git.sudo.is/ben/private-dotfiles private
 else
-    echo "   [<] Pulling ben/private-dotfiles repo"
+    echo "   [<] Pulling: ben/private-dotfiles"
     echo -n "       "
     git -C $HOME/.local/share/private pull
-    echo "   [>] Pushing ben/private-dotfiles repo"
+    echo "   [>] Pushing: ben/private-dotfiles"
     echo -n "       "
     git -C $HOME/.local/share/private push
 fi
@@ -71,14 +71,16 @@ if [[ ! -d "$HOME/.local/share/ohmyzsh/.git" ]]; then
     echo "   [!] Cloning ohmyzsh repo"
     git -C $HOME/.local/share clone https://github.com/ohmyzsh/ohmyzsh ohmyzsh
 else
-    echo "   [<] Pulling ohmyzsh repo"
+    echo "   [<] Pulling: ohmyzsh"
     echo -n "       "
     git -C $HOME/.local/share/ohmyzsh pull
 fi
 
 if [[ -d "$HOME/projects/infra-private" ]]; then
-    echo "   [<] Pulling infra-private"
+    echo "   [<] Pulling: infra-private"
     git -C $HOME/projects/infra-private pull
+else
+    echo "   [ ] Ignoring: infra-private"
 fi
 
 # On amine (fedora), pipx was currently installed with `dnf install pipx`
