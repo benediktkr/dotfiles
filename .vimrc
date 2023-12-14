@@ -67,6 +67,7 @@ au BufNewFile,BufRead *.py.j2 setf python
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
+au BufNewFile,BufRead *.conf.j2 setf nginx
 
 " always remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
