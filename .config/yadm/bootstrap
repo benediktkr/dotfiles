@@ -9,11 +9,11 @@ BASEDIR=$(dirname $(realpath "$0"))
 YADM_DIR=$BASEDIR
 YADM_DATA="$HOME/.local/share/yadm"
 
+REMOTE_PRIVATE=git@git.sudo.is:ben/private-dotfiles.git
 
 if [[ "$(id -u -n)" == "ben" ]]; then
     #echo "[ ] rclone.conf"
-    #cat $HOME/.local/share/private/.config/rclone/rclone.conf > $HOME/.config/rclone/rclone.conf
-    PRIVATE=https://git.sudo.is/ben/private-dotfiles
+    ENV="sudo.is"
 fi
 
 echo "[ ] YADM_DIR: $YADM_DIR"
@@ -55,8 +55,8 @@ else
 fi
 
 if [[ ! -d "$HOME/.local/share/private/.git" ]]; then
-    echo "   [!] Cloning: ben/private-dotfiles"
-    git -C $HOME/.local/share clone https://git.sudo.is/ben/private-dotfiles private
+    echo "   [!] Cloning: $REMOTE_PRIVATE"
+    git -C $HOME/.local/share clone $REMOTE_PRIVATE private
 else
     echo "   [<] Pulling: ben/private-dotfiles"
     echo -n "       "
