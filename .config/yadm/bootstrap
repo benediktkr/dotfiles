@@ -76,7 +76,15 @@ else
     git -C $HOME/.local/share/ohmyzsh pull
 fi
 
-if [[ -d "$HOME/projects/infra-private" ]]; then
+if [[ -d "$HOME/projects/infra/.git" ]]; then
+    echo "   [<] Pulling: infra"
+    git -C $HOME/projects/infra branch --set-upstream-to=origin/b b > /dev/null
+    git -C $HOME/projects/infra pull
+else
+    echo "   [ ] Ignoring: infra"
+fi
+
+if [[ -d "$HOME/projects/infra-private/.git" ]]; then
     echo "   [<] Pulling: infra-private"
     git -C $HOME/projects/infra-private pull
 else
