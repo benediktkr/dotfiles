@@ -15,7 +15,7 @@
     defaultBranch = main
 
 [alias]
-    n = checkout -b   
+    n = checkout -b
     b = branch
     p = pull
     ci = commit
@@ -39,7 +39,7 @@
 [submodule]
     recurse = false
 
-[credential] 
+[credential]
     helper = store
 
 
