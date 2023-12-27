@@ -72,6 +72,9 @@ alias nomail="echo 'd *' | mail -N"
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
 
+alias emacs='~/.local/emacs/bin/emacs -nw'
+alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
+
 export EDITOR="vim"
 
 # in submodules, .git is a file:
@@ -95,8 +98,6 @@ if [[ "$ENV" == "care.com" ]]; then
     ENV_COLOR=$color_green
 
     alias noflag="unset RPROMPT"
-    alias emacs='~/.local/emacs/bin/emacs -nw'
-    alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
 
     powerup () {
         /usr/local/bin/powerup $* > ${HOME}/.aws/powerup.env
@@ -132,8 +133,6 @@ else
     alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
     alias nc-occ='docker exec -it --user www-data nextcloud php occ'
     alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
-    alias emacs="emacs -nw"
-    alias emacsclient="emacsclient -nw"
 fi
 motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
 
@@ -146,7 +145,7 @@ if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
     export SSH_AGENT_PID
 fi
 
-# -S : is a socket file
+# -S: is a socket file
 if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PID}" >/dev/null`; then
     motd_ssh_agent=$(while IFS= read -r line; do
         echo -e "${color_purple}ssh-agent${color_nc}   ${color_orange}${line}${color_nc}"
@@ -189,10 +188,6 @@ else
     SAVEHIST=10000
     HISTFILE=~/.zsh_history
 fi
-
-
-
-
 
 
 ## these are almost never used
