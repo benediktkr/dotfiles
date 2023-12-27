@@ -1,23 +1,36 @@
 unset MAILCHECK || true
 
-if [[ -d "${HOME}/.local/share/private" ]]; then
-    PRIVATE_DOTFILES="${HOME}/.local/share/private"
-    source ${HOME}/.local/share/private/zsh.d/care-env.sh
-fi
+case $(id -u -n) in
+    benedikt.kristinsson)
+        ENV="care.com"
+        PRIVATE_DOTFILES_REMOTE="https://git.sudo.is/ben/dotfiles-private"
+        PRIVATE_DOTFILES="$HOME/.local/share/private"
+        source $PRIVATE_DOTFILES/zsh.d/care-env.sh
+        ;;
+    ben)
+        ENV="sudo.is"
+        if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" ]]; then
+            SUDO_ENV="shell"
+        else
+            SUDO_ENV="server"
+        fi
+        ;;
+    *)
+        ENV="unknown"
+        ;;
+esac
 
-if [[ -n "${CARE_ENV}" ]]; then
-    ENV="care.com"
-elif [[ -d "/meta" || -d "/sdf" ]]; then
-    ENV="sdf.org"
-else
-    ENV="sudo.is"
-    # Might need better handling for the systems where dotfiles are not managed by yadm
-    if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" ]]; then
-        SUDO_ENV="shell"
-    else
-        SUDO_ENV="server"
-    fi
-fi
+#case $HOME in
+#    /home/benedikt.kristinsson)
+#        ENV="care.com"
+#        ;;
+#    /home/ben)
+#        ENV="care.com"
+#        ;;
+#    *)
+#        ENV="unknown"
+#        ;;
+#esac
 
 # This might need different handling on systems without yadm
 ZSH_CUSTOM="${HOME}/.zsh.d"
