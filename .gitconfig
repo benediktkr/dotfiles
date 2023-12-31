@@ -22,7 +22,7 @@
     st = status
     pa = push --atomic
     br = rev-parse --abbrev-ref HEAD
-    l = log -2
+    l = log -3
 
     graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
 
