@@ -83,3 +83,7 @@ autocmd BufReadPost *
 " normal mode key bindigs
 nnoremap 1 <c-w>w
 nnoremap 2 :set relativenumber!<cr>:set number!<cr>
+
+" terminal mode key bindings
+tnoremap <esc> <c-\><c-n>
+tnoremap <c-esc> <esc>
