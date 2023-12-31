@@ -81,5 +81,5 @@ autocmd BufReadPost *
 \ endif
 
 " normal mode key bindigs
+nnoremap 1 <c-w>w
 nnoremap 2 :set relativenumber!<cr>:set number!<cr>
-nnoremap 3 <c-w>w
