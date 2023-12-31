@@ -3,9 +3,10 @@ migrated=true
 
 [Plugins]
 DictionaryEnabled=true
-PowerDevilEnabled=false
+PIM Contacts Search RunnerEnabled=false
+PowerDevilEnabled=true
 appstreamEnabled=false
-baloosearchEnabled=false
+baloosearchEnabled=true
 bookmarksEnabled=false
 browserhistoryEnabled=false
 browsertabsEnabled=false
@@ -15,7 +16,7 @@ helprunnerEnabled=false
 katesessionsEnabled=false
 konsoleprofilesEnabled=false
 krunner_killEnabled=false
-krunner_spellcheckEnabled=false
+krunner_spellcheckEnabled=true
 kwinEnabled=false
 marbleEnabled=false
 org.kde.activities2Enabled=false
