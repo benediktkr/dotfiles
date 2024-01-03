@@ -70,6 +70,11 @@ au BufNewFile,BufRead *.euw setf yaml
 au BufNewFile,BufRead *.use setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
 au BufNewFile,BufRead *.conf.j2 setf nginx
+" jinja syntax isnt built into vim, and is read from ~/.vim/syntax/jinja.vim
+" using 'setf jinja' doesnt work since that has not been loaded yet (probably)
+" but if 'filetype' has been set, the syntax highlight gets applied when it
+" has been loaded.
+au BufNewFile,BufRead *.hbs set filetype=jinja
 
 " always remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e

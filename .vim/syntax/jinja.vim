@@ -1,10 +1,10 @@
-" downloaded from: https://www.vim.org/scripts/script.php?script_id=1856
-
 " Vim syntax file
 " Language:	Jinja template
 " Maintainer:	Armin Ronacher <armin.ronacher@active-4.com>
 " Last Change:	2008 May 9
 " Version:      1.1
+"
+" downloaded from: https://www.vim.org/scripts/script.php?script_id=1856
 "
 " Known Bugs:
 "   because of odd limitations dicts and the modulo operator
