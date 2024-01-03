@@ -37,8 +37,10 @@ filetype plugin on
 "filetype indent on
 
 " show relative line numbers, and absolute line number current line
-set number
-set relativenumber
+" uncommented so it doensnt get loaded as default, toggled with the
+" setnnoremap key binding
+"set number
+"set relativenumber
 
 " default to using path of the currently open file:
 set autochdir
