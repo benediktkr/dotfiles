@@ -143,6 +143,8 @@ else
     alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
     alias dl-audio-keep='yt-dlp --keep-video --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
 
+    alias stopssh='ssh -O stop $(ls -1 /tmp/ssh-cm-ben*| cut -d"-" -f4 >/dev/stdout >/dev/stderr)'
+
     alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
     alias nc-occ='docker exec -it --user www-data nextcloud php occ'
     alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
