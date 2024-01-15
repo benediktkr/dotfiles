@@ -1,0 +1,5 @@
+[yadm]
+	auto-alt = true
+	auto-perms = true
+	gpg-perms = true
+	ssh-perms = true
