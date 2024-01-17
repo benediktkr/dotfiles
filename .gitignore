@@ -37,5 +37,6 @@ private/
 !.ssh/*.pub
 !.ssh/*.pub\#\#*
 !.ssh/conf.d/*
-
+!.ssh/authorized_keys
+!.ssh/known_hosts*
 

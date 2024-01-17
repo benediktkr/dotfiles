@@ -1,6 +1,8 @@
 .zsh.d/care*
 .ssh/conf.d/care*
 .ssh/*
+!.ssh/authorized_keys
+!.ssh/known_hosts*
 !.ssh/*.pub
 !.ssh/*.pub\#\#*
 !.ssh/config
