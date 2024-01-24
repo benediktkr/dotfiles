@@ -5,8 +5,8 @@ shell = "zsh"
 [dirs]
 project = []
 python = "isolated"
-data = "/home/ben/.local/share/hatch"
-cache = "/home/ben/.cache/hatch"
+data = "~/.local/share/hatch"
+cache = "~/.cache/hatch"
 
 [dirs.env]
 
