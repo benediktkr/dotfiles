@@ -2,14 +2,14 @@
 icon=battery-charging
 
 [AC][DPMSControl]
-idleTime=1260
+idleTime=300
 lockBeforeTurnOff=0
 
 [AC][DimDisplay]
 idleTime=900000
 
 [AC][HandleButtonEvents]
-lidAction=0
+lidAction=64
 powerButtonAction=16
 powerDownAction=16
 triggerLidActionWhenExternalMonitorPresent=true
