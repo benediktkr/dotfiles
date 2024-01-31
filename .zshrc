@@ -81,6 +81,7 @@ setopt inc_append_history # add history immediately after typing a command
 alias less="less -R"
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
+alias diff='diff --side-by-side'
 # from jbs
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
