@@ -6,7 +6,7 @@ idleTime=300
 lockBeforeTurnOff=0
 
 [AC][DimDisplay]
-idleTime=900000
+idleTime=240000
 
 [AC][HandleButtonEvents]
 lidAction=64
@@ -15,7 +15,7 @@ powerDownAction=16
 triggerLidActionWhenExternalMonitorPresent=true
 
 [AC][PowerProfile]
-profile=balanced
+profile=power-saver
 
 [AC][WirelessPowerSaving]
 btOption=2
