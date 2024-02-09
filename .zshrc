@@ -1,4 +1,11 @@
+function settitle() {
+    # https://stackoverflow.com/questions/46721797/
+    echo -ne "\033]0;$@\007"
+}
+
 unset MAILCHECK || true
+
+DISABLE_AUTO_TITLE="true"
 
 case $(id -u -n) in
     benedikt.kristinsson)
@@ -6,6 +13,9 @@ case $(id -u -n) in
         PRIVATE_DOTFILES_REMOTE="https://git.sudo.is/ben/dotfiles-private"
         PRIVATE_DOTFILES="$HOME/.local/share/private"
         source $PRIVATE_DOTFILES/zsh.d/care-env.sh
+        if [[ -n "$CARE_ENV" ]]; then
+            settitle $CARE_ENV
+        fi
         ;;
     ben)
         ENV="sudo.is"
@@ -242,14 +252,6 @@ export UPDATE_ZSH_DAYS=31
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# https://stackoverflow.com/questions/46721797/
-function settitle() {
-  echo -en "\e]2;$@\a"
-}
 
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
