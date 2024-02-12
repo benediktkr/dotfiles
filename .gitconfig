@@ -18,7 +18,7 @@
     n = checkout -b
     b = branch
     p = pull
-    ci = commit
+    c = commit -m
     st = status
     pa = push --atomic
     br = rev-parse --abbrev-ref HEAD
