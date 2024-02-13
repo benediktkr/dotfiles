@@ -100,6 +100,7 @@ alias emacs='~/.local/emacs/bin/emacs -nw'
 alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
 
 alias private='git -C ~/.local/share/private'
+alias myip='curl https://www.sudo.is/api/myip'
 
 export EDITOR="vim"
 
