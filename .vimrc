@@ -19,7 +19,7 @@ set incsearch
 set ignorecase
 
 " disables backspace in normal mode
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 
 " show a few lines around the cursor while moving around
 set scrolloff=10
@@ -88,12 +88,17 @@ autocmd BufReadPost *
 \   exe "normal! g'\"" |
 \ endif
 
+" disable <del> i normal mode
+nnoremap <del> <nop>
+nnoremap <space> <nop>
+nnoremap <backspace> <nop>
+
 " normal mode key bindigs
 nnoremap 1 <c-w>w
 nnoremap 2 :set relativenumber!<cr>:set number!<cr>
 nnoremap 3 <c-w>s
 nnoremap 4 :b#<cr>
-nnoremap 8 :25Lexplore<cr>
+nnoremap 8 :25Lexplore!<cr>
 nnoremap t :term<cr>
 
 " terminal mode key bindings
