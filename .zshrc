@@ -75,6 +75,7 @@ export LANG=en_US.UTF-8
 export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
 export GPG_TTY=$(tty)
 
+export HATCH_INTERACTIVE=false
 
 # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
 # https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
