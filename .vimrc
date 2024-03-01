@@ -24,8 +24,10 @@ set ignorecase
 " show a few lines around the cursor while moving around
 set scrolloff=10
 
-" tabs should be spaces
+" tabs should be 4 spaces by default, but 2 spaces in some file types
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType toml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " always enable autoindent
 set ai
