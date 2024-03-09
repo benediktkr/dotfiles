@@ -32,6 +32,10 @@ autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " always enable autoindent
 set ai
 
+" keep undo history between sessions
+set undofile
+"set undodir=~/.cache/vim/undo
+
 " enable syntax highlighting
 syntax on
 filetype on
