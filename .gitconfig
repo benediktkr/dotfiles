@@ -32,7 +32,6 @@
     fixup = !sh -c 'git commit --fixup HEAD && EDITOR=cat git rebase --autosquash -i HEAD~2 | grep -v "^#"' -
     fu = fixup
 
-
 [status]
     submodulesummary = 1
     recurse = true
@@ -43,11 +42,8 @@
 [credential]
     helper = store
 
+[color]
+	ui = true
 
 [include]
     path = .gitconfig.local
-
-
-
-[color]
-	ui = true
