@@ -36,6 +36,9 @@ set ai
 set undofile
 "set undodir=~/.cache/vim/undo
 
+" hide header in file explorer
+let g:netrw_banner=0
+
 " enable syntax highlighting
 syntax on
 filetype on
