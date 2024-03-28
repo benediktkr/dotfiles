@@ -43,6 +43,8 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     fi
 fi
 
+echo "[ ] vim cache and undo dirs"
+mkdir -pv "$HOME/.cache/vim/undo"
 
 echo "[ ] git repos"
 if [[ ! -d "$HOME/.local/share/yadm/yadm-project/.git" ]]; then
