@@ -34,7 +34,7 @@ set ai
 
 " keep undo history between sessions
 set undofile
-"set undodir=~/.cache/vim/undo
+set undodir=~/.cache/vim/undo
 
 " hide header in file explorer
 let g:netrw_banner=0
