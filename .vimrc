@@ -38,6 +38,10 @@ set undodir=~/.cache/vim/undo
 
 " hide header in file explorer
 let g:netrw_banner=0
+" hide './'
+" modified from: https://stackoverflow.com/a/39967383
+"           via: https://github.com/tpope/vim-vinegar
+let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\=/\=$'
 
 " enable syntax highlighting
 syntax on
