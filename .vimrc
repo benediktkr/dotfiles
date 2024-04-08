@@ -39,7 +39,7 @@ set undodir=~/.cache/vim/undo
 
 " hide header and the './' entry in file explorer
 let g:netrw_banner=0
-let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\=/\=$'
+let g:netrw_list_hide= '\~$,\.so$,\.swp$,\.zip$,\.pyc$,^__pycache__\/$,\.git[a-z]*\/$,\.DS_Store\/$,^\.\=/\=$'
 
 " syntax highlighting
 syntax on
