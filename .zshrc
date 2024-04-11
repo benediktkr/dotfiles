@@ -72,7 +72,7 @@ color_nc='\033[0m'
 export TZ="Europe/Berlin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin"
 export GPG_TTY=$(tty)
 
 export HATCH_INTERACTIVE=false
