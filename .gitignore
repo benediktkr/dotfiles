@@ -1,6 +1,7 @@
 *~
 #*#
 *#*#
+*.bak
 .emacs.d/elpa/gnupg/
 .emacs.d/image-dired/
 
@@ -11,6 +12,8 @@ private
 private/
 .local/share/yadm/private
 .local/share/private
+.config/gh/hosts.yml
+.config/gh/hosts.yaml
 
 # emacs
 .emacs.d/var/
