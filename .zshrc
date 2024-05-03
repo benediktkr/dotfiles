@@ -30,18 +30,6 @@ case $(id -u -n) in
         ;;
 esac
 
-#case $HOME in
-#    /home/benedikt.kristinsson)
-#        ENV="care.com"
-#        ;;
-#    /home/ben)
-#        ENV="care.com"
-#        ;;
-#    *)
-#        ENV="unknown"
-#        ;;
-#esac
-
 # This might need different handling on systems without yadm
 ZSH_CUSTOM="${HOME}/.zsh.d"
 OMZSH="${HOME}/.local/share/ohmyzsh"
@@ -69,13 +57,17 @@ color_purple='\033[0;35m'
 
 color_nc='\033[0m'
 
+export EDITOR="vim"
 export TZ="Europe/Berlin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin"
 export GPG_TTY=$(tty)
-
 export HATCH_INTERACTIVE=false
+
+if [[ -d "/opt/homebrew/bin" ]]; then
+    PATH="$PATH:/opt/homebrew/bin"
+fi
 
 # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
 # https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
@@ -92,26 +84,12 @@ setopt inc_append_history # add history immediately after typing a command
 alias less="less -R"
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
-alias diff='diff --side-by-side'
 # from jbs
 alias json2yaml="python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)'"
 alias j2y="json2yaml"
 
-alias emacs='~/.local/emacs/bin/emacs -nw'
-alias emacsclient='~/.local/emacs/bin/emacsclient -nw'
-
 alias private='git -C ~/.local/share/private'
 alias myip='curl -sS https://www.sudo.is/api/myip | jq .'
-
-export EDITOR="vim"
-
-# in submodules, .git is a file:
-# $ cat ${OMZSH}/.git
-# gitdir: ../../.git/modules/zsh/.oh-my-zsh
-#if [[ -d "${OMZSH}" && ! -f "${OMZSH}/.git" ]]; then
-#    echo "oh-my-zsh submodule needs to be initialized"
-#    git -C $DOTFILES submodule update --init  --recursive
-$fi
 
 if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
@@ -124,13 +102,8 @@ if [[ "$ENV" == "care.com" ]]; then
     export PROMPT_COLOR_HOSTNAME=green
     export PROMPT_COLOR=blue
     ENV_COLOR=$color_green
-
     alias noflag="unset RPROMPT"
 
-    powerup () {
-        /usr/local/bin/powerup $* > ${HOME}/.aws/powerup.env
-        source ${HOME}/.aws/powerup.env
-    }
 
 elif [[ -d "/meta" || -d "/sdf" ]]; then
     ENV="sdf.org"
@@ -160,6 +133,7 @@ else
 
     alias stopssh='ssh -O stop $(ls -1 /tmp/ssh-cm-ben*| cut -d"-" -f4 >/dev/stdout >/dev/stderr)'
 
+    alias pullwww='(cd ~/infra && ansible-playbook www.yml --diff --tags wwwsudois,www-api,www-nginx --limit www && ansible-playbook matrix.yml --diff --tags www && ansible-playbook pirate.yml --diff --tags www)'
     alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
     alias nc-occ='docker exec -it --user www-data nextcloud php occ'
     alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
@@ -185,15 +159,8 @@ elif [[ -f $SSH_AGENT_ENVFILE ]]; then
 fi
 
 
-# gpg-agent: this probably isnt needed
-# if [[ -f ~/.gnupg/agent-info.env ]]; then
-#     eval $(cat ${HOME}/.gnupg/agent-info.env)
-# fi
-
-
 if [[ "${OMZSH_DISABLED}" != "true" ]]; then
     plugins=(
-        # emacs # open files via emacsclient everywhere
         ansible
         colored-man-pages
         colorize
@@ -220,11 +187,6 @@ else
 fi
 
 
-## these are almost never used
-#alias stripcomment='grep -v "^#" | grep -v "^[[:space:]]*#" | grep -v "^$"'
-#alias prettyjson='python -m json.tool'
-#alias cleangit='git branch | grep -v "master" | xargs git branch -D'
-
 fixssh() {
     if [[ -x "$(command -v tmux)" ]]; then
         eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
@@ -232,16 +194,6 @@ fixssh() {
         echo "fixssh doesnt do anything without tmux"
     fi
 }
-
-system=$(uname -s)
-case $system in
-    Darwin)
-        alias speed="sudo pmset -a disablesleep 1"
-        alias weed="sudo pmset -a disablesleep 0"
-        # defaulting to brew-installed python3
-        export PATH="$HOME/Library/Python/3.9/bin:$PATH"
-        ;;
-esac
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -267,29 +219,12 @@ COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 
-
-if [[ $TERM == "dumb" ]]; then
-    # if Tramp in Emacs, set a dumber PS1 that tramp will understand
-    PS1='> '
-    # for tramp to not hang, need the following. cf:
-    # http://www.emacswiki.org/emacs/TrampMode
-    unsetopt zle
-    unsetopt prompt_cr
-    unsetopt prompt_subst
-    unfunction precmd
-    unfunction preexec
-else
-    # otherwise default to xterm-256color
-    export TERM=xterm-256color
-    echo -e "$motd_env"
-    if [[ -n "${SSH_CLIENT}" ]]; then
-        echo -ne "${color_purple}from ipv4${color_nc}   ${color_cyan}"
-        echo -n $SSH_CLIENT | awk '{ print $1 }'
-        echo -e "${color_nc}"
-    fi
-    if [[ -n "$motd_ssh_agent" ]]; then
-        echo -e "$motd_ssh_agent"
-    fi
+if [[ "$EDITOR" == "emacs" ]]; then
+    source $PRIVATE_DOTFILES/zsh.d/emacs.sh
+fi
+if [[ -x $(which pmset) ]]; then
+    alias speed="sudo pmset -a disablesleep 1"
+    alias weed="sudo pmset -a disablesleep 0"
 fi
 
 if [[ -x $(which hostname) && "$OSTYPE" != "darwin"* ]]; then
@@ -301,43 +236,6 @@ if [[ -x $(which hostname) && "$OSTYPE" != "darwin"* ]]; then
     esac
 fi
 
-# if [[ -d "${HOME}/.zsh.d" ]]; then
-#     echo "WARNING: ${HOME}/.zsh.d still exists on this system"
-# fi
-
-
-# Automatically attach to the tmux session on SSH
-vterm_printf(){
-    if [[ -n "$TMUX" ]]; then
-        # Tell tmux to pass the escape sequences through
-        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [[ "${TERM%%-*}" == "screen" ]]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
-}
-if [[ -x "$(command -v tmux)" &&  "$SSH_TMUX_AUTO_ATTACH" == "true" ]]; then
-    if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then
-        tmux attach-session -t ssh || tmux new-session -s ssh
-    fi
-fi
-
-
-# alias sibprod='(mkdir -p ~/deadprod && cd ~/deadprod && rsync --exclude="__pycache__" --exclude="*egg-info" -av ber0:projects/sudoisbot . ) && cd ~/deadprod/sudoisbot && poetry run sudoisbot'
-# alias sib="(cd ~ && rsync --exclude="__pycache__" -av ber0:projects/sudoisbot .) && cd ~/sudoisbot && poetry run sudoisbot"
-cast() {
-    webhook_url=$(cat ~/.hass_webhook_url | tr -d '\n')
-    cast_url=$1
-    curl -s -i -X POST -d "url=${cast_url}" $webhook_url | head -n 1
-}
-
-castnr() {
-    url_nr=$1
-    cast $(sed -n "${url_nr}p" ~/.cast_urls.txt)
-}
 
 # https://github.com/NixOS/nix/issues/7880#issuecomment-1750399157
 if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
