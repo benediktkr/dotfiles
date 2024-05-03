@@ -222,7 +222,7 @@ COMPLETION_WAITING_DOTS="true"
 if [[ "$EDITOR" == "emacs" ]]; then
     source $PRIVATE_DOTFILES/zsh.d/emacs.sh
 fi
-if [[ -x $(which pmset) ]]; then
+if [[ -x $(which pmset 2>/dev/null) ]]; then
     alias speed="sudo pmset -a disablesleep 1"
     alias weed="sudo pmset -a disablesleep 0"
 fi
@@ -241,3 +241,4 @@ fi
 if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
+
