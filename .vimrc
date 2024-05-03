@@ -23,6 +23,7 @@ set ignorecase
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType toml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
