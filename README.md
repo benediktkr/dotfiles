@@ -39,4 +39,4 @@ rm ~/tmp/yadm
 - :gitea: **Upstream**: [`git.sudo.is/ben/dotfiles`](https://git.sudo.is/ben/dotfiles)
 - :codeberg: **Codeberg**: [`benk/dotfiles`](https://codeberg.org/benk/dotfiles)
 - :github: **GitHub**: [`benediktkr/dotfiles`](https://github.com/benediktkr/dotfiles)
-- Bitbucket (private)
+- :git: Bitbucket (private)
