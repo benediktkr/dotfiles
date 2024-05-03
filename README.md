@@ -12,6 +12,8 @@ Here are Ben's dotfiles.
 
 ![Leaf Dark](.local/share/backgrounds/Leaf_Dark.png)
 
+## Overview
+
 The dotfiles are currently managed by [`yadm`](https://yadm.io). Files
 prior to switching to `yadm` are preserved in the branch `dotfiles`.
 
@@ -31,8 +33,10 @@ chmod +x ~/tmp/yadm
 rm ~/tmp/yadm
 ```
 
-# Mirrors
+## Repository
 
- * :gitea: git.sudo.is: [`ben/dotfiles`](https://git.sudo.is/ben/dotfiles)
- * :github: github.com [`benediktkr/dotfiles`](https://github.com/benediktkr/dotfiles)
- * bitbucket.org (private): [`benedikt/dotfiles`](https://bitbucket.org/benedikt/dotfiles)
+
+- :gitea: **Upstream**: [`git.sudo.is/ben/dotfiles`](https://git.sudo.is/ben/dotfiles)
+- :codeberg: **Codeberg**: [`benk/dotfiles`](https://codeberg.org/benk/dotfiles)
+- :github: **GitHub**: [`benediktkr/dotfiles`](https://github.com/benediktkr/dotfiles)
+- **Bitbucket** (private)
