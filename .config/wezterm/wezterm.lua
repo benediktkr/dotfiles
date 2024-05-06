@@ -4,7 +4,7 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-config.initial_cols = 200
+config.initial_cols = 210
 config.initial_rows = 100
 config.audible_bell = "Disabled"
 
@@ -39,6 +39,7 @@ config.keys = {
   { key = "p", mods = "CTRL", action = actions.ppane },
   { key = "p", mods = "CMD",  action = actions.ppane },
   -- send CTRL
+  { key = "l", mods = "CMD", action = wezterm.action.SendKey { key = "l", mods = "CTRL" } },
   { key = "c", mods = "CMD", action = wezterm.action.SendKey { key = "c", mods = "CTRL" } },
   { key = "d", mods = "CMD", action = wezterm.action.SendKey { key = "d", mods = "CTRL" } },
 }
