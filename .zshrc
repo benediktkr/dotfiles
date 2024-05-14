@@ -82,6 +82,7 @@ setopt extended_history # save timestamp
 setopt inc_append_history # add history immediately after typing a command
 
 alias less="less -R"
+alias lm='ls -goh --time-style="+"'
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
 # from jbs
