@@ -62,14 +62,14 @@ au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
 
 " set syntax highlighting for files with non-standard names
 au BufNewFile,BufRead Jenkinsfile setf groovy
-au BufNewFile,BufRead *.py.j2 setf python
+au BufNewFile,BufRead 0*.{conf.,j2} setf nginx
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
-au BufNewFile,BufRead *.euw setf yaml
+au BufNewFile,BufRead *.xml.j2 setf xml
 au BufNewFile,BufRead *.use setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
-au BufNewFile,BufRead *.xml.j2 setf xml
-au BufNewFile,BufRead 0*.{conf.,j2} setf nginx
+au BufNewFile,BufRead *.py.j2 setf python
+au BufNewFile,BufRead *.euw setf yaml
 au BufNewFile,BufRead *.groovy.j2 setf groovy
 " jinja syntax isnt built into vim, and is read from ~/.vim/syntax/jinja.vim.  using 'setf jinja'
 " doesnt work (i think it hasnt been loaded at this point). instead set 'filetype'
