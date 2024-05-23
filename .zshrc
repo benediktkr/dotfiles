@@ -83,6 +83,7 @@ setopt inc_append_history # add history immediately after typing a command
 
 alias less="less -R"
 alias lm='ls -goh --time-style="+"'
+alias df='df -x tmpfs -x devtmpfs -x efivarfs'
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
 # from jbs
