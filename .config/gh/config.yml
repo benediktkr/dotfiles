@@ -11,7 +11,20 @@ aliases:
     co: pr checkout
     draft: pr create --fill --draft
     pr draft: pr create --fill --draft
-    pr md: gh pr view --json 'headRepository,number,title,url' --template '{{ printf "[%s#%v](%s)\n" .headRepository.name .number .url }}'
+    pr md: |
+      pr view --json 'headRepository,number,title,url' --template '
+      {{ printf "[%s#%v](%s)\n" .headRepository.name .number .url }}
+      '
+    pr show: |
+      pr view --json 'headRepository,number,title,url,body,assignees,comments,state' --template '
+      {{ printf "%s#%v" .headRepository.name .number | autocolor "green" }}: {{ .title }}
+      {{ tablerow ("Status" | autocolor "yellow") .state }}
+      {{ tablerow ("URL" | autocolor "yellow") .url }}{{ tablerow ("Repo" | autocolor "yellow") .headRepository.name }}{{ tablerender }}
+      {{ .body  | autocolor "cyan" }} {{ "\n" }}
+      {{ tablerow ("Author" | autocolor "magenta") "Comment" }}{{ range .comments }}{{ tablerow (.author.login|autocolor "green") .body }}{{ end }}{{ tablerender }}
+      {{ tablerow ("Assignee" | autocolor "magenta") "" }}{{ range .assignees }}{{ tablerow .login .name }}{{ end }}{{ tablerender }}
+      '
+
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
