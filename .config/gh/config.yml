@@ -10,6 +10,8 @@ pager:
 aliases:
     co: pr checkout
     draft: pr create --fill --draft
+    pr draft: pr create --fill --draft
+    pr md: gh pr view --json 'headRepository,number,title,url' --template '{{ printf "[%s#%v](%s)\n" .headRepository.name .number .url }}'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
