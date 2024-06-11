@@ -62,7 +62,9 @@ au InsertEnter * hi StatusLine term=reverse ctermfg=DarkGreen ctermbg=Black
 
 " set syntax highlighting for files with non-standard names
 au BufNewFile,BufRead Jenkinsfile setf groovy
-au BufNewFile,BufRead 0*.{conf.,j2} setf nginx
+" Instead of '0*.{conf.,j2}':
+au BufNewFile,BufRead *.conf.j2 setf nginx
+
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.xml.j2 setf xml
