@@ -10,7 +10,7 @@ pager:
 aliases:
     co: pr checkout
     draft: pr create --fill --draft
-    pr draft: pr create --fill --draft
+    pr draft: pr create --fill --draft --base main
     pr md: |
       pr view --json 'headRepository,number,title,url' --template '
       {{ printf "[%s#%v](%s): %s\n" .headRepository.name .number .url .title }}
@@ -24,7 +24,7 @@ aliases:
       {{ tablerow ("Author" | autocolor "magenta") "Comment" }}{{ range .comments }}{{ tablerow (.author.login|autocolor "green") .body }}{{ end }}{{ tablerender }}
       {{ tablerow ("Assignee" | autocolor "magenta") "" }}{{ range .assignees }}{{ tablerow .login .name }}{{ end }}{{ tablerender }}
       '
-    pr m: pr merge --squash --delete-branch
+    pr mrg: pr merge --squash --delete-branch
 
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
