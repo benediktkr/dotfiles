@@ -26,22 +26,22 @@ local actions = {
   ppane = wezterm.action.ActivatePaneDirection 'Right',
 }
 config.keys = {
-  -- vsplit
-  { key = "t", mods = "CTRL", action = actions.vsplit },
-  { key = "t", mods = "CMD",  action = actions.vsplit },
-  -- hsplit
-  { key = "T", mods = "CTRL|SHIFT", action = actions.hsplit },
-  { key = "T", mods = "CMD|SHIFT",  action = actions.hsplit },
-  -- npane
-  { key = "o", mods = "CTRL", action = actions.npane },
-  { key = "o", mods = "CMD",  action = actions.npane },
-  -- ppane
-  { key = "p", mods = "CTRL", action = actions.ppane },
-  { key = "p", mods = "CMD",  action = actions.ppane },
-  -- send CTRL
-  { key = "l", mods = "CMD", action = wezterm.action.SendKey { key = "l", mods = "CTRL" } },
-  { key = "c", mods = "CMD", action = wezterm.action.SendKey { key = "c", mods = "CTRL" } },
-  { key = "d", mods = "CMD", action = wezterm.action.SendKey { key = "d", mods = "CTRL" } },
+  -- -- vsplit
+  -- { key = "t", mods = "CTRL", action = actions.vsplit },
+  -- { key = "t", mods = "CMD",  action = actions.vsplit },
+  -- -- hsplit
+  -- { key = "T", mods = "CTRL|SHIFT", action = actions.hsplit },
+  -- { key = "T", mods = "CMD|SHIFT",  action = actions.hsplit },
+  -- -- npane
+  -- { key = "o", mods = "CTRL", action = actions.npane },
+  -- { key = "o", mods = "CMD",  action = actions.npane },
+  -- -- ppane
+  -- { key = "p", mods = "CTRL", action = actions.ppane },
+  -- { key = "p", mods = "CMD",  action = actions.ppane },
+  -- -- send CTRL
+  -- { key = "l", mods = "CMD", action = wezterm.action.SendKey { key = "l", mods = "CTRL" } },
+  -- { key = "c", mods = "CMD", action = wezterm.action.SendKey { key = "c", mods = "CTRL" } },
+  -- { key = "d", mods = "CMD", action = wezterm.action.SendKey { key = "d", mods = "CTRL" } },
 }
 
 return config
