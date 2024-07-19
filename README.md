@@ -4,6 +4,7 @@
 ![version](https://jenkins.sudo.is/buildStatus/icon?job=ben%2Fdotfiles%2Fmain&style=flat-square&status=${description}&subject=version&build=lastStable&color=blue)
 [![git](https://www.sudo.is/readmes/git.sudo.is-ben-dotfiles.svg)](https://git.sudo.is/ben/dotfiles)
 [![github](https://www.sudo.is/readmes/github-benediktkr.svg)](https://github.com/benediktkr/dotfiles)
+[![codeberg](https://www.sudo.is/readmes/codeberg.svg)](https://codeberg.org/benk/dotfiles)
 [![BSD-2-Clause](https://www.sudo.is/readmes/license-BSD-blue.svg)](LICENSE)
 [![docs](https://www.sudo.is/readmes/docs.svg)](https://www.sudo.is/docs)
 [![matrix](https://www.sudo.is/readmes/matrix-ben-sudo.is.svg)](https://matrix.to/#/@ben:sudo.is)
