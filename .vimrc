@@ -95,6 +95,7 @@ nnoremap 3 <c-w>s
 nnoremap 4 :b#<cr>
 nnoremap 8 :25Lexplore!<cr>
 nnoremap t :term<cr>
+nnoremap \ :r! date -I<cr>
 
 " terminal mode key bindings
 tnoremap <esc> <c-\><c-n>
