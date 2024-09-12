@@ -68,6 +68,15 @@ export HATCH_INTERACTIVE=false
 if [[ -d "/opt/homebrew/bin" ]]; then
     PATH="$PATH:/opt/homebrew/bin"
 fi
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+    if [[ -d "${HOME}/.rustup" ]]; then
+        export RUSTUP_HOME="${HOME}/.rustup"
+    fi
+    export PATH="${HOME}/.cargo/bin:$PATH"
+    export CARGO_HOME="${HOME}/.cargo"
+fi
+
+
 
 # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
 # https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
