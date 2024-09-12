@@ -1,3 +1,12 @@
+pane_frames false
+default_shell "zsh"
+theme "default"
+
+// 2x default scroll buffer
+scroll_buffer_size 20000
+
+// Defaults:
+
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
@@ -214,21 +223,10 @@ plugins {
 //
 // simplified_ui true
 
-// Choose the path to the default shell that zellij will use for opening new panes
-// Default: $SHELL
-//
-// default_shell "fish"
-
 // Choose the path to override cwd that zellij will use for opening new panes
 //
 // default_cwd ""
 
-// Toggle between having pane frames around the panes
-// Options:
-//   - true (default)
-//   - false
-//
-// pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -276,11 +274,6 @@ plugins {
 //     }
 // }
 
-// Choose the theme that is specified in the themes section.
-// Default: default
-//
-// theme "default"
-
 // The name of the default layout to load on startup
 // Default: "default"
 //
@@ -299,14 +292,6 @@ plugins {
 //   - false
 //
 // mouse_mode false
-
-// Configure the scroll back buffer size
-// This is the number of lines zellij stores for each pane in the scroll back
-// buffer. Excess number of lines are discarded in a FIFO fashion.
-// Valid values: positive integers
-// Default value: 10000
-//
-// scroll_buffer_size 10000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
