@@ -1,11 +1,26 @@
+# https://iamb.chat/configure.html?highlight=sync
+
 [profiles.user]
 user_id = "@ben:sudo.is"
 
 [settings]
-reaction_display = true
-typing_notice_display = true
+request_timeout = 180
 user_gutter_width = 30
 username_display = "localpart"
+typing_notice_display = true
+reaction_display = true
+message_user_color = true
+# Display Emojis with their shortcodes
+message_shortcode_display = false
+reaction_shortcode_display = false
+
+[settings.sort]
+members = ["power", "id"]
+rooms = ["favorite", "lowpriority", "unread", "recent", "name", "alias"]
+dms = ["favorite", "unread", "lowpriority", "name"]
+# defaults to 'rooms' value
+#chats = []
+#spaces = []
 
 [settings.notifications]
 enabled = false
