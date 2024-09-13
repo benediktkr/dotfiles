@@ -1,6 +1,6 @@
 pane_frames false
 default_shell "zsh"
-theme "default"
+theme "nord"
 
 // 2x default scroll buffer
 scroll_buffer_size 20000
