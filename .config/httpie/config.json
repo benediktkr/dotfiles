@@ -1,0 +1,9 @@
+{
+    "default_options": [
+        "--style", "pie-dark",
+        "--default-scheme", "https",
+        "--timeout", "5",
+        "--all",
+        "--check-status"
+    ]
+}
