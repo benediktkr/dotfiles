@@ -1,0 +1,11 @@
+[profiles.user]
+user_id = "@ben:sudo.is"
+
+[settings]
+reaction_display = true
+typing_notice_display = true
+user_gutter_width = 30
+username_display = "localpart"
+
+[settings.notifications]
+enabled = false
