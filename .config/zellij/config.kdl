@@ -1,14 +1,17 @@
-pane_frames false
+pane_frames true
 default_shell "zsh"
 theme "nord"
+
+default_layout "default"
 
 // 2x default scroll buffer
 scroll_buffer_size 20000
 
+// ---
 // Defaults:
-
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
+    // To override the default keybindings completely, use:
+    //  keybinds clear-defaults=true { }
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
