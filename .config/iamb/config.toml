@@ -22,5 +22,8 @@ dms = ["favorite", "unread", "lowpriority", "name"]
 #chats = []
 #spaces = []
 
+[settings.image_preview]
+protocol.type = "sixel"
+
 [settings.notifications]
 enabled = false
