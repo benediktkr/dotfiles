@@ -76,8 +76,6 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
     export CARGO_HOME="${HOME}/.cargo"
 fi
 
-
-
 # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
 # https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
 export PAGER=""
@@ -134,10 +132,6 @@ else
         fi
         ZSH_THEME="jreese2"
     fi
-    if [[ -d "$HOME/.cargo" ]]; then
-        export PATH="$HOME/.cargo/bin:$PATH"
-    fi
-
     alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
     alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
     alias dl-audio-keep='yt-dlp --keep-video --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
@@ -229,6 +223,13 @@ COMPLETION_WAITING_DOTS="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+if command -v eza >/dev/null; then
+    alias ls="eza --icons=never --color=always"
+    alias tree="eza --tree --color=never --icons=always"
+fi
+if command -v "bat" >/dev/null; then
+    alias cat="bat -p"
+fi
 
 if [[ "$EDITOR" == "emacs" ]]; then
     source $PRIVATE_DOTFILES/zsh.d/emacs.sh
