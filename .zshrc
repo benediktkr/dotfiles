@@ -13,12 +13,14 @@ case $(id -u -n) in
         PRIVATE_DOTFILES_REMOTE="https://git.sudo.is/ben/dotfiles-private"
         PRIVATE_DOTFILES="$HOME/.local/share/private"
         source $PRIVATE_DOTFILES/zsh.d/care-env.sh
+        export ZELLIJ_SESSION_NAME=$CARE_ENV
         if [[ -n "$CARE_ENV" ]]; then
             settitle $CARE_ENV
         fi
         ;;
     ben)
         ENV="sudo.is"
+        export ZELLIJ_SESSION_NAME="default"
         if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" ]]; then
             SUDO_ENV="shell"
         else
@@ -30,6 +32,7 @@ case $(id -u -n) in
         ;;
 esac
 
+export ZELLIJ_AUTO_ATTACH=true
 # This might need different handling on systems without yadm
 ZSH_CUSTOM="${HOME}/.zsh.d"
 OMZSH="${HOME}/.local/share/ohmyzsh"
