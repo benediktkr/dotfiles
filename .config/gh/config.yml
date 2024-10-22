@@ -13,7 +13,7 @@ aliases:
     pr draft: pr create --fill --draft --base main
     pr md: |
       pr view --json 'headRepository,number,title,url' --template '
-      {{ printf "[%s#%v](%s): %s\n" .headRepository.name .number .url .title }}
+      {{ printf "[`%s#%v`](%s): %s\n" .headRepository.name .number .url .title }}
       '
     pr show: |
       pr view --json 'headRepository,number,title,url,body,assignees,comments,state' --template '
