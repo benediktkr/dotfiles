@@ -16,7 +16,7 @@ reaction_shortcode_display = false
 
 [settings.sort]
 members = ["power", "id"]
-rooms = ["favorite", "recent", "unread", "name", "alias", "lowpriority"]
+rooms = ["favorite", "unread", "recent", "name", "alias", "lowpriority"]
 dms = ["favorite", "unread", "name", "lowpriority"]
 # defaults to 'rooms' value
 #chats = []
