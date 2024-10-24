@@ -29,5 +29,6 @@
     "terminal.integrated.fontFamily": "'DejaVu Sans Mono', Menlo, Monaco, 'Courier New', monospace",
     "workbench.colorTheme": "Default Dark+",
     "editor.accessibilitySupport": "off",
-    "terminal.integrated.enableImages": true
+    "terminal.integrated.enableImages": true,
+    "terminal.integrated.gpuAcceleration": "on"
 }
