@@ -233,6 +233,9 @@ fi
 if command -v "bat" >/dev/null; then
     alias cat="bat -p"
 fi
+if command -v "rg" >/dev/null; then
+    alias grep="rg"
+fi
 
 if [[ "$EDITOR" == "emacs" ]]; then
     source $PRIVATE_DOTFILES/zsh.d/emacs.sh
