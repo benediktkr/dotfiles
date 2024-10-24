@@ -113,6 +113,7 @@ if [[ "$ENV" == "care.com" ]]; then
     export PROMPT_HOSTNAME=$CARE_ENV
     export PROMPT_COLOR_HOSTNAME=green
     export PROMPT_COLOR=blue
+    export PROMPT_DELIM=":"
     ENV_COLOR=$color_green
     alias noflag="unset RPROMPT"
 
