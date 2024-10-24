@@ -10,7 +10,6 @@
     ],
     "terminal.external.linuxExec": "xterm-256color",
     "workbench.sideBar.location": "right",
-    "editor.fontSize": 13,
     //"terminal.integrated.rightClickBehavior": "paste",
     "terminal.integrated.altClickMovesCursor": false,
     "terminal.integrated.fontSize": 14,
@@ -20,8 +19,17 @@
     "terminal.external.osxExec": "iTerm.app",
     "terminal.explorerKind": "external",
     "terminal.integrated.copyOnSelection": true,
-    "workbench.preferredDarkColorTheme": "onedark.nvim",
-    "workbench.colorTheme": "onedark.nvim",
-    "workbench.activityBar.location": "hidden"
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.enablePreview": false,
+    "terminal.integrated.persistentSessionScrollback": 1000,
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.tabs.title": "${sequence} ",
+    "editor.fontFamily": "'DejaVu Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "terminal.integrated.fontFamily": "'DejaVu Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+    "workbench.colorTheme": "Default Dark+",
+    "editor.accessibilitySupport": "off",
+    "terminal.integrated.enableImages": true
+    
     
 }
