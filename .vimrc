@@ -74,11 +74,12 @@ au BufNewFile,BufRead *.conf.j2 setf nginx
 au BufNewFile,BufRead *.yml.j2 setf yaml
 au BufNewFile,BufRead *.yaml.j2 setf yaml
 au BufNewFile,BufRead *.xml.j2 setf xml
-au BufNewFile,BufRead *.use setf yaml
 au BufNewFile,BufRead *.sh.j2 setf sh
 au BufNewFile,BufRead *.py.j2 setf python
-au BufNewFile,BufRead *.euw setf yaml
 au BufNewFile,BufRead *.groovy.j2 setf groovy
+au BufNewFile,BufRead *.html.j2 setf html
+au BufNewFile,BufRead *.use setf yaml
+au BufNewFile,BufRead *.euw setf yaml
 " jinja syntax isnt built into vim, and is read from ~/.vim/syntax/jinja.vim.  using 'setf jinja'
 " doesnt work (i think it hasnt been loaded at this point). instead set 'filetype'
 au BufNewFile,BufRead *.hbs set filetype=jinja
