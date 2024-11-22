@@ -229,7 +229,7 @@ COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 if command -v eza >/dev/null; then
-    alias ls="eza --icons=never --color=always"
+    alias ls="eza -1 --icons=never --color=always --classify=always --color-scale=all --color-scale-mode=gradient --group-directories-first --git-repos-no-status --git --no-user --no-permissions --octal-permissions --header --total-size"
     alias tree="eza --tree --color=never --icons=always"
 fi
 if command -v "bat" >/dev/null; then
