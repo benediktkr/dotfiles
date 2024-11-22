@@ -39,7 +39,7 @@ case ${ENV} in
         fi
         ;;
     care.com)
-        source ${PRIVATE_DOTFILES}/.zsh.d/care-env.sh    # set CARE_ENV
+        source ${PRIVATE_DOTFILES}/zsh.d/care-env.sh    # set CARE_ENV
         source ${PRIVATE_DOTFILES}/zsh.d/caredotcom.sh
 
         ZSH_THEME="jreese2"
@@ -181,7 +181,6 @@ if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PI
 elif [[ -f $SSH_AGENT_ENVFILE ]]; then
     rm -v $SSH_AGENT_ENVFILE
 fi
-
 
 if [[ "${MOTD_SHOW}" != "false" ]]; then
     motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
