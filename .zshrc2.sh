@@ -9,19 +9,9 @@ source ${ZSH_CUSTOM}/common.sh
 case $(id -u -n) in
     ben)
         ENV="sudo.is"
-        if [[ -d "${PRIVATE_DOTFILES}" ]]; then
-            SUDO_ENV="shell"
-            export ZELLIJ_SESSION_NAME="default"
-        elif [[ -f "/usr/local/etc/sudoisbot.yml" ]]; then
-            SUDO_ENV="sensor"
-        else
-            SUDO_ENV="server"
-        fi
         ;;
     benedikt.kristinsson)
         ENV="care.com"
-        # set $CARE_ENV
-        source ${PRIVATE_DOTFILES}/.zsh.d/care-env.sh
         ;;
     *)
         if [[ -d "/meta" ]]; then
@@ -36,18 +26,20 @@ case ${ENV} in
     sudo.is)
         PROMPT_COLOR="red"
         ENV_COLOR=$color_green
-        if [[ "${SUDO_ENV}" != "server" ]]; then
+        if [[ -d "${PRIVATE_DOTFILES}" ]]; then
+            SUDO_ENV="shell"
+            ZSH_THEME="jreese2"
+            export ZELLIJ_SESSION_NAME="default"
+        elif [[ -f "/usr/local/etc/sudoisbot.yml" ]]; then
+            SUDO_ENV="sensor"
             ZSH_THEME="jreese2"
         else
+            SUDO_ENV="server"
             ZSH_THEME="gentoo"
-        fi
-        if [[ "${OSTYPE}" == "darwin"* ]]; then
-            PROMPT_COLOR="magenta"
-        else
-            PROMPT_COLOR="red"
         fi
         ;;
     care.com)
+        source ${PRIVATE_DOTFILES}/.zsh.d/care-env.sh    # set CARE_ENV
         source ${PRIVATE_DOTFILES}/zsh.d/caredotcom.sh
 
         ZSH_THEME="jreese2"
