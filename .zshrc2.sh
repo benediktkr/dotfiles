@@ -11,23 +11,62 @@ case $(id -u -n) in
         ENV="sudo.is"
         if [[ -d "${PRIVATE_DOTFILES}" ]]; then
             SUDO_ENV="shell"
+            export ZELLIJ_SESSION_NAME="default"
         elif [[ -f "/usr/local/etc/sudoisbot.yml" ]]; then
             SUDO_ENV="sensor"
         else
             SUDO_ENV="server"
         fi
-        export ZELLIJ_SESSION_NAME="default"
         ;;
     benedikt.kristinsson)
         ENV="care.com"
         # set $CARE_ENV
         source ${PRIVATE_DOTFILES}/.zsh.d/care-env.sh
-
-        export ZELLIJ_SESSION_NAME="${CARE_ENV}"
-        settitle "${CARE_ENV}"
         ;;
     *)
-        ENV="unknown"
+        if [[ -d "/meta" ]]; then
+            ENV="sdf.org"
+        else
+            ENV="unknown"
+        fi
+        ;;
+esac
+
+case ${ENV} in
+    sudo.is)
+        PROMPT_COLOR="red"
+        ENV_COLOR=$color_green
+        if [[ "${SUDO_ENV}" != "server" ]]; then
+            ZSH_THEME="jreese2"
+        else
+            ZSH_THEME="gentoo"
+        fi
+        if [[ "${OSTYPE}" == "darin"* ]]; then
+            PROMPT_COLOR="magenta"
+        else
+            PROMPT_COLOR="red"
+        fi
+        ;;
+    care.com)
+        source ${PRIVATE_DOTFILES}/zsh.d/caredotcom.sh
+
+        ZSH_THEME="jreese2"
+        PROMPT_HOSTNAME=$CARE_ENV
+        ROMPT_COLOR_HOSTNAME=green
+        PROMPT_COLOR=blue
+        PROMPT_DELIM=":"
+        ENV_COLOR=$color_green
+        alias noflag='unset RPROMPT'
+
+        settitle "${CARE_ENV}"
+        export ZELLIJ_SESSION_NAME="${CARE_ENV}"
+        ;;
+    sdf.org)
+        ZSH_THEM="jreese2"
+        PROMPT_COLOR_HOSTNAME=yellow
+        ENV_COLOR=$color_orange
+        ;;
+    *)
         ;;
 esac
 
@@ -104,6 +143,19 @@ if command -v "bat" >/dev/null; then
 fi
 if command -v "rg" >/dev/null; then
     alias grep="rg"
+fi
+## sudo.is
+if [[ "${ENV}" == "sudo.is" ]]; then
+    if [[ "${SUDO_ENV}" == "shell" ]]; then
+        alias dl-mp3='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality 320k --audio-format "mp3" --format "ba"'
+        alias dl-audio='yt-dlp --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+        alias dl-audio-keep='yt-dlp --keep-video --extract-audio --embed-thumbnail --embed-metadata --audio-quality "best" --audio-format "best" --format "ba"'
+    fi
+    alias stopssh='ssh -O stop $(ls -1 /tmp/ssh-cm-ben*| cut -d"-" -f4 >/dev/stdout >/dev/stderr)'
+    alias pullwww='(cd ~/infra && ansible-playbook www.yml --diff --tags wwwsudois,www-api,www-nginx --limit www && ansible-playbook matrix.yml --diff --tags www && ansible-playbook pirate.yml --diff --tags www)'
+    alias dockps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+    alias nc-occ='docker exec -it --user www-data nextcloud php occ'
+    alias codec='ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1'
 fi
 
 ## MacOS
