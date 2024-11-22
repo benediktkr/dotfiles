@@ -37,6 +37,8 @@ unset MAILCHECK
 export EDITOR="vim"
 export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin/:/usr/bin:/usr/sbin:/bin:/sbin"
 export TZ="Europe/Berlin"
+export TERM="xterm-256color"
+
 export ZELLIJ_AUTO_ATTACH="true"
 export GPG_TTY=$(tty)
 export HATCH_INTERACTIVE=false
@@ -106,6 +108,11 @@ fi
 
 # Load things
 
+# https://github.com/NixOS/nix/issues/7880#issuecomment-1750399157
+if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 ## Safely load ssh-agent without eval
 if [[ -f "${SSH_AGENT_ENVFILE}" ]]; then
     chmod 700 $SSH_AGENT_ENVFILE
@@ -125,9 +132,18 @@ elif [[ -f $SSH_AGENT_ENVFILE ]]; then
     rm -v $SSH_AGENT_ENVFILE
 fi
 
-# https://github.com/NixOS/nix/issues/7880#issuecomment-1750399157
-if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+
+if [[ "${MOTD_SHOW}" != "false" ]]; then
+    motd_env="${color_purple}env${color_nc}         ${ENV_COLOR}${ENV}${color_nc}"
+    echo -e "$motd_env"
+    if [[ -n "${SSH_CLIENT}" ]]; then
+        echo -ne "${color_purple}from ipv4${color_nc}   ${color_cyan}"
+        echo -n $SSH_CLIENT | awk '{ print $1 }'
+        echo -e "${color_nc}"
+    fi
+    if [[ -n "$motd_ssh_agent" ]]; then
+        echo -e "$motd_ssh_agent"
+    fi
 fi
 
 ## oh-my-zsh plugins
@@ -145,7 +161,3 @@ else
     SAVEHIST=10000
     HISTFILE=~/.zsh_history
 fi
-
-
-
-
