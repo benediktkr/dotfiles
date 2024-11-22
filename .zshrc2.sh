@@ -41,7 +41,7 @@ case ${ENV} in
         else
             ZSH_THEME="gentoo"
         fi
-        if [[ "${OSTYPE}" == "darin"* ]]; then
+        if [[ "${OSTYPE}" == "darwin"* ]]; then
             PROMPT_COLOR="magenta"
         else
             PROMPT_COLOR="red"
