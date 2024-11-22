@@ -77,6 +77,8 @@ au BufNewFile,BufRead *.xml.j2 setf xml
 au BufNewFile,BufRead *.sh.j2 setf sh
 au BufNewFile,BufRead *.py.j2 setf python
 au BufNewFile,BufRead *.groovy.j2 setf groovy
+au BufNewFile,BufRead *.json.j2 setf json
+au BufNewFile,BufRead *.cfg.j2 setf config
 au BufNewFile,BufRead *.html.j2 setf html
 au BufNewFile,BufRead *.use setf yaml
 au BufNewFile,BufRead *.euw setf yaml
