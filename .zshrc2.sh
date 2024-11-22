@@ -50,6 +50,12 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 SSH_AGENT_ENVFILE="${HOME}/.cache/ssh-agent.env"
 
 ## Change defaults from oh-my-zsh
+setopt shwordsplit        # for loops over "space separated strings" like bash
+setopt append_history     # append rather then overwrite
+setopt extended_history   # save timestamp
+setopt inc_append_history # add history immediately after typing a command
+setopt norcs              # disable clearing terminal after ssh logout
+
 ### oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
 ### https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
 export PAGER=""
