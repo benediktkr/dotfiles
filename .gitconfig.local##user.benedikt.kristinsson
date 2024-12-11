@@ -1,6 +1,3 @@
-[core]
-    hooksPath = "/home/benedikt.kristinsson/.git/hooks"
-
 [user]
     email = benedikt.kristinsson@care.com
     name = Ben Kristinsson
