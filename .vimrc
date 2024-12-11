@@ -82,7 +82,7 @@ au BufNewFile,BufRead *.cfg.j2 setf config
 au BufNewFile,BufRead *.html.j2 setf html
 au BufNewFile,BufRead *.use setf yaml
 au BufNewFile,BufRead *.euw setf yaml
-au BufNewFile,BufRead .gitconfig.local* setf toml
+au BufNewFile,BufRead .gitconfig.local* setf gitconfig
 " jinja syntax isnt built into vim, and is read from ~/.vim/syntax/jinja.vim.  using 'setf jinja'
 " doesnt work (i think it hasnt been loaded at this point). instead set 'filetype'
 au BufNewFile,BufRead *.hbs set filetype=jinja
