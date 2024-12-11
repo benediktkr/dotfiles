@@ -1,5 +1,6 @@
 [core]
     pager = less -F -X
+    editor = vim
 
 [user]
     email = ben@sudo.is
