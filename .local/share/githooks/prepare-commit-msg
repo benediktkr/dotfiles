@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# $1: `.git/COMMIT_MSG` (Path to temporary file with commit message so far)
+# $2: `"message"`
+
+# Do not prefix 'Merge', 'fixup!' or 'squash!' commits
+if cat $1 | grep -E -q -i '^(Merge|(fixup|squash)!)'; then
+    exit 0
+fi
+
+#branch_name=$(git symbolic-ref --short HEAD)
+ticket=$(git symbolic-ref --short HEAD | grep -o -E '^(TO|)+-[0-9]+')
+if [[ -n "$ticket" ]]; then
+    echo "Ticket: $ticket"
+    sed -i.bak -e "1s/^/${ticket} /" $1
+fi
