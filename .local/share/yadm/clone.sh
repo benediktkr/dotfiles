@@ -12,17 +12,13 @@ cleanup() {
 }
 trap cleanup EXIT
 
-
 dotfiles_repo="https://git.sudo.is/ben/dotfiles.git"
 yadm_tempdir=$(mktemp -d -p $HOME -t ".tmpXXXXXXXXXX")
 yadm_url="https://github.com/TheLocehiliosan/yadm/raw/master/yadm"
 
-command -v wget >/dev/null && have_wget="true"
-command -v curl >/dev/null && have_curl="true"
-
-if [[ "${have_wget}" == "true" ]]; then
+if command -v wget >/dev/null; then
     wget $yadm_url -O ${yadm_tempdir}/yadm
-elif [[ "${have_curl}" == "true" ]]; then
+elif command -v curl >/dev/null; then
     curl $yadm_url > ${yadm_tempdir}/yadm
 else
     echo "Neither 'curl' nor 'wget' found in PATH."

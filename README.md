@@ -24,15 +24,17 @@ Normally `yadm` is executed from `~/.local/bin/yadm`, which is managed
 by this repo.
 
 So the first time cloning the repo on a new system, we have a chicken and
-egg problem
+egg problem. Either grab `yadm` and and them delete it:
 
-```shell
+```bash
 mkdir -p ~/tmp
 wget https://github.com/TheLocehiliosan/yadm/raw/master/yadm -O ~/tmp/yadm
 chmod +x ~/tmp/yadm
 ~/tmp/yadm clone https://git.sudo.is/ben/dotfiles
 rm ~/tmp/yadm
 ```
+
+Or use the [`clone.sh` script](https://git.sudo.is/ben/dotfiles/raw/branch/main/.local/share/yadm/clone.sh).
 
 ## Repository
 
