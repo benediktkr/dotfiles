@@ -28,6 +28,7 @@
     defaultBranch = main
 
 [alias]
+    co = checkout
     n = checkout -b
     b = branch
     p = pull
