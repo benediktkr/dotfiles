@@ -1,6 +1,14 @@
 [core]
     pager = less -F -X
 
+[user]
+    email = ben@sudo.is
+    name = Ben Kristinsson
+    signingkey = "~/.ssh/id_ed25519"
+
+[gpg]
+    format = ssh
+
 [blame]
     coloring = recent
 

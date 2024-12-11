@@ -2,10 +2,3 @@
     # apt-get install ksshaskpass
     askpass = /usr/bin/ksshaskpass
 
-[user]
-    email = ben@sudo.is
-    name = Ben Kristinsson
-    signingkey = "~/.ssh/id_ed25519"
-
-[gpg]
-    format = ssh

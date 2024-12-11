@@ -6,6 +6,9 @@
     name = Ben Kristinsson
     signingkey = A17F259BC2C05742
 
+[gpg]
+    format = openpgp
+
 [credential "https://github.com"]
     useHttpPath = true
     helper = /usr/local/bin/credential-github-app
