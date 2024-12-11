@@ -7,14 +7,5 @@
     name = Ben Kristinsson
     signingkey = "~/.ssh/id_ed25519"
 
-[submodule]
-    recurse = false
-
-[credential]
-    helper = store
-
 [gpg]
     format = ssh
-
-[commit]
-    gpgsign = true
