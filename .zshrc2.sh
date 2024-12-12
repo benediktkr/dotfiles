@@ -178,8 +178,6 @@ if [[ -S ${SSH_AUTH_SOCK}  && -n "${SSH_AGENT_PID}" ]] && `ps -p "${SSH_AGENT_PI
     motd_ssh_agent=$(while IFS= read -r line; do
         echo -e "${color_purple}ssh-agent${color_nc}   ${color_orange}${line}${color_nc}"
     done) <<< $(ssh-add -l | awk -F' ' '{ print $3 }')
-elif [[ -f $SSH_AGENT_ENVFILE ]]; then
-    rm -v $SSH_AGENT_ENVFILE
 fi
 
 if [[ "${MOTD_SHOW}" != "false" ]]; then
