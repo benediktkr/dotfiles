@@ -1,5 +1,6 @@
 [core]
-    pager = less -F -X
+    #pager = less -F -X
+    pager = cat
     editor = vim
     hooksPath = "~/.local/share/githooks"
 
