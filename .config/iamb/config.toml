@@ -5,7 +5,7 @@ user_id = "@ben:sudo.is"
 
 [settings]
 request_timeout = 180
-user_gutter_width = 30
+user_gutter_width = 12
 username_display = "localpart"
 typing_notice_display = true
 reaction_display = true
