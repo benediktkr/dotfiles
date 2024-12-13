@@ -4,6 +4,8 @@
 user_id = "@ben:sudo.is"
 
 [settings]
+log_level = "info"
+external_edit_file_suffix = ".md"
 request_timeout = 180
 user_gutter_width = 12
 username_display = "localpart"
@@ -27,3 +29,8 @@ protocol.type = "sixel"
 
 [settings.notifications]
 enabled = false
+
+[layout]
+# "new": opens ":welcome" on startup
+# "resore": reads from .cache/iamb/profiles/user/layout.json
+style = "restore"
