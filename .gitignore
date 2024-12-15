@@ -43,3 +43,5 @@ private/
 !.ssh/authorized_keys
 !.ssh/known_hosts*
 
+.config/rustic/*
+!.config/rustic/*.toml
