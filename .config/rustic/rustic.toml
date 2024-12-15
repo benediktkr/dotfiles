@@ -1,3 +1,5 @@
+# MacOS path: ~/Library/Application\ Support/rustic/rustic.toml
+
 [repository]
 repository = "/tmp/repo"
 password-command = "get-rustic-password.py"
