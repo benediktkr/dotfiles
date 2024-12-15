@@ -12,7 +12,7 @@ def parse_args():
 
 def read_password_file(profile_name):
     passwd_file = f"{profile_name}.txt"
-    passwd_path = os.path.join(os.getenv("HOME"), ".config/rustic/", passwd_file)
+    passwd_path = os.path.join(os.getenv("HOME"), ".local/share/private/rustic/", passwd_file)
     try:
         with open(passwd_path, 'r') as f:
             return f.read().strip()
