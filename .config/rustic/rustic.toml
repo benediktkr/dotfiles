@@ -1,4 +1,4 @@
-# MacOS path: ~/Library/Application\ Support/rustic/rustic.toml
+[global]
 
 [repository]
 repository = "/tmp/repo"
