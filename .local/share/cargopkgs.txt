@@ -1,0 +1,9 @@
+bat
+eza
+bottom
+rustic-rs
+mdcat
+iamb
+cargo-binstall
+jless
+zellij
