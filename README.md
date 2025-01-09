@@ -28,7 +28,7 @@ egg problem. Either grab `yadm` and and them delete it:
 
 ```bash
 mkdir -p ~/tmp
-wget https://github.com/TheLocehiliosan/yadm/raw/master/yadm -O ~/tmp/yadm
+wget https://github.com/yadm-dev/yadm/raw/master/yadm -O ~/tmp/yadm
 chmod +x ~/tmp/yadm
 ~/tmp/yadm clone https://git.sudo.is/ben/dotfiles
 rm ~/tmp/yadm

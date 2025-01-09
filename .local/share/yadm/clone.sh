@@ -14,7 +14,7 @@ trap cleanup EXIT
 
 dotfiles_repo="https://git.sudo.is/ben/dotfiles.git"
 yadm_tempdir=$(mktemp -d -p $HOME -t ".tmpXXXXXXXXXX")
-yadm_url="https://github.com/TheLocehiliosan/yadm/raw/master/yadm"
+yadm_url="https://github.com/yadm-dev/yadm/raw/master/yadm"
 
 if command -v wget >/dev/null; then
     wget $yadm_url -O ${yadm_tempdir}/yadm
