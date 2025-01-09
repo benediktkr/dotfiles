@@ -4,8 +4,8 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-config.initial_cols = 210
-config.initial_rows = 100
+config.initial_cols = 180
+config.initial_rows = 70
 config.audible_bell = "Disabled"
 
 config.font = wezterm.font 'DejaVu Sans Mono'
