@@ -33,5 +33,6 @@ fi
 
 chmod +x ${yadm_tempdir}/yadm
 ${yadm_tempdir}/yadm clone ${dotfiles_repo} $@
-${yadm_tempdir}/yadm checkout ${HOME}
+#${yadm_tempdir}/yadm bootstrap
+echo "Done! You may want to run 'yadm bootstrap' now."
 
