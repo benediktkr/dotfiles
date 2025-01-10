@@ -55,7 +55,7 @@
     recurse = false
 
 [credential]
-    helper = store
+	helper = cache
 
 [color]
 	ui = true
