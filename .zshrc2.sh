@@ -103,7 +103,7 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
 fi
 ## Homebrew
 if [[ -d "/opt/homebrew/bin" ]]; then
-    PATH="$PATH:/opt/homebrew/bin"
+    PATH="/opt/homebrew/bin:$PATH"
 fi
 ## Emacs
 if [[ "$EDITOR" == "emacs" ]]; then

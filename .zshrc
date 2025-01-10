@@ -69,7 +69,7 @@ export GPG_TTY=$(tty)
 export HATCH_INTERACTIVE=false
 
 if [[ -d "/opt/homebrew/bin" ]]; then
-    PATH="$PATH:/opt/homebrew/bin"
+    PATH="/opt/homebrew/bin:$PATH"
 fi
 if [[ -d "${HOME}/.cargo/bin" ]]; then
     if [[ -d "${HOME}/.rustup" ]]; then
