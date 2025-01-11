@@ -85,7 +85,9 @@ au BufNewFile,BufRead *.euw setf yaml
 au BufNewFile,BufRead .gitconfig.local* setf gitconfig
 " jinja syntax isnt built into vim, and is read from ~/.vim/syntax/jinja.vim.  using 'setf jinja'
 " doesnt work (i think it hasnt been loaded at this point). instead set 'filetype'
-au BufNewFile,BufRead *.hbs set filetype=jinja
+"au BufNewFile,BufRead *.hbs set filetype=jinja
+au BufNewFile,BufRead *.hbs set filetype=html
+
 
 " disable del/space/backspace in normal mode
 nnoremap <del> <nop>
