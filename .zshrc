@@ -237,6 +237,10 @@ fi
 if command -v "rg" >/dev/null; then
     alias grep="rg"
 fi
+if command -v "brew" >/dev/null; then
+    export HOMEBREW_INSTALL_BADGE="✅"
+    export HOMEBREW_BUNDLE_FILE="${HOME}/.local/share/Brewfile"
+fi
 
 if [[ "$EDITOR" == "emacs" ]]; then
     source $PRIVATE_DOTFILES/zsh.d/emacs.sh
