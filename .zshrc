@@ -90,7 +90,6 @@ setopt shwordsplit # for loops over "space separated strings" like bash
 setopt append_history # append rather then overwrite
 setopt extended_history # save timestamp
 setopt inc_append_history # add history immediately after typing a command
-setopt norcs # disable clearing terminal after ssh logout
 
 alias less="less -R"
 alias lm='ls -goh --time-style="+"'
