@@ -1,0 +1,74 @@
+target-version = "py37"
+fix = false
+output-format = "full"
+
+[lint]
+# enables rules that ruff considers to be 'preview', for example (includes all E3 rules):
+#  - E302: expected 2 blank lines
+#  - E265: block comment should start with '# '
+#  - E225: whitespace around oeprator
+preview = true
+select = [
+  "A",      # flake8-builtins
+  "ARG",    # flake8-unusued-arguments
+  #"B",     # flake8-bugbear
+  "C",      # flake8-use-pathlib
+  "DTZ",    # flake8-datetimez
+  "E",      # Error
+  "EM",     # flake8-errmsg
+  "F",      # pyflakes
+  "FBT",    # flake8-boolean-trap
+  #"I",     # isort
+  "ICN",    # flake8-import-conventions
+  "ISC",    # flake8-impicit-str-concat
+  "N",      # pep8-naming
+  "PLC",    # pylint (PL)
+  "PLE",    # pylint (PLE)
+  "PLR",    # pylint (PLR)
+  "PLW",    # pylint (PLW)
+  #"Q",     # flake8-quotes
+  "RUF",    # Ruff-specific rules
+  "S",      # flake8-bandit
+  #"T",     # flake8-print (T20)
+  "TID",    # flake8-tidy-imports
+  "UP",     # pyupgrade
+  "W",      # Warning
+  "YTT",    # flake8-2020
+]
+ignore = [
+  "E402",     # module level import not at top of file
+  "E501",     # line too long
+  "UP032",    # use f-string instead of 'str.format'
+  "PLR2004",  # value used in comparison
+  "PLR6301",  # no-self-use
+  "PLR0913",  # Too many arguments in function definition
+  "PLR0917",  # Too many positional arguments
+  "FBT002",   # boolean default position argument
+  "PLW1514",  # open in text mode without explicit 'encoding' argument
+  #"F401",  # imported by unused
+]
+exclude = [
+  ".git",
+  ".venv"
+]
+task-tags = [
+  "FIXME",
+  "TODO",
+]
+extend-unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+[lint.isort]
+known-first-party = []
+
+[lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[lint.per-file-ignores]
+"tests/**/*" = [
+  # Tests can use magic values, assertions, and relative imports
+  "PLR2004", "S101", "TID252",
+  # Tests can also import without explicitly using, and set variables that look like secrets
+  "F401", "S"
+]
