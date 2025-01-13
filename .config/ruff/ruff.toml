@@ -3,6 +3,7 @@ fix = false
 output-format = "full"
 line-length = 130
 indent-width = 4
+show-fixes = true
 
 [format]
 quote-style = "double"
