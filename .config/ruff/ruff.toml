@@ -1,6 +1,15 @@
 target-version = "py37"
 fix = false
 output-format = "full"
+line-length = 130
+indent-width = 4
+
+[format]
+quote-style = "double"
+indent-style = "space"
+# use `\n`
+line-ending = "lf"
+skip-magic-trailing-comma = true
 
 [lint]
 # enables rules that ruff considers to be 'preview', for example (includes all E3 rules):
