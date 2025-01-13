@@ -7,3 +7,4 @@ iamb
 cargo-binstall
 jless
 zellij
+yazi
