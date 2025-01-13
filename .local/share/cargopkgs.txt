@@ -8,3 +8,4 @@ cargo-binstall
 jless
 zellij
 yazi
+dotter
