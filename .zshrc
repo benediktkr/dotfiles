@@ -227,7 +227,7 @@ COMPLETION_WAITING_DOTS="true"
 
 if command -v eza >/dev/null; then
     # --total-size
-    alias ls="eza -1 --icons=never --color=always --classify=always --color-scale=all --color-scale-mode=gradient --group-directories-first --git-repos-no-status --git --no-user --no-permissions --octal-permissions --header"
+    alias ls="eza -1 --icons=never --color=always --classify=always --color-scale=all --color-scale-mode=gradient --group-directories-first --git-repos-no-status --git --no-user --no-permissions --octal-permissions"
     alias tree="eza --tree --color=never --icons=always"
 fi
 if command -v "bat" >/dev/null; then
