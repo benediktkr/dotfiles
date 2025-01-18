@@ -1,25 +1,19 @@
-# This is a default config file for bottom.  All of the settings are commented
-# out by default; if you wish to change them uncomment and modify as you see
-# fit.
 
-# This group of options represents a command-line option.  Flags explicitly
-# added when running (ie: btm -a) will override this config file if an option
-# is also set here.
 [flags]
 # Whether to hide the average cpu entry.
-#hide_avg_cpu = false
+hide_avg_cpu = false
 # Whether to use dot markers rather than braille.
-#dot_marker = false
+dot_marker = false
 # The update rate of the application.
-#rate = "1s"
+rate = "2s"
 # Whether to put the CPU legend to the left.
-#cpu_left_legend = false
+cpu_left_legend = false
 # Whether to set CPU% on a process to be based on the total CPU or just current usage.
 #current_usage = false
 # Whether to set CPU% on a process to be based on the total CPU or per-core CPU% (not divided by the number of cpus).
 #unnormalized_cpu = false
 # Whether to group processes with the same name together by default.
-#group_processes = false
+group_processes = false
 # Whether to make process searching case sensitive by default.
 #case_sensitive = false
 # Whether to make process searching look for matching the entire word by default.
@@ -27,39 +21,39 @@
 # Whether to make process searching use regex by default.
 #regex = false
 # The temperature unit. One of the following, defaults to "c" for Celsius:
-#temperature_type = "c"
+temperature_type = "c"
 ##temperature_type = "k"
 ##temperature_type = "f"
 ##temperature_type = "kelvin"
 ##temperature_type = "fahrenheit"
 ##temperature_type = "celsius"
 # The default time interval (in milliseconds).
-#default_time_value = "60s"
+default_time_value = "120s"
 # The time delta on each zoom in/out action (in milliseconds).
-#time_delta = 15000
+time_delta = 30000
 # Hides the time scale.
-#hide_time = false
+hide_time = false
 # Override layout default widget
 #default_widget_type = "proc"
 #default_widget_count = 1
 # Expand selected widget upon starting the app
-#expanded = true
-# Use basic mode
-#basic = false
+expanded = false
+# Use basic mode (looks like htop)
+basic = false
 # Use the old network legend style
 #use_old_network_legend = false
 # Remove space in tables
-#hide_table_gap = false
+hide_table_gap = false
 # Show the battery widgets
-#battery = false
+battery = true
 # Disable mouse clicks
-#disable_click = false
+disable_click = false
 # Show memory values in the processes widget as values by default
-#process_memory_as_value = false
+process_memory_as_value = false
 # Show tree mode by default in the processes widget.
-#tree = false
+tree = false
 # Shows an indicator in table widgets tracking where in the list you are.
-#show_table_scroll_position = false
+show_table_scroll_position = true
 # Show processes as their commands by default in the process widget.
 #process_command = false
 # Displays the network widget with binary prefixes.
@@ -75,22 +69,22 @@
 # Shows cache and buffer memory
 #enable_cache_memory = false
 # How much data is stored at once in terms of time.
-#retention = "10m"
+retention = "10m"
 # Where to place the legend for the memory widget. One of "none", "top-left", "top", "top-right", "left", "right", "bottom-left", "bottom", "bottom-right".
 #memory_legend = "TopRight".
 # Where to place the legend for the network widget. One of "none", "top-left", "top", "top-right", "left", "right", "bottom-left", "bottom", "bottom-right".
 #network_legend = "TopRight".
 
 # Processes widget configuration
-#[processes]
+[processes]
 # The columns shown by the process widget. The following columns are supported:
 # PID, Name, CPU%, Mem%, R/s, W/s, T.Read, T.Write, User, State, Time, GMem%, GPU%
-#columns = ["PID", "Name", "CPU%", "Mem%", "R/s", "W/s", "T.Read", "T.Write", "User", "State", "GMem%", "GPU%"]
+columns = ["PID", "Name", "CPU%", "Mem%", "R/s", "W/s", "T.Read", "T.Write", "User", "State", "GMem%", "GPU%"]
 
 # CPU widget configuration
-#[cpu]
+[cpu]
 # One of "all" (default), "average"/"avg"
-# default = "average"
+default = "average"
 
 # Disk widget configuration
 #[disk]
@@ -128,8 +122,7 @@
 
 # These are all the components that support custom theming.  Note that colour support
 # will depend on terminal support.
-#[styles] # Uncomment if you want to use custom styling
-
+[styles]
 # Built-in themes. Valid values are:
 # - "default"
 # - "default-light"
@@ -140,7 +133,7 @@
 #
 # This will have the lowest precedence if a custom colour palette is set,
 # or overridden if the command-line flag for a built-in theme is set.
-#theme = "default"
+theme = "nord"
 
 #[styles.cpu]
 #all_entry_color = "green"
