@@ -182,15 +182,15 @@ theme = "nord"
 # All layout components have a ratio value - if this is not set, then it defaults to 1.
 # The default widget layout:
 [[row]]
-  ratio=8
+  ratio=12
   [[row.child]]
   type="battery"
 [[row]]
-  ratio=22
+  ratio=30
   [[row.child]]
   type="cpu"
 [[row]]
-    ratio=40
+    ratio=28
     [[row.child]]
       ratio=4
       type="net"
