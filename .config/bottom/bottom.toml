@@ -153,13 +153,14 @@ theme = "nord"
 #rx_total_color = "light cyan"
 #tx_total_color = "light green"
 
-#[styles.battery]
-#high_battery_color = "green"
-#medium_battery_color = "yellow"
-#low_battery_color = "red"
+[styles.battery]
+high_battery_color = "green"
+medium_battery_color = "yellow"
+low_battery_color = "red"
 
-#[styles.tables]
+[styles.tables]
 #headers = {color = "light blue", bold = true}
+headers = {bold = true}
 
 #[styles.graphs]
 #graph_color = "gray"
@@ -180,22 +181,21 @@ theme = "nord"
 #
 # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
 # All layout components have a ratio value - if this is not set, then it defaults to 1.
-# The default widget layout:
 [[row]]
   ratio=12
   [[row.child]]
-  type="battery"
+    type="battery"
 [[row]]
   ratio=30
   [[row.child]]
-  type="cpu"
+    type="cpu"
 [[row]]
     ratio=28
     [[row.child]]
       ratio=4
       type="net"
     [[row.child]]
-      ratio=3
+      ratio=1
       [[row.child.child]]
         type="temp"
       #[[row.child.child]]
