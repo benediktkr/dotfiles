@@ -68,7 +68,9 @@ www.medimax.de##body,html:style(overflow:auto!important)
 ! 2023-11-25 https://www.kleinanzeigen.de
 www.kleinanzeigen.de##.gdprBannerBackdrop.jsx-351934413
 
+! 2025-01-15 https://old.reddit.com
+old.reddit.com##.cookie-infobar.with-btn.with-icon.md-container-small.reddit-infobar
 
-
-
+! 2025-01-19 https://www.reddit.com
+www.reddit.com##.cookie-infobar.with-btn.with-icon.md-container-small.reddit-infobar
 
