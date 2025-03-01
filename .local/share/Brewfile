@@ -1,4 +1,5 @@
 tap "homebrew/bundle"
+tap "homebrew/services"
 brew "python@3.13"
 brew "ffmpeg"
 brew "gh"
