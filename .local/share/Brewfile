@@ -12,7 +12,6 @@ brew "ollama"
 brew "pipx"
 brew "rclone"
 brew "tmux"
-brew "virt-manager"
 brew "watch"
 brew "wget"
 brew "ykpers"
@@ -52,7 +51,3 @@ cask "wezterm"
 cask "yubico-authenticator"
 cask "zen-browser"
 cask "zoom"
-mas "Draw Things", id: 6444050820
-mas "Home Assistant", id: 1099568401
-mas "WireGuard", id: 1451685025
-mas "Xcode", id: 497799835
