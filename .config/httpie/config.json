@@ -1,6 +1,6 @@
 {
     "default_options": [
-        "--style", "pie-dark",
+        "--style", "autumn",
         "--default-scheme", "https",
         "--timeout", "5",
         "--all",
