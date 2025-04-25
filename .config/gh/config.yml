@@ -15,6 +15,8 @@ aliases:
       pr view --json 'headRepository,number,title,url' --template '
       {{ printf "[`%s#%v`](%s): %s\n" .headRepository.name .number .url .title }}
       '
+    pr url: |
+      pr view --json 'url' --jq '.url'
     pr show: |
       pr view --json 'headRepository,number,title,url,body,assignees,comments,state' --template '
       {{ printf "%s#%v" .headRepository.name .number | autocolor "green" }}: {{ .title }}
