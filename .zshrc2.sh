@@ -115,6 +115,7 @@ if [[ "$SUDO_ENV" == "sensor" ]]; then
 fi
 
 # Aliases
+alias dug="dig +noall +answer +question"
 alias less="less -R"
 alias df='df -x tmpfs -x devtmpfs -x efivarfs -h'
 alias dmesg="dmesg --human --color=always -T"

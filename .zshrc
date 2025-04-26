@@ -91,6 +91,7 @@ setopt append_history # append rather then overwrite
 setopt extended_history # save timestamp
 setopt inc_append_history # add history immediately after typing a command
 
+alias dug="dig +noall +answer +question"
 alias less="less -R"
 alias lm='ls -goh --time-style="+"'
 alias df='df -x tmpfs -x devtmpfs -x efivarfs'
