@@ -50,7 +50,7 @@ cask "vlc"
 cask "vuescan"
 cask "wezterm"
 cask "yubico-authenticator"
-cask "zen-browser"
+cask "zen"
 cask "zoom"
 mas "Draw Things", id: 6444050820
 mas "Home Assistant", id: 1099568401
