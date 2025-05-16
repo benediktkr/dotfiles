@@ -86,9 +86,6 @@ setopt append_history     # append rather then overwrite
 setopt extended_history   # save timestamp
 setopt inc_append_history # add history immediately after typing a command
 
-### oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
-### https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
-export PAGER=""
 export UPDATE_ZSH_DAYS=31
 COMPLETION_WAITING_DOTS="true" # print red dots while waiting for completion
 
@@ -116,7 +113,7 @@ fi
 
 # Aliases
 alias dug="dig +noall +answer +question"
-alias less="less -R"
+alias grep='grep --color=always --exclude-dirs={.git}'
 alias df='df -x tmpfs -x devtmpfs -x efivarfs -h'
 alias dmesg="dmesg --human --color=always -T"
 alias nomail="echo 'd *' | mail -N"
@@ -133,7 +130,13 @@ if command -v "eza" >/dev/null; then
     alias tree="eza --tree --color=never --icons=always"
 fi
 if command -v "bat" >/dev/null; then
-    alias cat="bat -p"
+    alias cat="bat --plain"
+    alias less="bat --plain --number --paging always --pager 'less -RF'"
+else
+    alias less="less -R"
+    ### oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
+    ### https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
+    export PAGER=""
 fi
 if command -v "rg" >/dev/null; then
     alias grep="rg"

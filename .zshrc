@@ -79,10 +79,6 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
     export CARGO_HOME="${HOME}/.cargo"
 fi
 
-# oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
-# https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
-export PAGER=""
-
 # in case dotnet happens to be installed, disable the telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
@@ -92,7 +88,7 @@ setopt extended_history # save timestamp
 setopt inc_append_history # add history immediately after typing a command
 
 alias dug="dig +noall +answer +question"
-alias less="less -R"
+alias grep='grep --color=always --exclude-dirs={.git}'
 alias lm='ls -goh --time-style="+"'
 alias df='df -x tmpfs -x devtmpfs -x efivarfs'
 alias dmesg="dmesg --human --color=always -T"
@@ -232,7 +228,13 @@ if command -v eza >/dev/null; then
     alias tree="eza --tree --color=never --icons=always"
 fi
 if command -v "bat" >/dev/null; then
-    alias cat="bat -p"
+    alias cat="bat --plain"
+    alias less="bat --plain --number --paging always --pager 'less -RF'"
+else
+    alias less="less -R"
+    # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
+    # https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
+    export PAGER=""
 fi
 if command -v "rg" >/dev/null; then
     alias grep="rg"
