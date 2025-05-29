@@ -73,4 +73,3 @@ old.reddit.com##.cookie-infobar.with-btn.with-icon.md-container-small.reddit-inf
 
 ! 2025-01-19 https://www.reddit.com
 www.reddit.com##.cookie-infobar.with-btn.with-icon.md-container-small.reddit-infobar
-

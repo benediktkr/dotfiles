@@ -1,8 +1,9 @@
 {
-  "timeStamp": 1738966050666,
-  "version": "1.62.0",
+  "timeStamp": 1748524080979,
+  "version": "1.64.0",
   "userSettings": {
     "advancedUserEnabled": true,
+    "uiTheme": "dark",
     "importedLists": [],
     "popupPanelSections": 31
   },
@@ -20,6 +21,7 @@
     "adguard-spyware",
     "adguard-spyware-url",
     "urlhaus-1",
+    "curben-phishing",
     "plowe-0",
     "fanboy-cookiemonster",
     "ublock-cookies-easylist",
@@ -40,10 +42,12 @@
     "DEU-0",
     "ISL-0",
     "NOR-0",
-    "SWE-1"
+    "SWE-1",
+    "UKR-0"
   ],
   "hiddenSettings": {},
   "whitelist": [
+    "apple.sjv.io",
     "chrome-extension-scheme",
     "moz-extension-scheme"
   ],
