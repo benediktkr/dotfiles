@@ -1,6 +1,5 @@
 [core]
-    #pager = less -F -X
-    pager = cat
+    pager = less -F -X
     editor = vim
     hooksPath = "~/.local/share/githooks"
 
@@ -37,7 +36,7 @@
     st = status
     pa = push --atomic
     br = rev-parse --abbrev-ref HEAD
-    l = log -3
+    l = log -3 --date=iso
 
     graph = log --graph --all --pretty=format:"%h%x09%d%x20%s"
 
