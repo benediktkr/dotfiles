@@ -1,10 +1,14 @@
 [user]
     email = benedikt.kristinsson@care.com
     name = Ben Kristinsson
-    signingkey = A17F259BC2C05742
+    # GPG
+    #signingkey = A17F259BC2C05742
+    # SSH
+    signingkey = "~/.ssh/id_rsa"
 
 [gpg]
-    format = openpgp
+    #format = openpgp
+    format = ssh
 
 [credential "https://github.com"]
     useHttpPath = true
