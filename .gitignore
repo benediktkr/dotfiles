@@ -27,6 +27,11 @@ private/
 .vim/.netrwhist
 .vim/after
 
+# neovim
+.config/nvim/.luarc.json
+.config/nvim/spell/
+.config/nvim/lazy-lock.json
+
 # mac
 .config/iterm2/AppSupport
 .DS_Store
