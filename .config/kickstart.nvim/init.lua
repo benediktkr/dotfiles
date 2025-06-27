@@ -876,6 +876,25 @@ require('lazy').setup({
     },
   },
 
+  { -- https://github.com/lukas-reineke/headlines.nvim
+    'lukas-reineke/headlines.nvim',
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require('headlines').setup {
+        markdown = {
+          headline_highlights = { "Headline1", "Headline2", "Headline3", "Headline4", "Headline5", "Headline6", },
+          bullets = false,
+          codeblock_highlight = "CodeBlock",
+          dash_highlight = "Dash",
+          dash_string = "-",
+          quote_highlight = "Quote",
+          quote_string = ">",
+          fat_headlines = false,
+        }
+      }
+    end,
+  },
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
