@@ -911,7 +911,22 @@ require('lazy').setup({
         },
       }
       -- styles: 'tokyonight-night', 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
+
+  { -- https://github.com/neanias/everforest-nvim?tab=readme-ov-file
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('everforest').setup {
+        background = "soft",
+        disable_italic_comments = true,
+      }
+      --vim.o.background=dark
+      --vim.cmd.colorscheme 'everforest'
     end,
   },
 
@@ -939,7 +954,7 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'nord'
+      --vim.cmd.colorscheme 'nord'
     end,
   },
 
