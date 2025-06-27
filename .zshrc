@@ -99,6 +99,7 @@ alias j2y="json2yaml"
 
 alias private='git -C ~/.local/share/private'
 alias myip='curl -sS https://www.sudo.is/api/myip | jq .'
+alias kvim='NVIM_APPNAME=kickstart.nvim nvim'
 
 if [[ "$ENV" == "care.com" ]]; then
     ENV="care.com"
