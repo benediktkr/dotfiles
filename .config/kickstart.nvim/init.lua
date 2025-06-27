@@ -895,7 +895,8 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
+  { -- https://github.com/folke/tokyonight.nvim
+    -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
@@ -909,11 +910,36 @@ require('lazy').setup({
           comments = { italic = false }, -- Disable italics in comments
         },
       }
+      -- styles: 'tokyonight-night', 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      -- vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+  { -- https://github.com/AlexvZyl/nordic.nvim
+    'AlexvZyl/nordic.nvim',
+    lazy = false, -- load main colorschema during startup
+    priority = 1000,
+    config = function()
+      require('nordic').setup {
+        bold_keywords = true,
+        italic_comments = false,
+        transparent = { bg = false },
+        reduced_blue = true,
+        cursorline = {
+          bold = true,
+          bold_number = false,
+        },
+      }
+      --require('nordic').load()
+    end,
+  },
+
+  { -- https://github.com/shaunsingh/nord.nvim
+    'shaunsingh/nord.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'nord'
     end,
   },
 
