@@ -88,7 +88,6 @@ au BufNewFile,BufRead .gitconfig.local* setf gitconfig
 "au BufNewFile,BufRead *.hbs set filetype=jinja
 au BufNewFile,BufRead *.hbs set filetype=html
 
-
 " disable del/space/backspace in normal mode
 nnoremap <del> <nop>
 nnoremap <space> <nop>
