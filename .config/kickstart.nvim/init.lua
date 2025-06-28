@@ -878,19 +878,19 @@ require('lazy').setup({
 
   { -- https://github.com/lukas-reineke/headlines.nvim
     'lukas-reineke/headlines.nvim',
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = 'nvim-treesitter/nvim-treesitter',
     config = function()
       require('headlines').setup {
         markdown = {
-          headline_highlights = { "Headline1", "Headline2", "Headline3", "Headline4", "Headline5", "Headline6", },
+          headline_highlights = { 'Headline1', 'Headline2', 'Headline3', 'Headline4', 'Headline5', 'Headline6' },
           bullets = false,
-          codeblock_highlight = "CodeBlock",
-          dash_highlight = "Dash",
-          dash_string = "-",
-          quote_highlight = "Quote",
-          quote_string = ">",
+          codeblock_highlight = 'CodeBlock',
+          dash_highlight = 'Dash',
+          dash_string = '-',
+          quote_highlight = 'Quote',
+          quote_string = '>',
           fat_headlines = false,
-        }
+        },
       }
     end,
   },
@@ -916,13 +916,13 @@ require('lazy').setup({
   },
 
   { -- https://github.com/neanias/everforest-nvim?tab=readme-ov-file
-    "neanias/everforest-nvim",
+    'neanias/everforest-nvim',
     version = false,
     lazy = false,
     priority = 1000,
     config = function()
       require('everforest').setup {
-        background = "soft",
+        background = 'soft',
         disable_italic_comments = true,
       }
       --vim.o.background=dark
@@ -962,7 +962,7 @@ require('lazy').setup({
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false }
+    opts = { signs = false },
   },
 
   { -- Collection of various small independent plugins/modules
