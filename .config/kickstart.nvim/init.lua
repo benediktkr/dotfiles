@@ -889,7 +889,7 @@ require('lazy').setup({
           dash_string = '-',
           quote_highlight = 'Quote',
           quote_string = '>',
-          fat_headlines = false,
+          fat_headlines = true,
         },
       }
     end,
@@ -915,18 +915,20 @@ require('lazy').setup({
     end,
   },
 
-  { -- https://github.com/neanias/everforest-nvim?tab=readme-ov-file
+  { -- https://github.com/neanias/everforest-nvim
     'neanias/everforest-nvim',
-    version = false,
     lazy = false,
     priority = 1000,
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require('everforest').setup {
         background = 'soft',
+        transparent_background_level = 0,
+        italics = false,
         disable_italic_comments = true,
       }
-      --vim.o.background=dark
-      --vim.cmd.colorscheme 'everforest'
+      --vim.o.background = 'dark'
+      --require('everforest').load()
     end,
   },
 
@@ -935,6 +937,7 @@ require('lazy').setup({
     lazy = false, -- load main colorschema during startup
     priority = 1000,
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require('nordic').setup {
         bold_keywords = true,
         italic_comments = false,
