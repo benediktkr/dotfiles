@@ -31,6 +31,10 @@ private/
 .config/nvim/.luarc.json
 .config/nvim/spell/
 .config/nvim/lazy-lock.json
+.config/kickstart.nvim/.luarc.json
+.config/kickstart.nvim/spell/
+.config/kickstart.nvim/lazy-lock.json
+
 
 # mac
 .config/iterm2/AppSupport

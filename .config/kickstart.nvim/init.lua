@@ -887,14 +887,14 @@ require('lazy').setup({
     config = function()
       require('headlines').setup {
         markdown = {
-          headline_highlights = { 'Headline1', 'Headline2', 'Headline3', 'Headline4', 'Headline5', 'Headline6' },
+          headline_highlights = { 'Headline' },
           bullets = false,
           codeblock_highlight = 'CodeBlock',
           dash_highlight = 'Dash',
           dash_string = '-',
           quote_highlight = 'Quote',
           quote_string = '>',
-          fat_headlines = true,
+          fat_headlines = false,
         },
       }
     end,
@@ -917,6 +917,15 @@ require('lazy').setup({
       }
       -- styles: 'tokyonight-night', 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
+
+  { -- https://github.com/EdenEast/nightfox.nvim?tab=readme-ov-file
+    'EdenEast/nightfox.nvim',
+    priority = 1000,
+    config = function()
+      -- styles: nightfox (blue), nordfox (blue), carbonfox (black), terafox (green),
+      --vim.cmd.colorscheme 'nightfox'
     end,
   },
 
