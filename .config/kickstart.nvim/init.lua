@@ -916,7 +916,7 @@ require('lazy').setup({
         },
       }
       -- styles: 'tokyonight-night', 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      --vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
@@ -936,13 +936,13 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('everforest').setup {
-        background = 'soft',
+        background = 'hard',
         transparent_background_level = 0,
         italics = false,
         disable_italic_comments = true,
       }
-      --vim.o.background = 'dark'
-      --require('everforest').load()
+      vim.opt.background = 'dark'
+      require('everforest').load()
     end,
   },
 
