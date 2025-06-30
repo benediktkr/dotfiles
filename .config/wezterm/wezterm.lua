@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 config.initial_cols = 180
 config.initial_rows = 70
-config.audible_bell = "Disabled"
+config.audible_bell = 'Disabled'
 
 config.font = wezterm.font 'DejaVu Sans Mono'
 config.font_size = 14
@@ -14,11 +14,11 @@ config.font_size = 14
 config.colors = {
   -- Based on the color palette for the vim-theme "Everforest"
   -- https://github.com/sainnhe/everforest/blob/master/palette.md
-  background = "#1e2326",
-  foreground = "#d3c6aa",
+  background = '#1e2326',
+  foreground = '#d3c6aa',
 }
 
-config.leader = { key = "l", mods = "CMD", timeout_milliseconds = 1000 }
+config.leader = { key = 'l', mods = 'CMD', timeout_milliseconds = 1000 }
 local actions = {
   vsplit = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   hsplit = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
