@@ -17,7 +17,6 @@ config.colors = {
   --background = '#1e2326',
   --foreground = '#d3c6aa',
 }
-config.color_scheme = 'Everforest Dark Soft (Gogh)'
 
 config.leader = { key = 'l', mods = 'CMD', timeout_milliseconds = 1000 }
 local actions = {
