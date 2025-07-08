@@ -894,7 +894,7 @@ require('lazy').setup({
           dash_string = '-',
           quote_highlight = 'Quote',
           quote_string = '>',
-          fat_headlines = false,
+          fat_headlines = true,
         },
       }
     end,
@@ -942,7 +942,7 @@ require('lazy').setup({
         disable_italic_comments = true,
       }
       vim.opt.background = 'dark'
-      require('everforest').load()
+      --require('everforest').load()
     end,
   },
 
@@ -962,7 +962,7 @@ require('lazy').setup({
           bold_number = false,
         },
       }
-      --require('nordic').load()
+      require('nordic').load()
     end,
   },
 
