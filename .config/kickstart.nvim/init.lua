@@ -916,7 +916,7 @@ require('lazy').setup({
         },
       }
       -- styles: 'tokyonight-night', 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      --vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
@@ -962,7 +962,7 @@ require('lazy').setup({
           bold_number = false,
         },
       }
-      require('nordic').load()
+      --require('nordic').load()
     end,
   },
 
