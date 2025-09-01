@@ -233,9 +233,10 @@ if command -v "bat" >/dev/null; then
     #export BAT_THEME="Visual Studio Dark+"
     export BAT_THEME="GitHub"
     # '-pp' is an alias for '-P --plain', which is alias for '--paging=never --style=plain"
-    alias cat="bat -pp"
-    # '-n' is an alias for '--number', which is an alias for '--style=numbers'.
-    alias less="bat -n -f"
+    alias cat='bat -pp'
+    # bat: '-n' is an alias for '--number', which is an alias for '--style=numbers'.
+    # less: '-R': ANSI colors, '-F' exit if output is shorter than terminal
+    alias less='bat -n -f --pager "less -RF"'
 else
     alias less="less -R"
     # oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
