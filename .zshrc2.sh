@@ -131,8 +131,13 @@ if command -v "eza" >/dev/null; then
     alias tree="eza --tree --color=never --icons=always"
 fi
 if command -v "bat" >/dev/null; then
-    alias cat="bat --plain"
-    alias less="bat --plain --number --paging always --pager 'less -RF'"
+    # bat --list-themes
+    #export BAT_THEME="Visual Studio Dark+"
+    export BAT_THEME="GitHub"
+    # '-pp' is an alias for '-P --plain', which is alias for '--paging=never --style=plain"
+    alias cat="bat -pp"
+    # '-n' is an alias for '--number', which is an alias for '--style=numbers'.
+    alias less="bat -n -f"
 else
     alias less="less -R"
     ### oh-my-zsh will set this var otherwise, causing e.g. awscli to display everything in a pager
