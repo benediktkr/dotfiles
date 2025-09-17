@@ -1,16 +1,33 @@
 #!/bin/bash
 
-# $1: `.git/COMMIT_MSG` (Path to temporary file with commit message so far)
-# $2: `"message"`
+# $1: Path to temporary file with commit message so far, usually `.git/COMMIT_EDITMSG`
+# $2: Source of the edit message:
+#     - `"message"`: if `commit -m`, `-F` or `rebase`
+#     - `"template"`: if `commit -t` or `commit.template` is set
+#     - `"merge"`: the commit is a merge or a `.git/MERGE_MSG` exists
+#     - `"squash"`: if a `.git/SQUASH_MSG` file exists
+#     - `"commit"`: if `commit --amend`, `-c` or `-C`
+# $3: A commit object name if $1 is `"commit"`, usually `"HEAD"`.
 
-# Do not prefix 'Merge', 'fixup!' or 'squash!' commits
 if cat $1 | grep -E -q -i '^(Merge|(fixup|squash)!)'; then
+    # Do not edit 'Merge ..', 'fixup!' or 'squash!' commit messages
     exit 0
 fi
 
-#branch_name=$(git symbolic-ref --short HEAD)
-ticket=$(git symbolic-ref --short HEAD | grep -o -E '^(TO|)+-[0-9]+')
+if [[ "$2" != "message" ]]; then
+    # Do not edit messages for `commit --amend`, merge commits, squash commits
+    # and ignore templates
+    exit 0
+fi
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$branch" == "HEAD" ]]; then
+    # Happens for example when using `rebase`.
+    echo 0
+fi
+
+ticket=$(echo $branch | grep -o -E '^(TO|)+-[0-9]+')
 if [[ -n "$ticket" ]]; then
-    echo "Ticket: $ticket"
+    echo "Commit message prefixed with: $ticket"
     sed -i.bak -e "1s/^/${ticket} /" $1
 fi
