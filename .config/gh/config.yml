@@ -18,14 +18,19 @@ aliases:
     pr url: |
       pr view --json 'url' --jq '.url'
     pr show: |
-      pr view --json 'headRepository,number,title,url,body,assignees,comments,state' --template '
-      {{ printf "%s#%v" .headRepository.name .number | autocolor "green" }}: {{ .title }}
-      {{ tablerow ("Status" | autocolor "yellow") .state }}
-      {{ tablerow ("URL" | autocolor "yellow") .url }}{{ tablerow ("Repo" | autocolor "yellow") .headRepository.name }}{{ tablerender }}
-      {{ .body  | autocolor "cyan" }} {{ "\n" }}
-      {{ tablerow ("Author" | autocolor "magenta") "Comment" }}{{ range .comments }}{{ tablerow (.author.login|autocolor "green") .body }}{{ end }}{{ tablerender }}
-      {{ tablerow ("Assignee" | autocolor "magenta") "" }}{{ range .assignees }}{{ tablerow .login .name }}{{ end }}{{ tablerender }}
-      '
+      pr view --json 'headRepository,number,title,url,body,assignees,comments,state' --template
+      '{{
+        tablerow "" (printf "%s#%v" .headRepository.name .number | autocolor "green")
+      }}{{
+        tablerow "" .title
+      }}{{
+        tablerow ("URL" | autocolor "yellow") .url
+      }}{{
+        tablerow ("Status" | autocolor "yellow") .state
+      }}{{tablerender}}
+      {{.body  | autocolor "cyan"}}
+      {{ tablerow ("Author" | autocolor "magenta") "" "" }}{{ range .comments }}{{ tablerow (.author.login|autocolor "green") .body (.createdAt | timeago) }}{{ end }}{{tablerender}}
+      {{ tablerow ("Assignee" | autocolor "magenta") "" }}{{ range .assignees }}{{ tablerow (.login | autocolor "green") .name }}{{ end }}{{ tablerender }}'
     pr mrg: pr merge --squash --delete-branch
 
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
