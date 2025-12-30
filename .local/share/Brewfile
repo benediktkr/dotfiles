@@ -60,3 +60,16 @@ mas "Home Assistant", id: 1099568401
 mas "TK-Safe", id: 1592438228
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
+cargo "bat"
+cargo "bottom"
+cargo "eza"
+cargo "iamb"
+cargo "license-generator"
+cargo "mdbook"
+cargo "mdbook-admonish"
+cargo "mdbook-katex"
+cargo "mdbook-linkcheck"
+cargo "mdbook-toc"
+cargo "mdcat"
+cargo "rustic-rs"
+cargo "svg-invert"
