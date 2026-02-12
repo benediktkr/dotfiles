@@ -7,6 +7,7 @@ local config = wezterm.config_builder()
 config.initial_cols = 180
 config.initial_rows = 70
 config.audible_bell = 'Disabled'
+config.window_close_confirmation = 'NeverPrompt'
 
 config.font = wezterm.font 'DejaVu Sans Mono'
 config.font_size = 14
