@@ -7,8 +7,11 @@ set noerrorbells
 set nowrap
 set scrolloff=10
 set autochdir
+
 " auto-indent
 set ai
+" automatically insert comment when starting new line from a comment line
+set formatoptions=tcroql
 
 " prevent delays when switching to insert mode (in default /etc/vimrc on fedora/amzn)
 set timeout
