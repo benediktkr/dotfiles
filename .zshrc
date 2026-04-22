@@ -8,20 +8,11 @@ unset MAILCHECK || true
 DISABLE_AUTO_TITLE="true"
 
 case $(id -u -n) in
-    benedikt.kristinsson)
-        ENV="care.com"
-        PRIVATE_DOTFILES_REMOTE="https://git.sudo.is/ben/dotfiles-private"
-        PRIVATE_DOTFILES="$HOME/.local/share/private"
-        source $PRIVATE_DOTFILES/zsh.d/care-env.sh
-        export ZELLIJ_SESSION_NAME=$CARE_ENV
-        if [[ -n "$CARE_ENV" ]]; then
-            settitle $CARE_ENV
-        fi
-        ;;
     ben)
         ENV="sudo.is"
+        #settitle $HOSTNAME
         export ZELLIJ_SESSION_NAME="default"
-        if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" ]]; then
+        if [[ -d "${HOME}/.local/share/yadm/repo.git" || -d "${PRIVATE_DOTFILES}" || -d "${HOME}/projects/dotfiles" ]]; then
             SUDO_ENV="shell"
         else
             SUDO_ENV="server"
@@ -101,14 +92,14 @@ alias private='git -C ~/.local/share/private'
 alias myip='curl -sS https://www.sudo.is/api/myip | jq .'
 alias kvim='NVIM_APPNAME=kickstart.nvim nvim'
 
-if [[ "$ENV" == "care.com" ]]; then
-    ENV="care.com"
+if [[ "$ENV" == "work" ]]; then
+    ENV="work"
     ZSH_THEME="jreese2"
 
-    source ${PRIVATE_DOTFILES}/zsh.d/caredotcom.sh
+    #source ${PRIVATE_DOTFILES}/zsh.d/work.sh
 
     # set colors for jreese2
-    export PROMPT_HOSTNAME=$CARE_ENV
+    #export PROMPT_HOSTNAME=$WORK_ENV
     export PROMPT_COLOR_HOSTNAME=green
     export PROMPT_COLOR=blue
     export PROMPT_DELIM=":"
