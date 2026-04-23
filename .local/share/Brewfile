@@ -1,4 +1,4 @@
-brew "container"
+brew "container", restart_service: :changed
 brew "ffmpeg"
 brew "gh"
 brew "gnupg"
