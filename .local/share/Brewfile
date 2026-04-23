@@ -58,6 +58,7 @@ cask "vuescan"
 cask "wezterm"
 cask "yubico-authenticator"
 cask "zen"
+mas "Apple Configurator", id: 1037126344
 mas "Home Assistant", id: 1099568401
 mas "TK-Safe", id: 1592438228
 mas "WireGuard", id: 1451685025
