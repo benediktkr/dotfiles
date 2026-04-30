@@ -23,8 +23,10 @@ config.leader = { key = 'l', mods = 'CMD', timeout_milliseconds = 1000 }
 local actions = {
   vsplit = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   hsplit = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-  npane = wezterm.action.ActivatePaneDirection 'Left',
-  ppane = wezterm.action.ActivatePaneDirection 'Right',
+  next_pane = wezterm.action.ActivatePaneDirection 'Left',
+  prev_pane = wezterm.action.ActivatePaneDirection 'Right',
+  pane_index = wezterm.action.ActivatePaneByIndex,
+  tab_index = wezterm.action.ActivateTab,
 }
 config.keys = {
   -- vsplit
@@ -33,16 +35,38 @@ config.keys = {
   -- hsplit
   { key = 'T', mods = 'CTRL|SHIFT', action = actions.hsplit },
   { key = 'T', mods = 'CMD|SHIFT', action = actions.hsplit },
-  -- npane
-  -- { key = "o", mods = "CTRL", action = actions.npane },
-  -- { key = "o", mods = "CMD",  action = actions.npane },
-  -- ppane
-  -- { key = "p", mods = "CTRL", action = actions.ppane },
-  -- { key = "p", mods = "CMD",  action = actions.ppane },
+
+  -- next_pane
+  --{ key = "o", mods = "CTRL", action = actions.next_pane },
+  --{ key = "a", mods = "CMD",  action = actions.next_pane },
+  -- prev_pane
+  --{ key = "p", mods = "CTRL", action = actions.prev_pane },
+  --{ key = "p", mods = "CMD",  action = actions.prev_pane },
   -- send CTRL
   -- { key = "l", mods = "CMD", action = wezterm.action.SendKey { key = "l", mods = "CTRL" } },
   -- { key = "c", mods = "CMD", action = wezterm.action.SendKey { key = "c", mods = "CTRL" } },
   -- { key = "d", mods = "CMD", action = wezterm.action.SendKey { key = "d", mods = "CTRL" } },
 }
+
+-- Map CMD+[n] to switch between panes
+for i = 1, 8 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'CMD',
+    action = actions.pane_index(i - 1),
+  })
+end
+
+-- Map ALT+[n] to switch between tabs
+for i = 1, 8 do
+  -- https://wezterm.org/config/lua/keyassignment/ActivateTab.html
+  -- ActivateTab now accepts negative numbers; these wrap around from the start of the tabs to the end, so -1 references the right-most tab, -2 the tab to its left and so on.
+  -- ALT + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'ALT',
+    action = actions.tab_index(i - 1),
+  })
+end
 
 return config
