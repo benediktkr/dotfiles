@@ -20,13 +20,15 @@ config.colors = {
 }
 
 config.leader = { key = 'l', mods = 'CMD', timeout_milliseconds = 1000 }
+local act = wezterm.action
 local actions = {
-  vsplit = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  hsplit = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-  next_pane = wezterm.action.ActivatePaneDirection 'Left',
-  prev_pane = wezterm.action.ActivatePaneDirection 'Right',
-  pane_index = wezterm.action.ActivatePaneByIndex,
-  tab_index = wezterm.action.ActivateTab,
+  vsplit = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  hsplit = act.SplitVertical { domain = 'CurrentPaneDomain' },
+  next_pane = act.ActivatePaneDirection 'Left',
+  prev_pane = act.ActivatePaneDirection 'Right',
+  pane_index = act.ActivatePaneByIndex,
+  tab_index = act.ActivateTab,
+  open_link = act.OpenLinkAtMouseCursor,
 }
 config.keys = {
   -- vsplit
