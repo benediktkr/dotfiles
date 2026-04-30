@@ -3,6 +3,7 @@
 
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+-- promote warnings to errors (betters warning messages)
 config:set_strict_mode(true)
 
 config.initial_cols = 180
@@ -38,6 +39,10 @@ config.keys = {
   -- hsplit
   { key = 'T', mods = 'CTRL|SHIFT', action = actions.hsplit },
   { key = 'T', mods = 'CMD|SHIFT', action = actions.hsplit },
+
+  -- Disable CMD+'F', use SHIFT+CMD+'F' to open search window
+  { key = 'f', mods = 'CMD', action = act.Nop },
+  { key = 'f', mods = 'CMD|SHIFT', action = act.Search { CaseInSensitiveString = 'hash' } },
 
   -- next_pane
   --{ key = "o", mods = "CTRL", action = actions.next_pane },
