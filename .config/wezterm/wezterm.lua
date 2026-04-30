@@ -26,8 +26,6 @@ local actions = {
   hsplit = act.SplitVertical { domain = 'CurrentPaneDomain' },
   next_pane = act.ActivatePaneDirection 'Left',
   prev_pane = act.ActivatePaneDirection 'Right',
-  pane_index = act.ActivatePaneByIndex,
-  tab_index = act.ActivateTab,
   open_link = act.OpenLinkAtMouseCursor,
 }
 config.keys = {
@@ -55,7 +53,7 @@ for i = 1, 8 do
   table.insert(config.keys, {
     key = tostring(i),
     mods = 'CMD',
-    action = actions.pane_index(i - 1),
+    action = act.ActivatePaneByIndex(i - 1),
   })
 end
 
@@ -67,7 +65,7 @@ for i = 1, 8 do
   table.insert(config.keys, {
     key = tostring(i),
     mods = 'ALT',
-    action = actions.tab_index(i - 1),
+    action = act.ActivateTab(i - 1),
   })
 end
 
