@@ -8,11 +8,11 @@ config.initial_cols = 180
 config.initial_rows = 70
 config.audible_bell = 'Disabled'
 config.window_close_confirmation = 'NeverPrompt'
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.font = wezterm.font 'DejaVu Sans Mono'
 config.font_size = 14
 
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.colors = {
   -- Based on the color palette for the vim-theme "Everforest"
