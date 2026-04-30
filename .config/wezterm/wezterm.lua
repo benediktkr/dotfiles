@@ -72,6 +72,7 @@ for i = 1, 8 do
 end
 
 config.mouse_bindings = {
+  -- Click 'streak': number of consecutive clicks within the click threshold
   {
     event = { Up = { streak = 1, button = "Left" } },
     mods = "NONE",
