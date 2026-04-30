@@ -3,6 +3,7 @@
 
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+config:set_strict_mode(true)
 
 config.initial_cols = 180
 config.initial_rows = 70
