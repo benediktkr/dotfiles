@@ -12,6 +12,8 @@ config.window_close_confirmation = 'NeverPrompt'
 config.font = wezterm.font 'DejaVu Sans Mono'
 config.font_size = 14
 
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+
 config.colors = {
   -- Based on the color palette for the vim-theme "Everforest"
   -- https://github.com/sainnhe/everforest/blob/master/palette.md
