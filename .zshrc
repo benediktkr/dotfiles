@@ -222,7 +222,8 @@ fi
 if command -v "bat" >/dev/null; then
     # bat --list-themes
     #export BAT_THEME="Visual Studio Dark+"
-    export BAT_THEME="GitHub"
+    export BAT_THEME="default"
+    #export BAT_THEME="GitHub"
     # '-pp' is an alias for '-P --plain', which is alias for '--paging=never --style=plain"
     alias cat='bat -pp'
     # bat: '-n' is an alias for '--number', which is an alias for '--style=numbers'.
