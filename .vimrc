@@ -60,7 +60,7 @@ colorscheme everforest
 " 0: never
 " 1: show only if 2+ files are open
 " 2: always show
-set showtabline=2
+"set showtabline=2
 
 " change colors when switching modes (looks nicer if 'everforest' has been loaded first)
 " https://vim.fandom.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
