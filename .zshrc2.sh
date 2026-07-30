@@ -98,10 +98,12 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
     export CARGO_HOME="${HOME}/.cargo"
 fi
 ## Homebrew
-if [[ -d "/opt/homebrew/bin" ]]; then
-    PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+if command -v "brew" >/dev/null; then
     export HOMEBREW_INSTALL_BADGE="✅"
-    export HOMEBREW_BUNDLE_FILE="${HOME}/.local/share/Brewfile"
+    export HOMEBREW_BUNDLE_FILE="${HOME}/.config/homebrew/Brewfile"
+    # Auto-update interval: 30m
+    export HOMEBREW_AUTO_UPDATE_SECS=1800
+    export HOMEBREW_API_AUTO_UPDATE_SECS=1800
 fi
 ## Emacs
 if [[ "$EDITOR" == "emacs" ]]; then
