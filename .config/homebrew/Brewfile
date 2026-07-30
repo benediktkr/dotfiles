@@ -41,7 +41,7 @@ brew "watch"
 brew "wget"
 # Tool for managing your YubiKey configuration
 brew "ykman"
-cask "nikitabobko/tap/aerospace"
+cask "aerospace"
 # Official eID-Client of the Federal Government of Germany
 cask "ausweisapp"
 # Tool to flash OS images to SD cards & USB drives
