@@ -79,6 +79,22 @@ sketchybar --add item chevron left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
+
+# https://github.com/FelixKratz/SketchyBar/discussions/12?sort=new
+#
+# --add item apple.logo left \
+# --set apple.logo icon=􀣺  \
+#                  icon.font="SF Pro:Black:16.0" \
+#                  label.drawing=off \
+#                  click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
+#                  popup.background.border_width=2
+#                  popup.background.corner_radius=3 \
+#                  popup.background.border_color=0xff9dd274 \
+# --add item apple.preferences popup.apple.logo \
+# --set apple.preferences icon=􀺽 \
+#                         label="Preferences"
+#                         click_script="open -a 'System Preferences';  sketchybar -m --set apple.logo popup.drawing=off" \
+
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
 # Additional position (e.g. center) are available, see:
