@@ -72,6 +72,7 @@ cask "element"
 cask "fastmail"
 # Web browser
 cask "firefox"
+cask "font-hack-nerd-font"
 # Free and open-source image editor
 cask "gimp"
 # Desktop client for GitHub repositories
