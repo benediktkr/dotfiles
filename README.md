@@ -9,7 +9,7 @@
 [![docs](https://www.sudo.is/readmes/docs.svg)](https://www.sudo.is/docs)
 [![matrix](https://www.sudo.is/readmes/matrix-ben-sudo.is.svg)](https://matrix.to/#/@ben:sudo.is)
 
-Here are Ben's dotfiles.
+Ben's dotfiles.
 
 ![Leaf Dark](.local/share/backgrounds/Leaf_Dark.png)
 
