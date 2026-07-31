@@ -1,3 +1,5 @@
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
+tap "nikitabobko/tap"
 # CLI for working with C2PA manifests and media assets
 brew "c2patool"
 # Create and run Linux containers using lightweight virtual machines
@@ -40,7 +42,10 @@ brew "watch"
 brew "wget"
 # Tool for managing your YubiKey configuration
 brew "ykman"
-cask "aerospace"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar", trusted: true
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Official eID-Client of the Federal Government of Germany
 cask "ausweisapp"
 # Tool to flash OS images to SD cards & USB drives

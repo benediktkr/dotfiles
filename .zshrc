@@ -239,8 +239,10 @@ if command -v "rg" >/dev/null; then
     alias grep="rg"
 fi
 if command -v "brew" >/dev/null; then
-    export HOMEBREW_INSTALL_BADGE="✅"
+    # used by homebrew
+    export XDG_CONFIG_HOME="$HOME/.config"
     export HOMEBREW_BUNDLE_FILE="${HOME}/.config/homebrew/Brewfile"
+    export HOMEBREW_INSTALL_BADGE="✅"
     # Auto-update interval: 30m
     export HOMEBREW_AUTO_UPDATE_SECS=1800
     export HOMEBREW_API_AUTO_UPDATE_SECS=1800
