@@ -1,4 +1,3 @@
-tap "nikitabobko/tap"
 # CLI for working with C2PA manifests and media assets
 brew "c2patool"
 # Create and run Linux containers using lightweight virtual machines
