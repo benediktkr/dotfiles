@@ -74,6 +74,7 @@ cask "fastmail"
 cask "firefox"
 cask "font-dejavu"
 cask "font-hack-nerd-font"
+cask "font-sf-pro"
 # Free and open-source image editor
 cask "gimp"
 # Desktop client for GitHub repositories
