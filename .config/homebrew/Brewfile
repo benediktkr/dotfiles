@@ -6,6 +6,8 @@ brew "c2patool"
 brew "container", restart_service: :changed
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# TIFF library and utilities
+brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # GNU Privacy Guard (OpenPGP)
