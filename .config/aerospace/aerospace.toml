@@ -55,6 +55,14 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 on-mode-changed = []
 
+exec-on-workspace-change = [
+  # Trigger sketchybar event with current workspace ID. Exits with 0 even if sketchybar
+  # is not running.
+  # Docs: https://nikitabobko.github.io/AeroSpace/goodies#show-aerospace-workspaces-in-sketchybar
+  '/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 focus-follows-mouse.enabled = false
 
 # Possible values: (qwerty|dvorak|colemak)
